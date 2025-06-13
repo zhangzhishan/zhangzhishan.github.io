@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>Git常用命令 | Code4Fun</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="git," />
+  
+
+  <meta name="description" content="假如全世界的工具你只能保留一个在电脑，你的选择是什么？Git.—《我的老大是屌丝》摘
+
+从设计转型开发的第一天起，老大只教我一件事，使用 Git。
+比起一上来就给我各种任务写 HTML/CSS/JS 调各种 Bug, 让我熟练掌握 Git 这件事至今我都非常感激。毫无疑问地说，Git 是当今编程学习里最基本的必备技能。Git 的强大一本书都不足以全部说明，更何况一篇博客。本文记录了我 3 年来使">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git常用命令">
+<meta property="og:url" content="http://code4fun.me/2018/05/01/git_command/index.html">
+<meta property="og:site_name" content="Code4Fun">
+<meta property="og:description" content="假如全世界的工具你只能保留一个在电脑，你的选择是什么？Git.—《我的老大是屌丝》摘
+
+从设计转型开发的第一天起，老大只教我一件事，使用 Git。
+比起一上来就给我各种任务写 HTML/CSS/JS 调各种 Bug, 让我熟练掌握 Git 这件事至今我都非常感激。毫无疑问地说，Git 是当今编程学习里最基本的必备技能。Git 的强大一本书都不足以全部说明，更何况一篇博客。本文记录了我 3 年来使">
+<meta property="og:updated_time" content="2025-06-13T10:54:27.237Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Git常用命令">
+<meta name="twitter:description" content="假如全世界的工具你只能保留一个在电脑，你的选择是什么？Git.—《我的老大是屌丝》摘
+
+从设计转型开发的第一天起，老大只教我一件事，使用 Git。
+比起一上来就给我各种任务写 HTML/CSS/JS 调各种 Bug, 让我熟练掌握 Git 这件事至今我都非常感激。毫无疑问地说，Git 是当今编程学习里最基本的必备技能。Git 的强大一本书都不足以全部说明，更何况一篇博客。本文记录了我 3 年来使">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+<link rel="alternate" href="/atom.xml" title="Code4Fun" type="application/atom+xml">
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-超实用-Alias"><span class="toc-text">1. 超实用 Alias</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-取回远端-master-与本地-master分支合并"><span class="toc-text">2. 取回远端 master 与本地 master分支合并</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-推送分支到远端"><span class="toc-text">3. 推送分支到远端</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-追加文件到某个-commit"><span class="toc-text">4. 追加文件到某个 commit</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-查找包含某文件的-commit"><span class="toc-text">5. 查找包含某文件的 commit</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-把一个-commit-分拆为两个-commit"><span class="toc-text">6. 把一个 commit 分拆为两个 commit</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-删除某些-commit"><span class="toc-text">7. 删除某些 commit</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-追加修改到之前某个-commit"><span class="toc-text">8. 追加修改到之前某个 commit</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-查找含有特定关键字的-commit"><span class="toc-text">9. 查找含有特定关键字的 commit</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-清空-git-working-copy-还没追踪的文件"><span class="toc-text">10. 清空 git working copy 还没追踪的文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-清理本地仓库"><span class="toc-text">11. 清理本地仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-创建追踪远端分支的本地分支"><span class="toc-text">12. 创建追踪远端分支的本地分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-分支移动"><span class="toc-text">13. 分支移动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-Revert一个-Merge"><span class="toc-text">14. Revert一个 Merge</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15-获取短的-commit-hash"><span class="toc-text">15. 获取短的 commit hash</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16-commit-了以后才记起来忘了创建-gitignore-垃圾文件都已经提交"><span class="toc-text">16. commit 了以后才记起来忘了创建 .gitignore, 垃圾文件都已经提交</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-提交所有被删除的文件"><span class="toc-text">17. 提交所有被删除的文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#18-撤销上一次-git-add-操作"><span class="toc-text">18. 撤销上一次 git add .操作</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-git_command" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">Git常用命令</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2018.05.01</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>呼呼呼山</span>
+        </span>
+      
+
+      
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <blockquote>
+<p>假如全世界的工具你只能保留一个在电脑，你的选择是什么？Git.<br>—《我的老大是屌丝》摘</p>
+</blockquote>
+<p>从设计转型开发的第一天起，老大只教我一件事，使用 Git。</p>
+<p>比起一上来就给我各种任务写 HTML/CSS/JS 调各种 Bug, 让我熟练掌握 Git 这件事至今我都非常感激。<br>毫无疑问地说，Git 是当今编程学习里最基本的必备技能。<br>Git 的强大一本书都不足以全部说明，更何况一篇博客。<br>本文记录了我 3 年来使用 Git 最频繁的命令（不包括最基本的add/commit/push/pull等），<br>很负责地说，学会这些基本也就能快乐地玩转 Git 了 <strong>（持续整理更新中）</strong> 。</p>
+<p>Hope you enjoy!</p>
+<h2 id="1-超实用-Alias"><a href="#1-超实用-Alias" class="headerlink" title="1. 超实用 Alias"></a><strong>1. 超实用 Alias</strong></h2><h2 id="2-取回远端-master-与本地-master分支合并"><a href="#2-取回远端-master-与本地-master分支合并" class="headerlink" title="2. 取回远端 master 与本地 master分支合并"></a><strong>2. 取回远端 <code>master</code> 与本地 <code>master</code>分支合并</strong></h2><h2 id="3-推送分支到远端"><a href="#3-推送分支到远端" class="headerlink" title="3. 推送分支到远端"></a><strong>3. 推送分支到远端</strong></h2><p>假设现在所在的分支是 <code>import</code> ，指定推送到远端分支 <code>liujin-import</code></p>
+<p>假如远端的 <code>liujin-import</code> 分支已经不需要，可以直接覆盖掉</p>
+<h2 id="4-追加文件到某个-commit"><a href="#4-追加文件到某个-commit" class="headerlink" title="4. 追加文件到某个 commit"></a><strong>4. 追加文件到某个 commit</strong></h2><p>有时候修完某功能并提交了 commit 之后才发现还有一点小修改，这时候又不想再提交一个commit，可以追加这个文件到前一个commit，步骤如下：</p>
+<h2 id="5-查找包含某文件的-commit"><a href="#5-查找包含某文件的-commit" class="headerlink" title="5. 查找包含某文件的 commit"></a><strong>5. 查找包含某文件的 commit</strong></h2><p>或者</p>
+<p>Ref: List all commit for a specific file</p>
+<h2 id="6-把一个-commit-分拆为两个-commit"><a href="#6-把一个-commit-分拆为两个-commit" class="headerlink" title="6. 把一个 commit 分拆为两个 commit"></a><strong>6. 把一个 commit 分拆为两个 commit</strong></h2><p>老大常说要养成一个小改动对应一个commit的习惯，但是有时候写得太乱懒得去分割就把很多改动做成了一个commit，这样子增加了以后维护的难度，所以要把一个 commit 分拆为多个 commit 怎么办呢？</p>
+<ul>
+<li><p>首先把你要分拆的 file reset 了：</p>
+</li>
+<li><p>接着修改当前这个 commit 的 message，命令是：</p>
+</li>
+<li><p>然后就可以把 reset 出来那个 file 新建一个 commit，命令是：</p>
+</li>
+</ul>
+<p>这样就把一个 commit 分拆为两个啦，^_^</p>
+<h2 id="7-删除某些-commit"><a href="#7-删除某些-commit" class="headerlink" title="7. 删除某些 commit"></a><strong>7. 删除某些 commit</strong></h2><h2 id="8-追加修改到之前某个-commit"><a href="#8-追加修改到之前某个-commit" class="headerlink" title="8. 追加修改到之前某个 commit"></a><strong>8. 追加修改到之前某个 commit</strong></h2><p>假如 <code>gst</code> 发现已经有文件被修改，这时候需要把修改暂存起来。</p>
+<p>接着找到你需要追加修改的那个commit id，如 <code>4b739bb</code></p>
+<p>这时候会自动打开编辑器，把你需要修改的 commit 前面的 <code>pick</code> 改成 <code>edit</code> ，保存，关闭编辑器，这时候会回到终端，再输入:</p>
+<p>把暂存的修改读出来，然后做修改， <code>g add .</code> ，最后</p>
+<h2 id="9-查找含有特定关键字的-commit"><a href="#9-查找含有特定关键字的-commit" class="headerlink" title="9. 查找含有特定关键字的 commit"></a><strong>9. 查找含有特定关键字的 commit</strong></h2><ul>
+<li><code>git log --grep</code></li>
+<li><p>最基本的用法</p>
+</li>
+<li><p><code>git log --grep=frotz --grep=nitfol --since=1.month</code></p>
+</li>
+<li><p>查找一个月以内commit log message里含有 <code>frotz</code> 或者 <code>nitfol</code> 的 commits</p>
+</li>
+<li><p><code>git log --grep=frotz --author=Linus</code></p>
+</li>
+<li><p>查找指定作者</p>
+</li>
+<li><p><code>git grep -l -e frotz --and -e nitfol</code></p>
+</li>
+<li><p>查找同一行含有 <code>frotz</code> 和 <code>nitfol</code> 的文件</p>
+</li>
+<li><p><code>git grep -l --all-match -e frotz -e nitfol</code></p>
+</li>
+<li>查找文件里面含有 <code>frotz</code> 和 <code>nitfol</code> 的文件（不局限于同一行）</li>
+</ul>
+<h2 id="10-清空-git-working-copy-还没追踪的文件"><a href="#10-清空-git-working-copy-还没追踪的文件" class="headerlink" title="10. 清空 git working copy 还没追踪的文件"></a><strong>10. 清空 git working copy 还没追踪的文件</strong></h2><ul>
+<li><p><code>git clean -f</code></p>
+</li>
+<li><p><code>git clean -f -d</code></p>
+</li>
+<li><p>如果还想删除目录</p>
+</li>
+<li><p><code>git clean -f -X</code></p>
+</li>
+<li><p>如果只是想删除忽略的文件</p>
+</li>
+<li><p><code>git clean -f -x</code></p>
+</li>
+<li>如果想删除忽略和非忽略的文件</li>
+</ul>
+<h2 id="11-清理本地仓库"><a href="#11-清理本地仓库" class="headerlink" title="11. 清理本地仓库"></a><strong>11. 清理本地仓库</strong></h2><p>长时间做一个项目，经常需要 <code>git fetch</code> ，这样做每次都会拉回远端的全部分支。<br>即使远端有些分支已经删除，但是运行 <code>git branch -a</code> 还是会显示已删除的分支，<br>长时间下来这个列表就会很长很长，这时候就需要清理一下本地的仓库了：</p>
+<h2 id="12-创建追踪远端分支的本地分支"><a href="#12-创建追踪远端分支的本地分支" class="headerlink" title="12. 创建追踪远端分支的本地分支"></a><strong>12. 创建追踪远端分支的本地分支</strong></h2><h2 id="13-分支移动"><a href="#13-分支移动" class="headerlink" title="13. 分支移动"></a><strong>13. 分支移动</strong></h2><h2 id="14-Revert一个-Merge"><a href="#14-Revert一个-Merge" class="headerlink" title="14. Revert一个 Merge"></a><strong>14. Revert一个 Merge</strong></h2><p><code>git revert -m 1 M</code> -&gt; W</p>
+<h2 id="15-获取短的-commit-hash"><a href="#15-获取短的-commit-hash" class="headerlink" title="15. 获取短的 commit hash"></a><strong>15. 获取短的 commit hash</strong></h2><h2 id="16-commit-了以后才记起来忘了创建-gitignore-垃圾文件都已经提交"><a href="#16-commit-了以后才记起来忘了创建-gitignore-垃圾文件都已经提交" class="headerlink" title="16. commit 了以后才记起来忘了创建 .gitignore, 垃圾文件都已经提交"></a><strong>16. commit 了以后才记起来忘了创建 <code>.gitignore</code>, 垃圾文件都已经提交</strong></h2><p>比如说一个nodejs项目，一开始的时候就忘记了创建 <code>.gitnore</code> 文件忽略掉 <code>node_modules</code> 的内容，所以其中的内容就已经被提交了。</p>
+<p>即使紧接着你在 <code>.gitignore</code> 加了一行 <code>node_modules</code>, 已经被提交的文件是不会自动删除的。</p>
+<p>这时候你就需要做的就是：</p>
+<h2 id="17-提交所有被删除的文件"><a href="#17-提交所有被删除的文件" class="headerlink" title="17. 提交所有被删除的文件"></a><strong>17. 提交所有被删除的文件</strong></h2><p>这个命令告诉 git 自动更新已跟踪的文件, 包括被删除的已跟踪文件。</p>
+<p>如果你用的是 git 2.0</p>
+<p>友情提示：从 git 2.0(2013年中)开始，以上命令会 stage 整个 working tree 的文件。<br>如果你只是想 stage 当前目录的文件，应该这么用：</p>
+<p>详情可以去搜 ““git add -A” 和 “git add .” 的区别”.</p>
+<p>Ref: StackOverflow</p>
+<h2 id="18-撤销上一次-git-add-操作"><a href="#18-撤销上一次-git-add-操作" class="headerlink" title="18. 撤销上一次 git add .操作"></a><strong>18. 撤销上一次 <code>git add .</code>操作</strong></h2><p>这种情况通常是因为忘记添加 <code>.gitignore</code> 文件，或者一时手快把一些非必要的文件（如 <code>node_modules</code> )跟踪了, 解决办法：</p>
+<p>该命令会 unstage 你上一个 commit 增加的所有文件。</p>
+<p>如果你只想 unstage 某些文件:</p>
+<p>还可以 unstage 文件里某处的改动：</p>
+<blockquote>
+<p><a href="">呼呼呼山</a>(<a href="http://code4fun.me">http://code4fun.me</a>)<br>2019-05-01 09:42:13</p>
+</blockquote>
+
+    
+  </div>
+
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2018/05/01/dailynote_history/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2018/06/04/欧洲之旅/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: '99bca29ad4d85951d688',
+  clientSecret: 'd956164d57277ed8ece2fab34d91f67506dd50d6',
+  repo: 'blog-comment',
+  owner: 'zhangzhishan',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: md5(location.pathname),
+  admin: ['zhangzhishan'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

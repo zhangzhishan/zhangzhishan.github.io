@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>软件调试的艺术(The Art of Debugging with GDB, DDD, and Eclipse) | Code4Fun</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="debug," />
+  
+
+  <meta name="description" content="调试的原则
+
+主要调试器操作
+
+单步调试源代码
+
+设置断点
+
+删除和禁用断点
+
+检查变量
+
+设置监视点
+
+
+
+
+
+P.S. 命令缩写
+
+
+调试的原则
+调试的本质：确认原则
+从简单工作开始调试
+使用自顶向下的方法
+使用调试工具确定段错误的位置
+通过发出中断确定无限循环的位置
+使用二分搜索
+
+主要调试器操作单步调试源代码break 设置断点
+condition breakpointnumber co">
+<meta property="og:type" content="article">
+<meta property="og:title" content="软件调试的艺术(The Art of Debugging with GDB, DDD, and Eclipse)">
+<meta property="og:url" content="http://code4fun.me/2016/01/19/ruan-jian-diao-shi-de-yi-shu-the-art-of-debugging/index.html">
+<meta property="og:site_name" content="Code4Fun">
+<meta property="og:description" content="调试的原则
+
+主要调试器操作
+
+单步调试源代码
+
+设置断点
+
+删除和禁用断点
+
+检查变量
+
+设置监视点
+
+
+
+
+
+P.S. 命令缩写
+
+
+调试的原则
+调试的本质：确认原则
+从简单工作开始调试
+使用自顶向下的方法
+使用调试工具确定段错误的位置
+通过发出中断确定无限循环的位置
+使用二分搜索
+
+主要调试器操作单步调试源代码break 设置断点
+condition breakpointnumber co">
+<meta property="og:updated_time" content="2025-06-13T10:54:27.290Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="软件调试的艺术(The Art of Debugging with GDB, DDD, and Eclipse)">
+<meta name="twitter:description" content="调试的原则
+
+主要调试器操作
+
+单步调试源代码
+
+设置断点
+
+删除和禁用断点
+
+检查变量
+
+设置监视点
+
+
+
+
+
+P.S. 命令缩写
+
+
+调试的原则
+调试的本质：确认原则
+从简单工作开始调试
+使用自顶向下的方法
+使用调试工具确定段错误的位置
+通过发出中断确定无限循环的位置
+使用二分搜索
+
+主要调试器操作单步调试源代码break 设置断点
+condition breakpointnumber co">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+<link rel="alternate" href="/atom.xml" title="Code4Fun" type="application/atom+xml">
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#调试的原则"><span class="toc-text">调试的原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#主要调试器操作"><span class="toc-text">主要调试器操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#单步调试源代码"><span class="toc-text">单步调试源代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设置断点"><span class="toc-text">设置断点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除和禁用断点"><span class="toc-text">删除和禁用断点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#检查变量"><span class="toc-text">检查变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设置监视点"><span class="toc-text">设置监视点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#P-S-命令缩写"><span class="toc-text">P.S. 命令缩写</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-ruan-jian-diao-shi-de-yi-shu-the-art-of-debugging" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">软件调试的艺术(The Art of Debugging with GDB, DDD, and Eclipse)</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2016.01.19</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>呼呼呼山</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
+  </span>
+
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <ul>
+<li><p><a href="#toc_0">调试的原则</a></p>
+</li>
+<li><p><a href="#toc_1">主要调试器操作</a></p>
+<ul>
+<li><p><a href="#toc_2">单步调试源代码</a></p>
+<ul>
+<li><p><a href="#toc_3">设置断点</a></p>
+</li>
+<li><p><a href="#toc_4">删除和禁用断点</a></p>
+</li>
+<li><p><a href="#toc_5">检查变量</a></p>
+</li>
+<li><p><a href="#toc_6">设置监视点</a></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a href="#toc_7">P.S. 命令缩写</a></p>
+</li>
+</ul>
+<h2 id="调试的原则"><a href="#调试的原则" class="headerlink" title="调试的原则"></a>调试的原则</h2><ul>
+<li>调试的本质：确认原则</li>
+<li>从简单工作开始调试</li>
+<li>使用自顶向下的方法</li>
+<li>使用调试工具确定段错误的位置</li>
+<li>通过发出中断确定无限循环的位置</li>
+<li>使用二分搜索</li>
+</ul>
+<h2 id="主要调试器操作"><a href="#主要调试器操作" class="headerlink" title="主要调试器操作"></a>主要调试器操作</h2><h3 id="单步调试源代码"><a href="#单步调试源代码" class="headerlink" title="单步调试源代码"></a>单步调试源代码</h3><p>break 设置断点</p>
+<p>condition breakpointnumber condition 条件断点</p>
+<p>break 30 if num_y==1 条件断点</p>
+<p>clear bplinenumber 删除断点</p>
+<p>info break 查询要找的断点编号</p>
+<p>next 执行下一行</p>
+<p>step 在函数调用时进入函数</p>
+<p>continue 恢复执行并继续</p>
+<p>tbreak 临时断点</p>
+<h3 id="设置断点"><a href="#设置断点" class="headerlink" title="设置断点"></a>设置断点</h3><p>break line_number</p>
+<p>break function</p>
+<p>break filename:line_number</p>
+<p>break filename:function</p>
+<p>break +offset</p>
+<p>break -offset</p>
+<h3 id="删除和禁用断点"><a href="#删除和禁用断点" class="headerlink" title="删除和禁用断点"></a>删除和禁用断点</h3><p>delete breakpoint_list</p>
+<p>delete 删除所有断点</p>
+<p>clear 清除GDB将执行的下一个指令处的断点，这种方法适用于要删除GDB已经到达的断点的情况。</p>
+<p>clear function, clear filename:funciton, clear line_number, clear filename:line_number 根据位置清除断点</p>
+<p>disable breakpoint_list</p>
+<p>enable breakpoint_list</p>
+<p>enable once breakpoint_list 在断点下次引起GDB暂停执行后被禁用</p>
+<h3 id="检查变量"><a href="#检查变量" class="headerlink" title="检查变量"></a>检查变量</h3><p>print 命令</p>
+<h3 id="设置监视点"><a href="#设置监视点" class="headerlink" title="设置监视点"></a>设置监视点</h3><p>watch z</p>
+<p>watch (z &gt; 29)</p>
+<h2 id="P-S-命令缩写"><a href="#P-S-命令缩写" class="headerlink" title="P.S. 命令缩写"></a>P.S. 命令缩写</h2><p>b 表示 break</p>
+<p>i b 表示 info break</p>
+<p>cond 表示 condition</p>
+<p>r 表示 run</p>
+<p>n 表示 next</p>
+<p>s 表示 step</p>
+<p>c 表示 continue</p>
+<p>bt 表示 breaktrace</p>
+
+    
+  </div>
+
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2015/12/22/用泛用型播客客户端订阅喜马拉雅内容/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2016/02/13/git-de-gitignore-pei-zhi/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: '99bca29ad4d85951d688',
+  clientSecret: 'd956164d57277ed8ece2fab34d91f67506dd50d6',
+  repo: 'blog-comment',
+  owner: 'zhangzhishan',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: md5(location.pathname),
+  admin: ['zhangzhishan'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

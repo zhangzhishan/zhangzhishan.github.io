@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>opencv install | Code4Fun</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="opencv," />
+  
+
+  <meta name="description" content="Boost - c++ Librairies (thread and system are needed)sudo apt-get install libboost-all-dev
+Eigen 3 - Linear algebrasudo apt-get install libeigen3-dev
+opencv123456789101112sudo apt-get install build-es">
+<meta property="og:type" content="article">
+<meta property="og:title" content="opencv install">
+<meta property="og:url" content="http://code4fun.me/2019/03/26/opencv install on windows/index.html">
+<meta property="og:site_name" content="Code4Fun">
+<meta property="og:description" content="Boost - c++ Librairies (thread and system are needed)sudo apt-get install libboost-all-dev
+Eigen 3 - Linear algebrasudo apt-get install libeigen3-dev
+opencv123456789101112sudo apt-get install build-es">
+<meta property="og:updated_time" content="2025-06-13T10:54:27.289Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="opencv install">
+<meta name="twitter:description" content="Boost - c++ Librairies (thread and system are needed)sudo apt-get install libboost-all-dev
+Eigen 3 - Linear algebrasudo apt-get install libeigen3-dev
+opencv123456789101112sudo apt-get install build-es">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+<link rel="alternate" href="/atom.xml" title="Code4Fun" type="application/atom+xml">
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Boost-c-Librairies-thread-and-system-are-needed"><span class="toc-text">Boost - c++ Librairies (thread and system are needed)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Eigen-3-Linear-algebra"><span class="toc-text">Eigen 3 - Linear algebra</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#opencv"><span class="toc-text">opencv</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sophus"><span class="toc-text">Sophus</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fast"><span class="toc-text">Fast</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vikit-common"><span class="toc-text">vikit_common</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SVO"><span class="toc-text">SVO</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-opencv install on windows" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">opencv install</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2019.03.26</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>呼呼呼山</span>
+        </span>
+      
+
+      
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h2 id="Boost-c-Librairies-thread-and-system-are-needed"><a href="#Boost-c-Librairies-thread-and-system-are-needed" class="headerlink" title="Boost - c++ Librairies (thread and system are needed)"></a>Boost - c++ Librairies (thread and system are needed)</h2><p><code>sudo apt-get install libboost-all-dev</code></p>
+<h2 id="Eigen-3-Linear-algebra"><a href="#Eigen-3-Linear-algebra" class="headerlink" title="Eigen 3 - Linear algebra"></a>Eigen 3 - Linear algebra</h2><p><code>sudo apt-get install libeigen3-dev</code></p>
+<h2 id="opencv"><a href="#opencv" class="headerlink" title="opencv"></a>opencv</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install build-essential cmake git pkg-config</div><div class="line"><span class="comment"># sudo apt-get install libgtk2.0-dev libavcodec-dev libavformat-dev libswscale-dev</span></div><div class="line">git <span class="built_in">clone</span> https://github.com/Itseez/opencv.git</div><div class="line">git checkout 3.4.4</div><div class="line">git <span class="built_in">clone</span> https://github.com/Itseez/opencv_contrib.git</div><div class="line">git checkout 3.4.4</div><div class="line"><span class="built_in">cd</span> opencv</div><div class="line">mkdir build</div><div class="line"><span class="built_in">cd</span> build</div><div class="line">cmake ..</div><div class="line">make -j5</div><div class="line">sudo make install</div></pre></td></tr></table></figure>
+<h2 id="Sophus"><a href="#Sophus" class="headerlink" title="Sophus"></a>Sophus</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">cd workspace</div><div class="line">git clone https://github.com/strasdat/Sophus.git</div><div class="line">cd Sophus</div><div class="line">git checkout a621ff</div><div class="line">mkdir build</div><div class="line">cd build</div><div class="line">cmake ..</div><div class="line">make</div></pre></td></tr></table></figure>
+<p>Note: if you encounter some lvalue errors for <code>unit_complex_.imag() = 0</code>, you may change that code to <code>unit_complex_.imag(0.)</code>;</p>
+<h2 id="Fast"><a href="#Fast" class="headerlink" title="Fast"></a>Fast</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">cd workspace</div><div class="line">git clone https://github.com/uzh-rpg/fast.git</div><div class="line">cd fast</div><div class="line">mkdir build</div><div class="line">cd build</div><div class="line">cmake ..</div><div class="line">make</div></pre></td></tr></table></figure>
+<h2 id="vikit-common"><a href="#vikit-common" class="headerlink" title="vikit_common"></a>vikit_common</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">cd workspace</div><div class="line">git clone https://github.com/uzh-rpg/rpg_vikit.git</div><div class="line">cd rpg_vikit/vikit_common</div><div class="line">mkdir build</div><div class="line">cd build</div><div class="line">cmake ..</div><div class="line">make</div></pre></td></tr></table></figure>
+<p>in <code>rpg_vikit/vikit_common/CMakeLists.txt</code> set the flag <code>USE_ROS</code> to <code>FALSE</code>.</p>
+<h2 id="SVO"><a href="#SVO" class="headerlink" title="SVO"></a>SVO</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">cd workspace</div><div class="line">git clone https://github.com/uzh-rpg/rpg_svo.git</div><div class="line">cd rpg_svo/svo</div><div class="line">mkdir build</div><div class="line">cd build</div><div class="line">cmake ..</div><div class="line">make</div></pre></td></tr></table></figure>
+<p>In <code>svo/CMakeLists.txt</code> set the flag <code>USE_ROS</code> to <code>FALSE</code>.</p>
+
+    
+  </div>
+
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2019/03/26/settingsync_vscode/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2019/03/26/compiler/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: '99bca29ad4d85951d688',
+  clientSecret: 'd956164d57277ed8ece2fab34d91f67506dd50d6',
+  repo: 'blog-comment',
+  owner: 'zhangzhishan',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: md5(location.pathname),
+  admin: ['zhangzhishan'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

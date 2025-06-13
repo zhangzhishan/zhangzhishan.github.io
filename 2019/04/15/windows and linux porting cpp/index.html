@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>Porting windows cpp api to linux | Code4Fun</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="cpp," />
+  
+
+  <meta name="description" content="123#ifdef PLATFORM_UNIX   #define ZeroMemory(Destination,Length) memset((Destination),0,(Length))#endif
+windows CaptureStackBackTrace -&amp;gt; Linux backtrace
+12345678910111213141516171819202122//to rese">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Porting windows cpp api to linux">
+<meta property="og:url" content="http://code4fun.me/2019/04/15/windows and linux porting cpp/index.html">
+<meta property="og:site_name" content="Code4Fun">
+<meta property="og:description" content="123#ifdef PLATFORM_UNIX   #define ZeroMemory(Destination,Length) memset((Destination),0,(Length))#endif
+windows CaptureStackBackTrace -&amp;gt; Linux backtrace
+12345678910111213141516171819202122//to rese">
+<meta property="og:updated_time" content="2025-06-13T10:54:27.291Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Porting windows cpp api to linux">
+<meta name="twitter:description" content="123#ifdef PLATFORM_UNIX   #define ZeroMemory(Destination,Length) memset((Destination),0,(Length))#endif
+windows CaptureStackBackTrace -&amp;gt; Linux backtrace
+12345678910111213141516171819202122//to rese">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+<link rel="alternate" href="/atom.xml" title="Code4Fun" type="application/atom+xml">
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#system-info"><span class="toc-text">system info</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#c-11"><span class="toc-text">c++ 11</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#win32"><span class="toc-text">win32</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#linux"><span class="toc-text">linux</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sleep"><span class="toc-text">sleep</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#time"><span class="toc-text">time</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#win32-1"><span class="toc-text">win32</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cross-platform"><span class="toc-text">cross platform</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#file-system"><span class="toc-text">file system</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#win32-2"><span class="toc-text">win32</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cross-platform-1"><span class="toc-text">cross platform</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#stdcall"><span class="toc-text">_stdcall</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#thread"><span class="toc-text">thread</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#char-util"><span class="toc-text">char util</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#atomic"><span class="toc-text">atomic</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CONDITION-VARIABLE"><span class="toc-text">CONDITION_VARIABLE</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#win32-3"><span class="toc-text">win32</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#std"><span class="toc-text">std</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mutex"><span class="toc-text">mutex</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#win32-4"><span class="toc-text">win32</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#std-1"><span class="toc-text">std</span></a></li></ol></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-windows and linux porting cpp" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">Porting windows cpp api to linux</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2019.04.15</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>呼呼呼山</span>
+        </span>
+      
+
+      
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#ifdef PLATFORM_UNIX</div><div class="line">   #define ZeroMemory(Destination,Length) memset((Destination),0,(Length))</div><div class="line">#endif</div></pre></td></tr></table></figure>
+<p>windows CaptureStackBackTrace -&gt; Linux backtrace</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">//to reserve virtual address space </div><div class="line">//equivalent of VirtualAlloc(NULL, size, MEM_RESERVE, PAGE_NOACCESS)</div><div class="line">void* ptr = mmap(NULL, size, PROT_NONE, (MAP_PRIVATE | MAP_ANON), -1, 0);</div><div class="line">msync(ptr, size, (MS_SYNC | MS_INVALIDATE));</div><div class="line"></div><div class="line">//to free ALL virtual address space </div><div class="line">//equivalent of VirtualFree(addr, 0, MEM_RELEASE)</div><div class="line">//where &quot;size&quot; is the size of the entire virtual address space and &quot;addr&quot; the starting address</div><div class="line">msync(addr, size, MS_SYNC); </div><div class="line">munmap(addr, size);</div><div class="line"></div><div class="line">//to allocate physical memory</div><div class="line">//equivalent of VirtualAlloc(addr, size, MEM_COMMIT, PAGE_READWRITE)</div><div class="line">void* ptr = mmap(addr, size, (PROT_READ | PROT_WRITE), (MAP_FIXED | MAP_SHARED | MAP_ANON), -1, 0);</div><div class="line">msync(addr, size, (MS_SYNC | MS_INVALIDATE));</div><div class="line"></div><div class="line">// instead of unmapping the address, we&apos;re just gonna trick </div><div class="line">// the TLB to mark this as a new mapped area which, due to </div><div class="line">// demand paging, will not be committed until used. VirtualFree(addr, size, MEM_DECOMMIT);</div><div class="line"></div><div class="line">mmap(addr, size, PROT_NONE, MAP_FIXED|MAP_PRIVATE|MAP_ANON, -1, 0);</div><div class="line">msync(addr, size, MS_SYNC|MS_INVALIDATE);</div></pre></td></tr></table></figure>
+<h2 id="system-info"><a href="#system-info" class="headerlink" title="system info"></a>system info</h2><h3 id="c-11"><a href="#c-11" class="headerlink" title="c++ 11"></a>c++ 11</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//may return 0 when not able to detect</div><div class="line">unsigned concurentThreadsSupported = std::thread::hardware_concurrency();</div></pre></td></tr></table></figure>
+<h3 id="win32"><a href="#win32" class="headerlink" title="win32"></a>win32</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">SYSTEM_INFO sysinfo;</div><div class="line">GetSystemInfo(&amp;sysinfo);</div><div class="line">int numCPU = sysinfo.dwNumberOfProcessors;</div><div class="line">printf(&quot;%s %d\n\n&quot;, &quot;PageSize[Bytes] :&quot;, sysInfo.dwPageSize);</div><div class="line"></div><div class="line">MEMORYSTATUSEX mem;</div><div class="line">mem.dwLength = sizeof(mem);</div><div class="line">LogAssert(GlobalMemoryStatusEx(&amp;mem));</div><div class="line">UInt32 totalPhysicalMemoryInMB = static_cast&lt;UInt32&gt;(mem.ullTotalPhys / c_BytesPerMegabyte);</div></pre></td></tr></table></figure>
+<h3 id="linux"><a href="#linux" class="headerlink" title="linux"></a>linux</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">int numCPU = sysconf(_SC_NPROCESSORS_ONLN);</div><div class="line">long pagesize = sysconf(_SC_PAGE_SIZE);</div></pre></td></tr></table></figure>
+<p><a href="http://man7.org/linux/man-pages/man2/sysinfo.2.html" target="_blank" rel="external">sysinfo</a><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"sys/sysinfo.h"</span></span></div><div class="line"><span class="keyword">struct</span> sysinfo memInfo;</div><div class="line"></div><div class="line">sysinfo (&amp;memInfo);</div><div class="line"><span class="keyword">long</span> <span class="keyword">long</span> totalVirtualMem = memInfo.totalram;</div><div class="line"><span class="comment">//Add other values in next statement to avoid int overflow on right hand side...</span></div><div class="line">totalVirtualMem += memInfo.totalswap;</div><div class="line">totalVirtualMem *= memInfo.mem_unit;</div><div class="line"></div><div class="line"><span class="keyword">long</span> <span class="keyword">long</span> virtualMemUsed = memInfo.totalram - memInfo.freeram;</div><div class="line"><span class="comment">//Add other values in next statement to avoid int overflow on right hand side...</span></div><div class="line">virtualMemUsed += memInfo.totalswap - memInfo.freeswap;</div><div class="line">virtualMemUsed *= memInfo.mem_unit;</div><div class="line"></div><div class="line"><span class="keyword">long</span> <span class="keyword">long</span> totalPhysMem = memInfo.totalram;</div><div class="line"><span class="comment">//Multiply in next statement to avoid int overflow on right hand side...</span></div><div class="line">totalPhysMem *= memInfo.mem_unit;</div><div class="line"></div><div class="line"><span class="keyword">long</span> <span class="keyword">long</span> physMemUsed = memInfo.totalram - memInfo.freeram;</div><div class="line"><span class="comment">//Multiply in next statement to avoid int overflow on right hand side...</span></div><div class="line">physMemUsed *= memInfo.mem_unit;</div></pre></td></tr></table></figure></p>
+<h2 id="sleep"><a href="#sleep" class="headerlink" title="sleep"></a>sleep</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">void Sleep(</div><div class="line">  DWORD dwMilliseconds</div><div class="line">);</div><div class="line"></div><div class="line">std::this_thread::sleep_for(std::chrono::milliseconds(100));</div></pre></td></tr></table></figure>
+<h2 id="time"><a href="#time" class="headerlink" title="time"></a>time</h2><h3 id="win32-1"><a href="#win32-1" class="headerlink" title="win32"></a>win32</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">GetSystemTimeAsFileTime</div><div class="line">LPFILETIME</div><div class="line">FILETIME</div></pre></td></tr></table></figure>
+<h3 id="cross-platform"><a href="#cross-platform" class="headerlink" title="cross platform"></a>cross platform</h3><p><a href="https://zh.cppreference.com/w/cpp/header/chrono" target="_blank" rel="external">chrono</a></p>
+<p><a href="https://zh.cppreference.com/w/cpp/chrono/system_clock/now" target="_blank" rel="external">std::chrono::system_clock::now()</a></p>
+<h2 id="file-system"><a href="#file-system" class="headerlink" title="file system"></a>file system</h2><h3 id="win32-2"><a href="#win32-2" class="headerlink" title="win32"></a>win32</h3><p>WIN32_FIND_DATAA FindFirstFileA FindNextFileA GetTempPathA</p>
+<h3 id="cross-platform-1"><a href="#cross-platform-1" class="headerlink" title="cross platform"></a>cross platform</h3><p><a href="https://www.boost.org/doc/libs/1_38_0/libs/filesystem/doc/index.htm" target="_blank" rel="external">boost::filesystem</a></p>
+<p><a href="https://stackoverflow.com/questions/612097/how-can-i-get-the-list-of-files-in-a-directory-using-c-or-c" target="_blank" rel="external">some example in SO</a></p>
+<p><a href="https://stackoverflow.com/questions/1257721/can-i-use-a-mask-to-iterate-files-in-a-directory-with-boost" target="_blank" rel="external">use boost regex as a mask</a></p>
+<p>temp_directory_path</p>
+<h2 id="stdcall"><a href="#stdcall" class="headerlink" title="_stdcall"></a>_stdcall</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">// https://stackoverflow.com/questions/52713849/why-does-gcc-ignore-attribute-stdcall</div><div class="line">#ifndef XRAND2_API</div><div class="line">#ifndef PLATFORM_UNIX</div><div class="line">#define XRAND2_API __stdcall</div><div class="line">#else</div><div class="line">#define XRAND2_API __attribute__((stdcall))</div><div class="line">#endif</div><div class="line"></div><div class="line"></div><div class="line">#ifdef PLATFORM_UNIX</div><div class="line">    #define CDECAL_MODIFIER  __attribute__((cdecl))</div><div class="line">#else</div><div class="line">    #define CDECAL_MODIFIER __cdecl</div><div class="line">#endif</div></pre></td></tr></table></figure>
+<p>一些windows下的type的定义，<a href="https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-dtyp/66996877-9dd4-477d-a811-30e6c1a5525d" target="_blank" rel="external">type</a></p>
+<h2 id="thread"><a href="#thread" class="headerlink" title="thread"></a>thread</h2><p>std::thread 可以变为linux或者win32自己的thread,设置优先级 <a href="https://zh.cppreference.com/w/cpp/thread/thread/native_handle" target="_blank" rel="external">native_handle</a></p>
+<h2 id="char-util"><a href="#char-util" class="headerlink" title="char util"></a>char util</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">strcpy_s -&gt; strcpy</div><div class="line"></div><div class="line">// but this will lead a problem, if the dest char array is not initilized, the result will be wrong.!</div><div class="line">strncpy_s -&gt; strncpy https://zh.cppreference.com/w/c/string/byte/strncpy _TRUNCATE is size of dest</div><div class="line"></div><div class="line">_snprintf -&gt; snprintf</div><div class="line">sprintf_s -&gt; snprintf</div><div class="line">strncat_s -&gt; strncat https://zh.cppreference.com/w/c/string/byte/strncat</div><div class="line">strcat_s -&gt; strcat https://zh.cppreference.com/w/c/string/byte/strcat</div><div class="line">sscanf_s -&gt; sscanf</div><div class="line">StringCchPrintfA -&gt; snprintf</div><div class="line">printf UInt64 I64u</div></pre></td></tr></table></figure>
+<h2 id="atomic"><a href="#atomic" class="headerlink" title="atomic"></a>atomic</h2><ul>
+<li>Interlockedxxx -&gt; std::atomic</li>
+<li>InterlockedIncrement -&gt; atomic_inc</li>
+<li>InterlockedDecrement -&gt; atomic_dec<h2 id="CONDITION-VARIABLE"><a href="#CONDITION-VARIABLE" class="headerlink" title="CONDITION_VARIABLE"></a>CONDITION_VARIABLE</h2><h3 id="win32-3"><a href="#win32-3" class="headerlink" title="win32"></a>win32</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">CONDITION_VARIABLE</div><div class="line">WakeAllConditionVariable</div><div class="line">InitializeConditionVariable</div><div class="line">InitializeCriticalSectionAndSpinCount</div><div class="line">WakeConditionVariable</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="std"><a href="#std" class="headerlink" title="std"></a>std</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">condition_variable</div><div class="line">wait</div><div class="line">wait_for</div><div class="line">notify_one</div><div class="line">notify_all</div></pre></td></tr></table></figure>
+<h2 id="mutex"><a href="#mutex" class="headerlink" title="mutex"></a>mutex</h2><h3 id="win32-4"><a href="#win32-4" class="headerlink" title="win32"></a>win32</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">CRITICAL_SECTION</div><div class="line">EnterCriticalSection</div><div class="line">LeaveCriticalSection</div><div class="line">InitializeCriticalSectionAndSpinCount</div><div class="line">SleepConditionVariableCS</div></pre></td></tr></table></figure>
+<h3 id="std-1"><a href="#std-1" class="headerlink" title="std"></a>std</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">std::mutex</div><div class="line">lock</div><div class="line">unlock</div></pre></td></tr></table></figure>
+<blockquote>
+<p><a href="http://code4fun.me">呼呼呼山</a><br>2019-04-15 15:40:13</p>
+</blockquote>
+
+    
+  </div>
+
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2019/04/15/windows atomic/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2019/04/15/never heard before/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: '99bca29ad4d85951d688',
+  clientSecret: 'd956164d57277ed8ece2fab34d91f67506dd50d6',
+  repo: 'blog-comment',
+  owner: 'zhangzhishan',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: md5(location.pathname),
+  admin: ['zhangzhishan'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

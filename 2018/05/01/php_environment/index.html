@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>php 环境配置 | Code4Fun</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="php," />
+  
+
+  <meta name="description" content="安装相关软件123456sudo apt-get install apache2sudo apt-get install libapache2-mod-php5sudo apt-get install mysql-server libapache2-mod-auth-mysql php5-mysqlsudo apt-get install php5 libapache2-mod-php5 php5">
+<meta property="og:type" content="article">
+<meta property="og:title" content="php 环境配置">
+<meta property="og:url" content="http://code4fun.me/2018/05/01/php_environment/index.html">
+<meta property="og:site_name" content="Code4Fun">
+<meta property="og:description" content="安装相关软件123456sudo apt-get install apache2sudo apt-get install libapache2-mod-php5sudo apt-get install mysql-server libapache2-mod-auth-mysql php5-mysqlsudo apt-get install php5 libapache2-mod-php5 php5">
+<meta property="og:updated_time" content="2025-06-13T10:54:27.289Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="php 环境配置">
+<meta name="twitter:description" content="安装相关软件123456sudo apt-get install apache2sudo apt-get install libapache2-mod-php5sudo apt-get install mysql-server libapache2-mod-auth-mysql php5-mysqlsudo apt-get install php5 libapache2-mod-php5 php5">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+<link rel="alternate" href="/atom.xml" title="Code4Fun" type="application/atom+xml">
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装相关软件"><span class="toc-text">安装相关软件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置文件修改"><span class="toc-text">配置文件修改</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#权限修改"><span class="toc-text">权限修改</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-php_environment" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">php 环境配置</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2018.05.01</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>呼呼呼山</span>
+        </span>
+      
+
+      
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h2 id="安装相关软件"><a href="#安装相关软件" class="headerlink" title="安装相关软件"></a>安装相关软件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install apache2</div><div class="line">sudo apt-get install libapache2-mod-php5</div><div class="line">sudo apt-get install mysql-server libapache2-mod-auth-mysql php5-mysql</div><div class="line">sudo apt-get install php5 libapache2-mod-php5 php5-mcrypt</div><div class="line">sudo apt-get install php5-gd</div><div class="line">sudo a2enmod rewrite</div></pre></td></tr></table></figure>
+<h2 id="配置文件修改"><a href="#配置文件修改" class="headerlink" title="配置文件修改"></a>配置文件修改</h2><ul>
+<li><p>vi config/hopeconfig.php<br>修改相关信息</p>
+</li>
+<li><p>sudo vi /etc/apache2/sites-enabled/wmx.conf</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;VirtualHost *:80&gt;</div><div class="line">	ServerAdmin wmx@localhost</div><div class="line">	DocumentRoot /var/www/wm_whoisthebear_server</div><div class="line"></div><div class="line">	ErrorLog $&#123;APACHE_LOG_DIR&#125;/wmx_error.log</div><div class="line">	CustomLog $&#123;APACHE_LOG_DIR&#125;/wmx_access.log combined</div></pre></td></tr></table></figure>
+<ul>
+<li>sudo vi /etc/apache2/apache2.conf</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div><div class="line">214</div><div class="line">215</div><div class="line">216</div><div class="line">217</div><div class="line">218</div><div class="line">219</div><div class="line">220</div><div class="line">221</div><div class="line">222</div><div class="line">223</div><div class="line">224</div></pre></td><td class="code"><pre><div class="line"># This is the main Apache server configuration file.  It contains the</div><div class="line"># configuration directives that give the server its instructions.</div><div class="line"># See http://httpd.apache.org/docs/2.4/ for detailed information about</div><div class="line"># the directives and /usr/share/doc/apache2/README.Debian about Debian specific</div><div class="line"># hints.</div><div class="line">#</div><div class="line">#</div><div class="line"># Summary of how the Apache 2 configuration works in Debian:</div><div class="line"># The Apache 2 web server configuration in Debian is quite different to</div><div class="line"># upstream&apos;s suggested way to configure the web server. This is because Debian&apos;s</div><div class="line"># default Apache2 installation attempts to make adding and removing modules,</div><div class="line"># virtual hosts, and extra configuration directives as flexible as possible, in</div><div class="line"># order to make automating the changes and administering the server as easy as</div><div class="line"># possible.</div><div class="line"></div><div class="line"># It is split into several files forming the configuration hierarchy outlined</div><div class="line"># below, all located in the /etc/apache2/ directory:</div><div class="line">#</div><div class="line">#	/etc/apache2/</div><div class="line">#	|-- apache2.conf</div><div class="line">#	|	`--  ports.conf</div><div class="line">#	|-- mods-enabled</div><div class="line">#	|	|-- *.load</div><div class="line">#	|	`-- *.conf</div><div class="line">#	|-- conf-enabled</div><div class="line">#	|	`-- *.conf</div><div class="line"># 	`-- sites-enabled</div><div class="line">#	 	`-- *.conf</div><div class="line">#</div><div class="line">#</div><div class="line"># * apache2.conf is the main configuration file (this file). It puts the pieces</div><div class="line">#   together by including all remaining configuration files when starting up the</div><div class="line">#   web server.</div><div class="line">#</div><div class="line"># * ports.conf is always included from the main configuration file. It is</div><div class="line">#   supposed to determine listening ports for incoming connections which can be</div><div class="line">#   customized anytime.</div><div class="line">#</div><div class="line"># * Configuration files in the mods-enabled/, conf-enabled/ and sites-enabled/</div><div class="line">#   directories contain particular configuration snippets which manage modules,</div><div class="line">#   global configuration fragments, or virtual host configurations,</div><div class="line">#   respectively.</div><div class="line">#</div><div class="line">#   They are activated by symlinking available configuration files from their</div><div class="line">#   respective *-available/ counterparts. These should be managed by using our</div><div class="line">#   helpers a2enmod/a2dismod, a2ensite/a2dissite and a2enconf/a2disconf. See</div><div class="line">#   their respective man pages for detailed information.</div><div class="line">#</div><div class="line"># * The binary is called apache2. Due to the use of environment variables, in</div><div class="line">#   the default configuration, apache2 needs to be started/stopped with</div><div class="line">#   /etc/init.d/apache2 or apache2ctl. Calling /usr/bin/apache2 directly will not</div><div class="line">#   work with the default configuration.</div><div class="line"></div><div class="line"></div><div class="line"># Global configuration</div><div class="line">#</div><div class="line"></div><div class="line">#</div><div class="line"># ServerRoot: The top of the directory tree under which the server&apos;s</div><div class="line"># configuration, error, and log files are kept.</div><div class="line">#</div><div class="line"># NOTE!  If you intend to place this on an NFS (or otherwise network)</div><div class="line"># mounted filesystem then please read the Mutex documentation (available</div><div class="line"># at &lt;URL:http://httpd.apache.org/docs/2.4/mod/core.html#mutex&gt;);</div><div class="line"># you will save yourself a lot of trouble.</div><div class="line">#</div><div class="line"># Do NOT add a slash at the end of the directory path.</div><div class="line">#</div><div class="line">#ServerRoot &quot;/etc/apache2&quot;</div><div class="line"></div><div class="line">#</div><div class="line"># The accept serialization lock file MUST BE STORED ON A LOCAL DISK.</div><div class="line">#</div><div class="line">Mutex file:$&#123;APACHE_LOCK_DIR&#125; default</div><div class="line"></div><div class="line">#</div><div class="line"># PidFile: The file in which the server should record its process</div><div class="line"># identification number when it starts.</div><div class="line"># This needs to be set in /etc/apache2/envvars</div><div class="line">#</div><div class="line">PidFile $&#123;APACHE_PID_FILE&#125;</div><div class="line"></div><div class="line">#</div><div class="line"># Timeout: The number of seconds before receives and sends time out.</div><div class="line">#</div><div class="line">Timeout 300</div><div class="line"></div><div class="line">#</div><div class="line"># KeepAlive: Whether or not to allow persistent connections (more than</div><div class="line"># one request per connection). Set to &quot;Off&quot; to deactivate.</div><div class="line">#</div><div class="line">KeepAlive On</div><div class="line"></div><div class="line">#</div><div class="line"># MaxKeepAliveRequests: The maximum number of requests to allow</div><div class="line"># during a persistent connection. Set to 0 to allow an unlimited amount.</div><div class="line"># We recommend you leave this number high, for maximum performance.</div><div class="line">#</div><div class="line">MaxKeepAliveRequests 100</div><div class="line"></div><div class="line">#</div><div class="line"># KeepAliveTimeout: Number of seconds to wait for the next request from the</div><div class="line"># same client on the same connection.</div><div class="line">#</div><div class="line">KeepAliveTimeout 5</div><div class="line"></div><div class="line"></div><div class="line"># These need to be set in /etc/apache2/envvars</div><div class="line">User $&#123;APACHE_RUN_USER&#125;</div><div class="line">Group $&#123;APACHE_RUN_GROUP&#125;</div><div class="line"></div><div class="line">#</div><div class="line"># HostnameLookups: Log the names of clients or just their IP addresses</div><div class="line"># e.g., www.apache.org (on) or 204.62.129.132 (off).</div><div class="line"># The default is off because it&apos;d be overall better for the net if people</div><div class="line"># had to knowingly turn this feature on, since enabling it means that</div><div class="line"># each client request will result in AT LEAST one lookup request to the</div><div class="line"># nameserver.</div><div class="line">#</div><div class="line">HostnameLookups Off</div><div class="line"></div><div class="line"># ErrorLog: The location of the error log file.</div><div class="line"># If you do not specify an ErrorLog directive within a &lt;VirtualHost&gt;</div><div class="line"># container, error messages relating to that virtual host will be</div><div class="line"># logged here.  If you *do* define an error logfile for a &lt;VirtualHost&gt;</div><div class="line"># container, that host&apos;s errors will be logged there and not here.</div><div class="line">#</div><div class="line">ErrorLog $&#123;APACHE_LOG_DIR&#125;/error.log</div><div class="line"></div><div class="line">#</div><div class="line"># LogLevel: Control the severity of messages logged to the error_log.</div><div class="line"># Available values: trace8, ..., trace1, debug, info, notice, warn,</div><div class="line"># error, crit, alert, emerg.</div><div class="line"># It is also possible to configure the log level for particular modules, e.g.</div><div class="line"># &quot;LogLevel info ssl:warn&quot;</div><div class="line">#</div><div class="line">LogLevel warn</div><div class="line"></div><div class="line"># Include module configuration:</div><div class="line">IncludeOptional mods-enabled/*.load</div><div class="line">IncludeOptional mods-enabled/*.conf</div><div class="line"></div><div class="line"># Include list of ports to listen on</div><div class="line">Include ports.conf</div><div class="line"></div><div class="line"></div><div class="line"># Sets the default security model of the Apache2 HTTPD server. It does</div><div class="line"># not allow access to the root filesystem outside of /usr/share and /var/www.</div><div class="line"># The former is used by web applications packaged in Debian,</div><div class="line"># the latter may be used for local directories served by the web server. If</div><div class="line"># your system is serving content from a sub-directory in /srv you must allow</div><div class="line"># access here, or in any related virtual host.</div><div class="line">&lt;Directory /&gt;</div><div class="line">	Options FollowSymLinks</div><div class="line">	AllowOverride None</div><div class="line">	Require all denied</div><div class="line">&lt;/Directory&gt;</div><div class="line"></div><div class="line">&lt;Directory /usr/share&gt;</div><div class="line">	AllowOverride None</div><div class="line">	Require all granted</div><div class="line">&lt;/Directory&gt;</div><div class="line"></div><div class="line">##########################################</div><div class="line">&lt;Directory /var/www/&gt;</div><div class="line">	Options Indexes FollowSymLinks</div><div class="line">	AllowOverride All</div><div class="line">	Require all granted</div><div class="line">&lt;/Directory&gt;</div><div class="line">#########################################</div><div class="line">#&lt;Directory /srv/&gt;</div><div class="line">#	Options Indexes FollowSymLinks</div><div class="line">#	AllowOverride None</div><div class="line">#	Require all granted</div><div class="line">#&lt;/Directory&gt;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"># AccessFileName: The name of the file to look for in each directory</div><div class="line"># for additional configuration directives.  See also the AllowOverride</div><div class="line"># directive.</div><div class="line">#</div><div class="line">#########################################</div><div class="line">AccessFileName .htaccess</div><div class="line"></div><div class="line">#</div><div class="line"># The following lines prevent .htaccess and .htpasswd files from being</div><div class="line"># viewed by Web clients.</div><div class="line">#</div><div class="line">&lt;FilesMatch &quot;^\.ht&quot;&gt;</div><div class="line">	Require all denied</div><div class="line">&lt;/FilesMatch&gt;</div><div class="line">#########################################</div><div class="line"></div><div class="line"></div><div class="line">#</div><div class="line"># The following directives define some format nicknames for use with</div><div class="line"># a CustomLog directive.</div><div class="line">#</div><div class="line"># These deviate from the Common Log Format definitions in that they use %O</div><div class="line"># (the actual bytes sent including headers) instead of %b (the size of the</div><div class="line"># requested file), because the latter makes it impossible to detect partial</div><div class="line"># requests.</div><div class="line">#</div><div class="line"># Note that the use of %&#123;X-Forwarded-For&#125;i instead of %h is not recommended.</div><div class="line"># Use mod_remoteip instead.</div><div class="line">#</div><div class="line">LogFormat &quot;%v:%p %h %l %u %t \&quot;%r\&quot; %&gt;s %O \&quot;%&#123;Referer&#125;i\&quot; \&quot;%&#123;User-Agent&#125;i\&quot;&quot; vhost_combined</div><div class="line">LogFormat &quot;%h %l %u %t \&quot;%r\&quot; %&gt;s %O \&quot;%&#123;Referer&#125;i\&quot; \&quot;%&#123;User-Agent&#125;i\&quot;&quot; combined</div><div class="line">LogFormat &quot;%h %l %u %t \&quot;%r\&quot; %&gt;s %O&quot; common</div><div class="line">LogFormat &quot;%&#123;Referer&#125;i -&gt; %U&quot; referer</div><div class="line">LogFormat &quot;%&#123;User-agent&#125;i&quot; agent</div><div class="line"></div><div class="line"># Include of directories ignores editors&apos; and dpkg&apos;s backup files,</div><div class="line"># see README.Debian for details.</div><div class="line"></div><div class="line"># Include generic snippets of statements</div><div class="line">IncludeOptional conf-enabled/*.conf</div><div class="line"></div><div class="line"># Include the virtual host configurations:</div><div class="line">IncludeOptional sites-enabled/*.conf</div><div class="line"></div><div class="line"># vim: syntax=apache ts=4 sw=4 sts=4 sr noet</div></pre></td></tr></table></figure>
+<p>重点关注用 <code>#</code> 包围起来的部分</p>
+<h2 id="权限修改"><a href="#权限修改" class="headerlink" title="权限修改"></a>权限修改</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">mkdir upload</div><div class="line">cd upload/</div><div class="line">mkdir goods</div><div class="line">chmod -R 777 wm_whoisthebear_server/</div><div class="line">sudo chmod 644 .htaccess</div></pre></td></tr></table></figure>
+<blockquote>
+<p><a href="">呼呼呼山</a>(<a href="http://code4fun.me">http://code4fun.me</a>)<br>2019-05-01 09:39:58</p>
+</blockquote>
+
+    
+  </div>
+
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2018/05/01/git_for_one_year/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2018/05/01/dailynote_history/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: '99bca29ad4d85951d688',
+  clientSecret: 'd956164d57277ed8ece2fab34d91f67506dd50d6',
+  repo: 'blog-comment',
+  owner: 'zhangzhishan',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: md5(location.pathname),
+  admin: ['zhangzhishan'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

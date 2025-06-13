@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>Auto Layout 小记 | Code4Fun</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="ios," />
+  
+
+  <meta name="description" content="什么是 Auto Layout在 iOS 开发过程，我们总是认为通过托拽产生的界面是 Auto Layout，然而并不仅仅是这样的。 并不是仅仅在 storyboard 中通过 Interface Builder（IB）得到的才是 Auto Layout。其本质上是一种新的创建用户界面的方式，通过约束来描述视图与内容相互之间的关系。其有以下几个原则[1]：
+
+Auto Layout 是声明性的（通">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Auto Layout 小记">
+<meta property="og:url" content="http://code4fun.me/2018/05/01/autolayout/index.html">
+<meta property="og:site_name" content="Code4Fun">
+<meta property="og:description" content="什么是 Auto Layout在 iOS 开发过程，我们总是认为通过托拽产生的界面是 Auto Layout，然而并不仅仅是这样的。 并不是仅仅在 storyboard 中通过 Interface Builder（IB）得到的才是 Auto Layout。其本质上是一种新的创建用户界面的方式，通过约束来描述视图与内容相互之间的关系。其有以下几个原则[1]：
+
+Auto Layout 是声明性的（通">
+<meta property="og:image" content="http://of9yc6abb.bkt.clouddn.com/2016121583524Screen Shot 2016-12-15 at 9.35.56 PM.png">
+<meta property="og:image" content="http://of9yc6abb.bkt.clouddn.com/2016121523802Screen Shot 2016-12-15 at 9.36.05 PM.png">
+<meta property="og:image" content="http://of9yc6abb.bkt.clouddn.com/2016121551112Screen Shot 2016-12-15 at 9.36.14 PM.png">
+<meta property="og:image" content="http://of9yc6abb.bkt.clouddn.com/2016121533105Screen Shot 2016-12-15 at 9.36.24 PM.png">
+<meta property="og:image" content="http://of9yc6abb.bkt.clouddn.com/2016121588295Screen Shot 2016-12-15 at 9.36.34 PM.png">
+<meta property="og:image" content="http://of9yc6abb.bkt.clouddn.com/2016121553770Screen Shot 2016-12-15 at 9.36.44 PM.png">
+<meta property="og:updated_time" content="2025-06-13T10:54:27.236Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Auto Layout 小记">
+<meta name="twitter:description" content="什么是 Auto Layout在 iOS 开发过程，我们总是认为通过托拽产生的界面是 Auto Layout，然而并不仅仅是这样的。 并不是仅仅在 storyboard 中通过 Interface Builder（IB）得到的才是 Auto Layout。其本质上是一种新的创建用户界面的方式，通过约束来描述视图与内容相互之间的关系。其有以下几个原则[1]：
+
+Auto Layout 是声明性的（通">
+<meta name="twitter:image" content="http://of9yc6abb.bkt.clouddn.com/2016121583524Screen Shot 2016-12-15 at 9.35.56 PM.png">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+<link rel="alternate" href="/atom.xml" title="Code4Fun" type="application/atom+xml">
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是-Auto-Layout"><span class="toc-text">什么是 Auto Layout</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Auto-Layout-布局约束法则"><span class="toc-text">Auto Layout 布局约束法则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IB-基本元素介绍"><span class="toc-text">IB 基本元素介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用-IB-添加约束"><span class="toc-text">使用 IB 添加约束</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#托拽"><span class="toc-text">托拽</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对齐"><span class="toc-text">对齐</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#处理约束冲突"><span class="toc-text">处理约束冲突</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-autolayout" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">Auto Layout 小记</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2018.05.01</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>呼呼呼山</span>
+        </span>
+      
+
+      
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h2 id="什么是-Auto-Layout"><a href="#什么是-Auto-Layout" class="headerlink" title="什么是 Auto Layout"></a>什么是 Auto Layout</h2><p>在 iOS 开发过程，我们总是认为通过托拽产生的界面是 Auto Layout，然而并不仅仅是这样的。 并不是仅仅在 storyboard 中通过 Interface Builder（IB）得到的才是 Auto Layout。其本质上是一种新的创建用户界面的方式，通过约束来描述视图与内容相互之间的关系。其有以下几个原则[1]：</p>
+<ul>
+<li>Auto Layout 是声明性的（通过向系统添加规则来表达界面布局）</li>
+<li>Auto Layout 最小化了计算（指定布局，而不是特定的点和像素）</li>
+<li>Auto Layout 设计是非直接的，但是它也很灵活（视图为已改变的窗口集合请求更少的更新，而且它们很容易分解为可维护的布局组件）</li>
+<li>Auto Layout 是几何驱动的（它的基本属于都是自然的几何属性，例如edge、center和size）</li>
+<li>Auto Layout 聚焦于关系（使用几何上的等量和非等量关系，将视图相互关联起来，从绝对关系切换到相对关系）</li>
+<li>Auto Layout 允许甚至鼓励冲突的规则（其组件可以携带不同的优先级，可以添加高优先级的边界限制和低优先级的回退条件）</li>
+<li>Auto Layout 表现自然内容（内在视图内容驱动尺寸设置和对齐，让内容成为布局中的一个关键角色）</li>
+<li>Auto Layout 寻找最佳方案</li>
+<li>Auto Layout 是分布式的</li>
+</ul>
+<h2 id="Auto-Layout-布局约束法则"><a href="#Auto-Layout-布局约束法则" class="headerlink" title="Auto Layout 布局约束法则"></a>Auto Layout 布局约束法则</h2><p>既然上面已经提到，其主要是通过约束来描述视图间关系来形成界面的，所以我们需要了解一些Auto Layout 布局约束的基本法则：</p>
+<ul>
+<li>约束是有优先级的，相同优先级的约束同时考虑，如果需要优先处理某个约束，就要赋予该约束更高的优先级。</li>
+<li>布局约束是关系，没有方向。</li>
+<li>布局约束可以取近似值</li>
+<li>布局约束可以循环，也即可以交叉引用。</li>
+<li>可以冗余</li>
+<li>可以引用兄弟视图</li>
+<li>约束必须至少引用一个视图。</li>
+</ul>
+<h2 id="IB-基本元素介绍"><a href="#IB-基本元素介绍" class="headerlink" title="IB 基本元素介绍"></a>IB 基本元素介绍</h2><p><img src="http://of9yc6abb.bkt.clouddn.com/2016121583524Screen Shot 2016-12-15 at 9.35.56 PM.png" alt="2016121583524Screen Shot 2016-12-15 at 9.35.56 PM.png"><br><img src="http://of9yc6abb.bkt.clouddn.com/2016121523802Screen Shot 2016-12-15 at 9.36.05 PM.png" alt="2016121523802Screen Shot 2016-12-15 at 9.36.05 PM.png"><br><img src="http://of9yc6abb.bkt.clouddn.com/2016121551112Screen Shot 2016-12-15 at 9.36.14 PM.png" alt="2016121551112Screen Shot 2016-12-15 at 9.36.14 PM.png"><br><img src="http://of9yc6abb.bkt.clouddn.com/2016121533105Screen Shot 2016-12-15 at 9.36.24 PM.png" alt="2016121533105Screen Shot 2016-12-15 at 9.36.24 PM.png"><br><img src="http://of9yc6abb.bkt.clouddn.com/2016121588295Screen Shot 2016-12-15 at 9.36.34 PM.png" alt="2016121588295Screen Shot 2016-12-15 at 9.36.34 PM.png"><br><img src="http://of9yc6abb.bkt.clouddn.com/2016121553770Screen Shot 2016-12-15 at 9.36.44 PM.png" alt="2016121553770Screen Shot 2016-12-15 at 9.36.44 PM.png"></p>
+<h2 id="使用-IB-添加约束"><a href="#使用-IB-添加约束" class="headerlink" title="使用 IB 添加约束"></a>使用 IB 添加约束</h2><h3 id="托拽"><a href="#托拽" class="headerlink" title="托拽"></a>托拽</h3><h3 id="对齐"><a href="#对齐" class="headerlink" title="对齐"></a>对齐</h3><h2 id="处理约束冲突"><a href="#处理约束冲突" class="headerlink" title="处理约束冲突"></a>处理约束冲突</h2><blockquote>
+<p><a href="">呼呼呼山</a>(<a href="http://code4fun.me">http://code4fun.me</a>)<br>2019-05-01 09:33:32</p>
+</blockquote>
+
+    
+  </div>
+
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2018/05/01/cnn/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2018/05/01/rest/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: '99bca29ad4d85951d688',
+  clientSecret: 'd956164d57277ed8ece2fab34d91f67506dd50d6',
+  repo: 'blog-comment',
+  owner: 'zhangzhishan',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: md5(location.pathname),
+  admin: ['zhangzhishan'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

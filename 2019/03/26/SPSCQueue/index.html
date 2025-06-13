@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>SPSCQueue 介绍 | Code4Fun</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="cpp," />
+  
+
+  <meta name="description" content="SPSCQueueA fast single-producer, single-consumer lock-free queue for C++, boost library
+无锁队列之单生产者单消费者
+现实应用场景中经常会用到单生产者单消费者或多生产者多消费者模型，例如一个写线程，接收到数据写入缓冲区，另一个线程读出并处理。为了尽可能减少锁所占用的时间，可使用gcc的一些原子操作来代替pthre">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SPSCQueue 介绍">
+<meta property="og:url" content="http://code4fun.me/2019/03/26/SPSCQueue/index.html">
+<meta property="og:site_name" content="Code4Fun">
+<meta property="og:description" content="SPSCQueueA fast single-producer, single-consumer lock-free queue for C++, boost library
+无锁队列之单生产者单消费者
+现实应用场景中经常会用到单生产者单消费者或多生产者多消费者模型，例如一个写线程，接收到数据写入缓冲区，另一个线程读出并处理。为了尽可能减少锁所占用的时间，可使用gcc的一些原子操作来代替pthre">
+<meta property="og:updated_time" content="2025-06-13T10:54:27.235Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SPSCQueue 介绍">
+<meta name="twitter:description" content="SPSCQueueA fast single-producer, single-consumer lock-free queue for C++, boost library
+无锁队列之单生产者单消费者
+现实应用场景中经常会用到单生产者单消费者或多生产者多消费者模型，例如一个写线程，接收到数据写入缓冲区，另一个线程读出并处理。为了尽可能减少锁所占用的时间，可使用gcc的一些原子操作来代替pthre">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+<link rel="alternate" href="/atom.xml" title="Code4Fun" type="application/atom+xml">
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#SPSCQueue"><span class="toc-text">SPSCQueue</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-SPSCQueue" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">SPSCQueue 介绍</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2019.03.26</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>呼呼呼山</span>
+        </span>
+      
+
+      
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h2 id="SPSCQueue"><a href="#SPSCQueue" class="headerlink" title="SPSCQueue"></a>SPSCQueue</h2><p>A fast single-producer, single-consumer lock-free queue for C++, <a href="https://www.boost.org/doc/libs/1_53_0/doc/html/boost/lockfree/spsc_queue.html" target="_blank" rel="external">boost library</a></p>
+<p>无锁队列之单生产者单消费者</p>
+<p>现实应用场景中经常会用到单生产者单消费者或多生产者多消费者模型，例如一个写线程，接收到数据写入缓冲区，另一个线程读出并处理。为了尽可能减少锁所占用的时间，可使用gcc的一些原子操作来代替pthread_mutex_t或pthread_spinlock_t。</p>
+<p>核心思想：预分配一段连续的内存，用min<em>seq</em>表示读的位置，max<em>seq</em>表示写的位置，当写满或者读完时返回错误；如果不同步有可能发生的错误是：读线程读取max<em>seq</em>时，刚好写线程在修改max<em>seq</em>，min<em>seq</em>同上，故使用__sync_add_and_fetch 函数自增0或者1来读取或者修改变量。</p>
+<p>注意事项：分配的内存大小一定要足够大，否则可能会造成数据的丢失。<br>就好比一件仓库，有人不停往里存放东西，有人不停往外取，当仓库较小时，空间满时，可能会出现存放失败，那么这件商品就丢失了。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">pragma</span> once</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;windows.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;boost/utility.hpp&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"basic_types.h"</span></span></div><div class="line"></div><div class="line"><span class="comment">// One lock free queue with a great performance with following limitations:</span></div><div class="line"><span class="comment">// 1: Only support one consumer and one producer at most.</span></div><div class="line"><span class="comment">// 2: Put/Get times can't exceed MAX_UINT64.</span></div><div class="line"><span class="comment">// 3: Read/write of m_head/m_tail is atomic (single instruction).</span></div><div class="line"></div><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div><div class="line"><span class="keyword">class</span> SPSCQueue : <span class="keyword">private</span> boost::noncopyable</div><div class="line">&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    SPSCQueue() : m_ptrArray(<span class="literal">NULL</span>), m_maxQueueLength(<span class="number">0</span>)</div><div class="line">    &#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    SPSCQueue(UInt64 p_maxQueueLength) : m_ptrArray(<span class="literal">NULL</span>)</div><div class="line">    &#123;</div><div class="line">        Reset(p_maxQueueLength);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// Reset max queue length.</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Reset</span><span class="params">(UInt64 p_maxQueueLength)</span></span></div><div class="line">    &#123;</div><div class="line">        LogAssert (p_maxQueueLength &gt; <span class="number">0</span>);</div><div class="line">        <span class="keyword">delete</span> []m_ptrArray;</div><div class="line">        m_maxQueueLength = p_maxQueueLength;</div><div class="line">        m_ptrArray = <span class="keyword">new</span> T*[m_maxQueueLength];</div><div class="line">        m_head = m_tail = <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    ~SPSCQueue()</div><div class="line">    &#123;</div><div class="line">        LogAssert(Empty());</div><div class="line">        <span class="keyword">delete</span> []m_ptrArray;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// Add new object to queue's tail.</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">PutWait</span><span class="params">(T *p_object)</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">int</span> backoff = <span class="number">0</span>;</div><div class="line">        <span class="keyword">while</span> (m_tail - m_head &gt;= m_maxQueueLength)</div><div class="line">        &#123;</div><div class="line">            SpinPauseWithBackoff (backoff);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        m_ptrArray[m_tail % m_maxQueueLength] = p_object;</div><div class="line">        ++m_tail;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// Get object from queue's head.</span></div><div class="line">    <span class="function">T* <span class="title">GetWait</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">int</span> backoff = <span class="number">0</span>;</div><div class="line">        <span class="keyword">while</span> (m_tail == m_head)</div><div class="line">        &#123;</div><div class="line">            SpinPauseWithBackoff (backoff);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        T* ret = m_ptrArray[m_head % m_maxQueueLength];</div><div class="line">        ++m_head;</div><div class="line">        <span class="keyword">return</span> ret;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// Get object from queue's head, caller need to make sure queue is not empty,</span></div><div class="line">    <span class="comment">// otherwise the result is not defined.</span></div><div class="line">    <span class="function">T* <span class="title">Get</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        T* ret = m_ptrArray[m_head % m_maxQueueLength];</div><div class="line">        ++m_head;</div><div class="line">        <span class="keyword">return</span> ret;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function">T* <span class="title">Peek</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> m_ptrArray[m_head % m_maxQueueLength];</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// Peek object from queue's head.</span></div><div class="line">    <span class="function">T* <span class="title">PeekWait</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">int</span> backoff = <span class="number">0</span>;</div><div class="line">        <span class="keyword">while</span> (m_tail == m_head)</div><div class="line">        &#123;</div><div class="line">            SpinPauseWithBackoff (backoff);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> m_ptrArray[m_head % m_maxQueueLength];</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function">UInt64 <span class="title">Size</span><span class="params">()</span> <span class="keyword">const</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> m_tail - m_head;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">Empty</span><span class="params">()</span> <span class="keyword">const</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> m_head == m_tail;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"><span class="keyword">private</span>:</div><div class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">SpinPauseWithBackoff</span><span class="params">(<span class="keyword">int</span>&amp; p_backoff)</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">int</span> yieldCount = p_backoff;</div><div class="line">        <span class="keyword">do</span></div><div class="line">        &#123;</div><div class="line">            YieldProcessor ();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">while</span> (--yieldCount &gt;= <span class="number">0</span>);</div><div class="line">        <span class="comment">// Backoff is always power of 2 minus 1.</span></div><div class="line">        <span class="keyword">if</span> (p_backoff &lt;= <span class="number">511</span>)</div><div class="line">        &#123;</div><div class="line">            p_backoff = p_backoff * <span class="number">2</span> + <span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// Buffer array.</span></div><div class="line">    T** m_ptrArray;</div><div class="line"></div><div class="line">    <span class="comment">// Max Queue length.</span></div><div class="line">    UInt64 m_maxQueueLength;</div><div class="line"></div><div class="line">    <span class="comment">// Queue's head index.</span></div><div class="line">    <span class="number">__</span>declspec(align(<span class="number">64</span>)) <span class="keyword">volatile</span> UInt64 m_head;</div><div class="line"></div><div class="line">    <span class="comment">// Queue's tail index.</span></div><div class="line">    <span class="number">__</span>declspec(align(<span class="number">64</span>)) <span class="keyword">volatile</span> UInt64 m_tail;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+    
+  </div>
+
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2019/03/26/cmakelist/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2019/04/08/gcc_volatile/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: '99bca29ad4d85951d688',
+  clientSecret: 'd956164d57277ed8ece2fab34d91f67506dd50d6',
+  repo: 'blog-comment',
+  owner: 'zhangzhishan',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: md5(location.pathname),
+  admin: ['zhangzhishan'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

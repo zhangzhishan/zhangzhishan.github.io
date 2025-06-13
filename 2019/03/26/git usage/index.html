@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>git 基本操作 | Code4Fun</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="git," />
+  
+
+  <meta name="description" content="git configgit 的自动换行会有些问题，有的时候会出现fatal error，故可以配置为自动转化为lf，或者关闭这个功能。
+12git config --global core.autocrlf input #提交到git是自动将换行符转换为lfgit config --global core.editor &amp;quot;vim&amp;quot; # use vim editor
+git ad">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git 基本操作">
+<meta property="og:url" content="http://code4fun.me/2019/03/26/git usage/index.html">
+<meta property="og:site_name" content="Code4Fun">
+<meta property="og:description" content="git configgit 的自动换行会有些问题，有的时候会出现fatal error，故可以配置为自动转化为lf，或者关闭这个功能。
+12git config --global core.autocrlf input #提交到git是自动将换行符转换为lfgit config --global core.editor &amp;quot;vim&amp;quot; # use vim editor
+git ad">
+<meta property="og:image" content="https://raw.githubusercontent.com/zhangzhishan/blogpics/dev/1577241461_20181121151120571_16166.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/zhangzhishan/blogpics/dev/1577241463_20181121151151708_5552.png">
+<meta property="og:updated_time" content="2025-06-13T10:54:27.237Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="git 基本操作">
+<meta name="twitter:description" content="git configgit 的自动换行会有些问题，有的时候会出现fatal error，故可以配置为自动转化为lf，或者关闭这个功能。
+12git config --global core.autocrlf input #提交到git是自动将换行符转换为lfgit config --global core.editor &amp;quot;vim&amp;quot; # use vim editor
+git ad">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zhangzhishan/blogpics/dev/1577241461_20181121151120571_16166.png">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+<link rel="alternate" href="/atom.xml" title="Code4Fun" type="application/atom+xml">
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#git-config"><span class="toc-text">git config</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-add-files-to-last-commit"><span class="toc-text">git add files to last commit</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-commit"><span class="toc-text">git commit</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#commit-messages"><span class="toc-text">commit messages</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#reset-head-to-some-commit"><span class="toc-text">reset head to some commit</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#setup-difftool-and-merge-tool"><span class="toc-text">setup difftool and merge tool</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#delete-a-branch"><span class="toc-text">delete  a branch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#checkout-using-remote-branch"><span class="toc-text">checkout using remote branch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rebase-local-branch-with-remote-branch"><span class="toc-text">rebase local branch with remote branch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-stash"><span class="toc-text">git stash</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-rebase"><span class="toc-text">git rebase</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#merge-的几种操作"><span class="toc-text">merge 的几种操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#conflicts"><span class="toc-text">conflicts</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#push-some-commit"><span class="toc-text">push some commit</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#break-a-previous-commit-to-multiple-commit"><span class="toc-text">break a previous commit to multiple commit</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#some-tips"><span class="toc-text">some tips</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-log"><span class="toc-text">git log</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#show-name-recent-changed"><span class="toc-text">show name recent changed</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-revert"><span class="toc-text">git revert</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-clean-untracked-file"><span class="toc-text">git clean untracked file</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-reflog"><span class="toc-text">git reflog</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#change-default-editor-to-visual-studio-code"><span class="toc-text">change default editor to visual studio code</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-git usage" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">git 基本操作</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2019.03.26</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>呼呼呼山</span>
+        </span>
+      
+
+      
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h2 id="git-config"><a href="#git-config" class="headerlink" title="git config"></a>git config</h2><p>git 的自动换行会有些问题，有的时候会出现<code>fatal error</code>，故可以配置为自动转化为<code>lf</code>，或者关闭这个功能。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git config --global core.autocrlf input #提交到git是自动将换行符转换为lf</div><div class="line">git config --global core.editor &quot;vim&quot; # use vim editor</div></pre></td></tr></table></figure>
+<h2 id="git-add-files-to-last-commit"><a href="#git-add-files-to-last-commit" class="headerlink" title="git add files to last commit"></a>git add files to last commit</h2><p>git commit –amend –no-edit</p>
+<p>git push -f origin some_branch</p>
+<p>git clean -f</p>
+<p>git clean -d</p>
+<p>git prune</p>
+<p>git cherry-pick</p>
+<p><code>git merge --no-ff</code></p>
+<p>git add -p            # patch mode可以将一个文件分成多份来进行提交，适合于当一次内容里面修改了多方面的东西的时候。</p>
+<h2 id="git-commit"><a href="#git-commit" class="headerlink" title="git commit"></a>git commit</h2><h3 id="commit-messages"><a href="#commit-messages" class="headerlink" title="commit messages"></a>commit messages</h3><p>第一行为summary，少于50个字符，然后空一行，下面是正文，正文一行也要控制在72个字符。</p>
+<h3 id="reset-head-to-some-commit"><a href="#reset-head-to-some-commit" class="headerlink" title="reset head to some commit"></a>reset head to some commit</h3><h2 id="setup-difftool-and-merge-tool"><a href="#setup-difftool-and-merge-tool" class="headerlink" title="setup difftool and merge tool"></a>setup difftool and merge tool</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git config --global difftool.beyondcompare.cmd &quot;\&quot;c:\program files\beyond compare 4\bcomp.exe\&quot; \&quot;$LOCAL\&quot; \&quot;$REMOTE\&quot;&quot;</div><div class="line">git config --global diff.tool beyondcompare</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git config --global merge.tool p4merge</div><div class="line">git config --global mergetool.p4merge.path &quot;C:/Program Files/Perforce/p4merge.exe&quot;</div></pre></td></tr></table></figure>
+<h2 id="delete-a-branch"><a href="#delete-a-branch" class="headerlink" title="delete  a branch"></a>delete  a branch</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git push -d origin branchname</div><div class="line">git branch -d branchname</div></pre></td></tr></table></figure>
+<h2 id="checkout-using-remote-branch"><a href="#checkout-using-remote-branch" class="headerlink" title="checkout using remote branch"></a>checkout using remote branch</h2><p>首先<code>git fetch</code> 获取到所有的branch,然后执行<br><code>git checkout -t &lt;name of remote&gt;/test</code> or <code>git checkout -b test &lt;name of remote&gt;/test</code></p>
+<h2 id="rebase-local-branch-with-remote-branch"><a href="#rebase-local-branch-with-remote-branch" class="headerlink" title="rebase local branch with remote branch"></a>rebase local branch with remote branch</h2><p>git pull –rebase origin master</p>
+<h2 id="git-stash"><a href="#git-stash" class="headerlink" title="git stash"></a>git stash</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git stash save XXX</div><div class="line">git stash list</div><div class="line">git stash apply</div></pre></td></tr></table></figure>
+<h2 id="git-rebase"><a href="#git-rebase" class="headerlink" title="git rebase"></a>git rebase</h2><p>rebase有两个方面，一个是个人部分，需要利用<code>git rebase -i</code>对已有的commit进行整理，另一方面是对于branch层面上的，避免merge的时候出现分叉，使用<code>git pull --rebase</code>来进行merge，同时也可以有两个设置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git config branch.dev.rebase true</div><div class="line">git config --global branch.autosetuprebase always</div></pre></td></tr></table></figure>
+<h2 id="merge-的几种操作"><a href="#merge-的几种操作" class="headerlink" title="merge 的几种操作"></a>merge 的几种操作</h2><ul>
+<li>rebase</li>
+<li>squash merge</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/zhangzhishan/blogpics/dev/1577241461_20181121151120571_16166.png" alt="rebase"></p>
+<p><img src="https://raw.githubusercontent.com/zhangzhishan/blogpics/dev/1577241463_20181121151151708_5552.png" alt="squash"></p>
+<h2 id="conflicts"><a href="#conflicts" class="headerlink" title="conflicts"></a>conflicts</h2><p>the meaning of <code>theirs</code> and <code>ours</code> are not the same in <code>git merge</code> and <code>git rebase</code>, <a href="https://stackoverflow.com/questions/2959443/why-is-the-meaning-of-ours-and-theirs-reversed-with-git-svn/2960751#2960751" target="_blank" rel="external">reference.</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git checkout --theirs -- .</div><div class="line">git checkout --ours .  # checkout our local version of all files</div><div class="line">git add -u             # mark all conflicted files as merged</div></pre></td></tr></table></figure></p>
+<h2 id="push-some-commit"><a href="#push-some-commit" class="headerlink" title="push some commit"></a>push some commit</h2><p>Cherry-pick works best compared to all other methods while pushing a specific commit.<br>The way to do that is:</p>
+<p>Create a new branch:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git branch &lt;new-branch&gt;</div></pre></td></tr></table></figure>
+<p>Update your new-branch with your origin branch:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git fetch</div><div class="line">git rebase</div></pre></td></tr></table></figure>
+<p>These actions will make sure that you exactly have the same stuff as your origin has.<br>Cherry-pick the sha id that you want to do push:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git cherry-pick &lt;sha id of the commit&gt;</div></pre></td></tr></table></figure>
+<p>Push it to your origin:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push</div></pre></td></tr></table></figure>
+<p>Run <code>gitk</code> to see that everything looks the same way you wanted.</p>
+<h2 id="break-a-previous-commit-to-multiple-commit"><a href="#break-a-previous-commit-to-multiple-commit" class="headerlink" title="break a previous commit to multiple commit"></a>break a previous commit to multiple commit</h2><p><code>git rebase -i</code> will do it.</p>
+<p>First, start with a clean working directory: git status should show no pending modifications, deletions, or additions.</p>
+<p>To split apart your most recent commit, first:</p>
+<p><code>$ git reset HEAD~</code></p>
+<p>Now commit the pieces individually in the usual way, producing as many commits as you need.</p>
+<p>If it was farther back in the tree, then</p>
+<p><code>$ git rebase -i HEAD~3</code></p>
+<p>where 3 is how many commits back it is.</p>
+<p>If it was farther back in the tree than you want to count, then</p>
+<p><code>$ git rebase -i 123abcd~</code></p>
+<p>where <code>123abcd</code> is the SHA1 of the commit you want to split up.</p>
+<p>When you get the rebase edit screen, find the commit you want to break apart. At the beginning of that line, replace <code>pick</code> with <code>edit</code> (<code>e</code> for short). Save the buffer and exit. Rebase will now stop just after the commit you want to edit. Then:</p>
+<p><code>$ git reset HEAD~</code></p>
+<p>Commit the pieces individually in the usual way, producing as many commits as you need, then</p>
+<p><code>$ git rebase --continue</code></p>
+<h2 id="some-tips"><a href="#some-tips" class="headerlink" title="some tips"></a>some tips</h2><p>做 <code>git push</code> 之前记得做一次 <code>git pull --rebase origin master</code>.</p>
+<h2 id="git-log"><a href="#git-log" class="headerlink" title="git log"></a>git log</h2><h3 id="show-name-recent-changed"><a href="#show-name-recent-changed" class="headerlink" title="show name recent changed"></a>show name recent changed</h3><p>git log –name-status -10 path/to/dir</p>
+<h2 id="git-revert"><a href="#git-revert" class="headerlink" title="git revert"></a>git revert</h2><p><code>git revert commit-id</code>,  add a new commit to revert that commit</p>
+<p><code>git checkout &lt;commit_hash&gt; -- &lt;file&gt;</code></p>
+<h2 id="git-clean-untracked-file"><a href="#git-clean-untracked-file" class="headerlink" title="git clean untracked file"></a>git clean untracked file</h2><p><code>git clean -fd</code></p>
+<h2 id="git-reflog"><a href="#git-reflog" class="headerlink" title="git reflog"></a>git reflog</h2><p><code>git reflog</code> to get records before index.</p>
+<h2 id="change-default-editor-to-visual-studio-code"><a href="#change-default-editor-to-visual-studio-code" class="headerlink" title="change default editor to visual studio code"></a>change default editor to visual studio code</h2><p><code>git config --global core.editor &quot;code --wait&quot;</code></p>
+<blockquote>
+<p><a href="http://code4fun.me">呼呼呼山</a><br>2019-03-26 09:36:55</p>
+</blockquote>
+
+    
+  </div>
+
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2019/03/26/rust/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2019/03/26/ipaddress/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: '99bca29ad4d85951d688',
+  clientSecret: 'd956164d57277ed8ece2fab34d91f67506dd50d6',
+  repo: 'blog-comment',
+  owner: 'zhangzhishan',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: md5(location.pathname),
+  admin: ['zhangzhishan'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

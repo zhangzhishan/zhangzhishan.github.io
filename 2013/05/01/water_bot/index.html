@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>water robot | Code4Fun</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="robot," />
+  
+
+  <meta name="description" content="带球好坏的衡量标准
+球速度向进攻方向的时间
+我方在球后鱼的个数
+球在进攻半场的时间小问题当球贴着球门边上的时候，球不会算进。拆后场后场很复杂，小拆一下[x] forbiddendefencestrategy[x] strategy45//让4,5号鱼跟着球的z坐标相等[x] findbestdribbler   //就是简单的鱼球角和球目标点角的差最小的情况[x] fishchoose[x] fi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="water robot">
+<meta property="og:url" content="http://code4fun.me/2013/05/01/water_bot/index.html">
+<meta property="og:site_name" content="Code4Fun">
+<meta property="og:description" content="带球好坏的衡量标准
+球速度向进攻方向的时间
+我方在球后鱼的个数
+球在进攻半场的时间小问题当球贴着球门边上的时候，球不会算进。拆后场后场很复杂，小拆一下[x] forbiddendefencestrategy[x] strategy45//让4,5号鱼跟着球的z坐标相等[x] findbestdribbler   //就是简单的鱼球角和球目标点角的差最小的情况[x] fishchoose[x] fi">
+<meta property="og:updated_time" content="2025-06-13T10:54:27.291Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="water robot">
+<meta name="twitter:description" content="带球好坏的衡量标准
+球速度向进攻方向的时间
+我方在球后鱼的个数
+球在进攻半场的时间小问题当球贴着球门边上的时候，球不会算进。拆后场后场很复杂，小拆一下[x] forbiddendefencestrategy[x] strategy45//让4,5号鱼跟着球的z坐标相等[x] findbestdribbler   //就是简单的鱼球角和球目标点角的差最小的情况[x] fishchoose[x] fi">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+<link rel="alternate" href="/atom.xml" title="Code4Fun" type="application/atom+xml">
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#带球好坏的衡量标准"><span class="toc-text">带球好坏的衡量标准</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小问题"><span class="toc-text">小问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#拆后场"><span class="toc-text">拆后场</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#心得体会总结"><span class="toc-text">心得体会总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#策略"><span class="toc-text">策略</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#阶段性总结"><span class="toc-text">阶段性总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#鱼球碰撞模型所在位置："><span class="toc-text">鱼球碰撞模型所在位置：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#调试"><span class="toc-text">调试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#点球问题，"><span class="toc-text">点球问题，</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#新平台的更改"><span class="toc-text">新平台的更改</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-water_bot" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">water robot</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2013.05.01</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>呼呼呼山</span>
+        </span>
+      
+
+      
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h2 id="带球好坏的衡量标准"><a href="#带球好坏的衡量标准" class="headerlink" title="带球好坏的衡量标准"></a>带球好坏的衡量标准</h2><ol>
+<li>球速度向进攻方向的时间</li>
+<li>我方在球后鱼的个数</li>
+<li>球在进攻半场的时间<h2 id="小问题"><a href="#小问题" class="headerlink" title="小问题"></a>小问题</h2>当球贴着球门边上的时候，球不会算进。<h2 id="拆后场"><a href="#拆后场" class="headerlink" title="拆后场"></a>拆后场</h2>后场很复杂，小拆一下<br>[x] forbiddendefencestrategy<br>[x] strategy45//让4,5号鱼跟着球的z坐标相等<br>[x] findbestdribbler   //就是简单的鱼球角和球目标点角的差最小的情况<br>[x] fishchoose<br>[x] fishaction<br>[ ] outupstrategy//13<br>[ ] outdownstrategy//14<br>[ ] interdefence<br>[ ] outerdefence<br>[ ] updefence<br>[ ] downdefence<br>[x] qiangduan<br>[x] finddangerousfish(intnum1,intnum2)//用于判断对方哪条鱼威胁更大<br>[ ] findhitfishpoint<br>[x] finddangerousfish(List<int>OppFishID)<br>[ ] dribblescore//貌似是一个粗略估计带球时间的函数，但是怎么出现的呢？<br>[ ] hitotherscore//粗略估计撞鱼所需时间的……<br>[x] wheelscore//这个函数没用？想做什么？<br>[ ] stopball//用鱼去停球<br>[ ] isbehindball//判断是否是鱼在球后以及球在鱼的鱼头、鱼尾中间<br>[ ] isupball//鱼是不是在球的上面，相对于整个球来说的<br>[ ] isdownball//同上,too<br>[ ] dribbleaway<br>[ ] wheelatgoal<br>[ ] wheelatedge//flag为true是从上往下绕，false从下往上绕<br>[ ] judgewulong//球在禁区内的乌龙情况判断<br>[ ] selectbestwheel<br>[x] countbehindball<br>/*</int></li>
+</ol>
+<ul>
+<li>choose的值</li>
+<li>1表示将球带离球门</li>
+<li>2表示撞鱼</li>
+<li>3表示抢断横鱼</li>
+<li>4dribble（2100）</li>
+<li>5同6</li>
+<li>6球特别靠近球门的情况下，我方要绕到球后</li>
+<li>7dribble -80度带球</li>
+<li>8dribble 80度带球</li>
+<li>9边界从上往下绕</li>
+<li>10边界从下往上绕</li>
+<li>11后场边界 顺时针走</li>
+<li>12后场边界 逆时针走</li>
+<li>13上边界 顺时针</li>
+<li>14下边界 逆时针</li>
+<li>15鱼静止</li>
+<li>*/<br>后场里面好多函数在前场、中场里也存在，浪费……<h2 id="心得体会总结"><a href="#心得体会总结" class="headerlink" title="心得体会总结"></a>心得体会总结</h2></li>
+</ul>
+<ol>
+<li>平台特性<br>1）     平台具有不对称性，所以设置参数不一定都相同<br>2）     坐标都有随机误差，但是对于所有的鱼以及球误差是相同的，点球时可以根据此来消除误差。<br>3）     平台具有随机性，调参时要对一个dll进行多次测试。同一个dll在不同的电脑上表现出来的效果也不同，可以多保存一些版本，比赛时根据场地情况，挑选最优的。<br>4）     当调试平台打不开的时候，可以将txt文件最前面不对称的数据删除，然后重新开即可。<br>5）     鱼靠墙边走，时间长了会被弹开。<br>6）     球顶在球门角上不算进球。<br>7）     安装reflector可以反编译dll得到代码，用reflexil插件可以对dll直接进行修改。<br>8）     该平台函数从上到下运行，中间的会被覆盖，只考虑最后的结果</li>
+<li>代码规范<br>1）     不要所有东西堆到主函数里面，要各自封装到自己的类里面<br>2）     将常用的判断设为函数<br>3）     规范函数、变量命名<br>4）     尽量少的使用全局变量<br>5）     防止自身循环调用的出现，平时写函数的时候不要乱调用<br>6）     复制粘贴模板的时候一定要看好，把所有的有用的都用到<br>7）     在编写代码的过程中注意及时添加注释，对于代码修改也要注释怎么修改的并署名。</li>
+<li>函数编写<br>1）     具有预测思想，根据此时的速度距离，预测下一拍的速度距离，以对参数进行调整。<br>2）     用step来约束某些if语句的执行次数<br>3）     带球好坏的衡量标准<br>A．     球速度向进攻方向的时间<br>B．     我方在球后鱼的个数<br>C．     球在进攻半场的时间<h2 id="策略"><a href="#策略" class="headerlink" title="策略"></a>策略</h2></li>
+<li>开场等待是否值得？</li>
+<li>在原后场的基础上增加部分动作即可，不用拆了全部重新写</li>
+<li>开场防守可否不去撞鱼 换为挡球 效果感觉好一些<h2 id="阶段性总结"><a href="#阶段性总结" class="headerlink" title="阶段性总结"></a>阶段性总结</h2>水球已经告一段落了，暂时不用继续那个扯淡的跑位以及带球了，总结：</li>
+<li>改代码的时候要注意，不要瞎改，注意要有思考，不要一味去改，那样可能越改越烂，就像把刚体中心换成鱼头坐标后，不仅没变好，反而由于距离接近，导致角度出现很大的问题。</li>
+<li>注意多加注释之类的，代码要分块，要清晰，不要多层if嵌套，有些常用判断可以弄成函数。</li>
+<li>有的时候当改正不起作用的时候，不妨清空，重新开始。</li>
+<li>由于平台不对称，所以参数设置也不一定要对称，调参数要多次观察，不要因为一次的偶然情况而胡乱修改。<h2 id="鱼球碰撞模型所在位置："><a href="#鱼球碰撞模型所在位置：" class="headerlink" title="鱼球碰撞模型所在位置："></a>鱼球碰撞模型所在位置：</h2>鱼球碰撞模型所在位置： URWPGSim2D.Core.CollisionResponse</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">public static VelocityAndAngularVelocityResponse CollisionResponseBetweenFishAndBall(Vector3 NormalAxis, ref Vector3 velocityA, ref Vector3 velocityB, Vector3 fishHeadPoint, Vector3 fishMassCenter, Vector3 actionPoint, ref float bodyDirectionRad);</div></pre></td></tr></table></figure>
+<h2 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h2><p>调试的时候 会出现好多千奇百怪的情况，由于随意拖球，有些在比赛中基本不会发生的情况也会出现，所以不要根据那些情况进行策略变化</p>
+<h2 id="点球问题，"><a href="#点球问题，" class="headerlink" title="点球问题，"></a>点球问题，</h2><p>点球问题，目测分三段，每段大概都是10s。<br>最原始的点球数据记录</p>
+<p>820—9s</p>
+<p>1200—–15s</p>
+<p>550—–6s</p>
+<p>82050515149</p>
+<p>120038363535</p>
+<p>55030303030</p>
+<p>把带球位置改成无限远</p>
+<p>82049495051</p>
+<p>120034353336</p>
+<p>55029292831</p>
+<p>感觉看起来鱼尾巴摆的也很厉害，但是貌似速度也都差不多，难道这个鱼游动 的速度，和调角的影响。<br>然后那个到禁区范围内的时间差不多5s正常，不会再快了。<br>那个一个小想法：把带球前往的位置 挪到无穷远处……</p>
+<h2 id="新平台的更改"><a href="#新平台的更改" class="headerlink" title="新平台的更改"></a>新平台的更改</h2><ol>
+<li>制胜球阶段时间加长为5min（所以那个点球紧急程度可以减一下）</li>
+<li>具体鱼体、场地数据没有对比</li>
+<li>平台略扯  进入点球之后 如果能在一分半之内点进去 那么就是一直点</li>
+</ol>
+<p>如果超过一分半 球没有点入就会进入 正常比赛模式 然后过了这一分半 就结束比赛</p>
+<blockquote>
+<p><a href="">呼呼呼山</a>(<a href="http://code4fun.me">http://code4fun.me</a>)<br>2019-05-01 09:26:21</p>
+</blockquote>
+
+    
+  </div>
+
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/1990/01/06/bakcup/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2013/05/01/some thoughts/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: '99bca29ad4d85951d688',
+  clientSecret: 'd956164d57277ed8ece2fab34d91f67506dd50d6',
+  repo: 'blog-comment',
+  owner: 'zhangzhishan',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: md5(location.pathname),
+  admin: ['zhangzhishan'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>cmakelist | Code4Fun</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="cpp," />
+  
+
+  <meta name="description" content="编写官方文档
+用cmake编译C++的时候，必须写一个cmakelist.txt，其具体的写法如下。
+首先注释是#后面的部分。
+在文件最开始指明依赖的cmake的版本。cmake_minimum_required(VERSION 3.9.0)
+然后是指定生成的工程名 PROJECT(test)
+变量的定义通过SET(sampleName MyApp)，前面为变量名，后面为值。
+然后添加依赖的pac">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cmakelist">
+<meta property="og:url" content="http://code4fun.me/2019/03/26/cmakelist/index.html">
+<meta property="og:site_name" content="Code4Fun">
+<meta property="og:description" content="编写官方文档
+用cmake编译C++的时候，必须写一个cmakelist.txt，其具体的写法如下。
+首先注释是#后面的部分。
+在文件最开始指明依赖的cmake的版本。cmake_minimum_required(VERSION 3.9.0)
+然后是指定生成的工程名 PROJECT(test)
+变量的定义通过SET(sampleName MyApp)，前面为变量名，后面为值。
+然后添加依赖的pac">
+<meta property="og:updated_time" content="2025-06-13T10:54:27.236Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="cmakelist">
+<meta name="twitter:description" content="编写官方文档
+用cmake编译C++的时候，必须写一个cmakelist.txt，其具体的写法如下。
+首先注释是#后面的部分。
+在文件最开始指明依赖的cmake的版本。cmake_minimum_required(VERSION 3.9.0)
+然后是指定生成的工程名 PROJECT(test)
+变量的定义通过SET(sampleName MyApp)，前面为变量名，后面为值。
+然后添加依赖的pac">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+<link rel="alternate" href="/atom.xml" title="Code4Fun" type="application/atom+xml">
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#编写"><span class="toc-text">编写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#将其他平台的项目迁移到-CMake"><span class="toc-text">将其他平台的项目迁移到 CMake</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#autotools"><span class="toc-text">autotools</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qmake"><span class="toc-text">qmake</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Visual-Studio"><span class="toc-text">Visual Studio</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CMakeLists-txt-自动推导"><span class="toc-text">CMakeLists.txt 自动推导</span></a></li></ol></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-cmakelist" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">cmakelist</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2019.03.26</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>呼呼呼山</span>
+        </span>
+      
+
+      
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h2 id="编写"><a href="#编写" class="headerlink" title="编写"></a>编写</h2><p><a href="https://cmake.org/cmake-tutorial/" target="_blank" rel="external">官方文档</a></p>
+<p>用<code>cmake</code>编译<code>C++</code>的时候，必须写一个<code>cmakelist.txt</code>，其具体的写法如下。</p>
+<p>首先注释是<code>#</code>后面的部分。</p>
+<p>在文件最开始指明依赖的<code>cmake</code>的版本。<code>cmake_minimum_required(VERSION 3.9.0)</code></p>
+<p>然后是指定生成的工程名 <code>PROJECT(test)</code></p>
+<p>变量的定义通过<code>SET(sampleName MyApp)</code>，前面为变量名，后面为值。</p>
+<p>然后添加依赖的<code>package</code>，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">find_package(PCL 1.2 REQUIRED)</div><div class="line">FIND_PACKAGE(MRPT REQUIRED base;bayes;obs;gui)</div></pre></td></tr></table></figure>
+<p>下面是指定<code>include</code>文件夹，其中既可以使用来自<code>package</code>中的定义，又可以使用绝对路径。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">include_directories($&#123;PCL_INCLUDE_DIRS&#125;)</div><div class="line">include_directories(&quot;G:/Matlab/extern/include&quot;)</div><div class="line">include_directories(&quot;C:/Program Files/MobileRobots/Aria/include&quot;)</div></pre></td></tr></table></figure>
+<p>指定<code>additional library</code>文件夹，用法同<code>include_directories</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">link_directories($&#123;PCL_LIBRARY_DIRS&#125;)</div><div class="line">link_directories(&quot;G:/Matlab/extern/lib/win32/microsoft&quot;)</div><div class="line">link_directories(&quot;C:/Program Files/MobileRobots/Aria/lib&quot;)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"># here we add definitions for any package if requred.</div><div class="line">add_definitions($&#123;PCL_DEFINITIONS&#125;)</div><div class="line"></div><div class="line"># The following line is very important.</div><div class="line"># It specifies the executable name. Here the executable is the first parameter i.e. MyApp and a file MyApp.exe will be created on</div><div class="line"># compilation in windows platform.</div><div class="line"># Followed by the executable name come all your source and header files.</div><div class="line"># All cpp fles will be clubbed into source folder and all .h files will be added to header files folder of the project.</div><div class="line">add_executable (MyApp Local.cpp part.h grab.h interface.h test.cpp test.h)</div><div class="line"></div><div class="line"># There may be some additional dependencies which you may have to specify for the project, which you may do as in following lines.</div><div class="line"># Note that first parameter is the executable name.</div><div class="line">target_link_libraries (MyApp $&#123;PCL_LIBRARIES&#125; libeng.lib libmx.lib libmex.lib libmat.lib Aria.lib winmm.lib wsock32.lib)</div><div class="line"># Add the required libraries for linking:</div><div class="line">TARGET_LINK_LIBRARIES($&#123;sampleName&#125;</div><div class="line">$&#123;MRPT_LIBS&#125; # This is filled by FIND_PACKAGE(MRPT ...)</div><div class="line">&quot;&quot; # Optional extra libs...</div><div class="line">)</div></pre></td></tr></table></figure>
+<h2 id="将其他平台的项目迁移到-CMake"><a href="#将其他平台的项目迁移到-CMake" class="headerlink" title="将其他平台的项目迁移到 CMake"></a>将其他平台的项目迁移到 CMake</h2><p>CMake 可以很轻松地构建出在适合各个平台执行的工程环境。而如果当前的工程环境不是 CMake ，而是基于某个特定的平台，是否可以迁移到 CMake 呢？答案是可能的。下面针对几个常用的平台，列出了它们对应的迁移方案。</p>
+<h3 id="autotools"><a href="#autotools" class="headerlink" title="autotools"></a>autotools</h3><ul>
+<li>am2cmake 可以将 autotools 系的项目转换到 CMake，这个工具的一个成功案例是 KDE 。</li>
+<li>Alternative Automake2CMake 可以转换使用 automake 的 KDevelop 工程项目。</li>
+<li>Converting autoconf tests<h3 id="qmake"><a href="#qmake" class="headerlink" title="qmake"></a>qmake</h3></li>
+<li>qmake converter 可以转换使用 QT 的 qmake 的工程。<h3 id="Visual-Studio"><a href="#Visual-Studio" class="headerlink" title="Visual Studio"></a>Visual Studio</h3></li>
+<li>vcproj2cmake.rb 可以根据 Visual Studio 的工程文件（后缀名是 .vcproj 或 .vcxproj）生成 CMakeLists.txt 文件。</li>
+<li>vcproj2cmake.ps1 vcproj2cmake 的 PowerShell 版本。</li>
+<li>folders4cmake 根据 Visual Studio 项目文件生成相应的 “source_group” 信息，这些信息可以很方便的在 CMake 脚本中使用。支持 Visual Studio 9/10 工程文件。<h3 id="CMakeLists-txt-自动推导"><a href="#CMakeLists-txt-自动推导" class="headerlink" title="CMakeLists.txt 自动推导"></a>CMakeLists.txt 自动推导</h3></li>
+<li>gencmake 根据现有文件推导 CMakeLists.txt 文件。</li>
+<li>CMakeListGenerator 应用一套文件和目录分析创建出完整的 CMakeLists.txt 文件。仅支持 Win32 平台。</li>
+</ul>
+
+    
+  </div>
+
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2019/03/26/cdecl/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2019/03/26/SPSCQueue/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: '99bca29ad4d85951d688',
+  clientSecret: 'd956164d57277ed8ece2fab34d91f67506dd50d6',
+  repo: 'blog-comment',
+  owner: 'zhangzhishan',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: md5(location.pathname),
+  admin: ['zhangzhishan'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

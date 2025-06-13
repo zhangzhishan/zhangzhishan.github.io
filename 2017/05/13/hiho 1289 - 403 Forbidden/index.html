@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>1289  403 Forbidden | Code4Fun</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="hiho, oj," />
+  
+
+  <meta name="description" content="DescriptionLittle Hi runs a web server. Sometimes he has to deny access from a certain set of malicious IP addresses while his friends are still allow to access his server. To do this he writes N rule">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1289  403 Forbidden">
+<meta property="og:url" content="http://code4fun.me/2017/05/13/hiho 1289 - 403 Forbidden/index.html">
+<meta property="og:site_name" content="Code4Fun">
+<meta property="og:description" content="DescriptionLittle Hi runs a web server. Sometimes he has to deny access from a certain set of malicious IP addresses while his friends are still allow to access his server. To do this he writes N rule">
+<meta property="og:updated_time" content="2025-06-13T10:54:27.237Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="1289  403 Forbidden">
+<meta name="twitter:description" content="DescriptionLittle Hi runs a web server. Sometimes he has to deny access from a certain set of malicious IP addresses while his friends are still allow to access his server. To do this he writes N rule">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+<link rel="alternate" href="/atom.xml" title="Code4Fun" type="application/atom+xml">
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-hiho 1289 - 403 Forbidden" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">1289  403 Forbidden</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2017.05.13</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>呼呼呼山</span>
+        </span>
+      
+
+      
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>Description<br>Little Hi runs a web server. Sometimes he has to deny access from a certain set of malicious IP addresses while his friends are still allow to access his server. To do this he writes N rules in the configuration file which look like:<br>allow 1.2.3.4/30<br>deny 1.1.1.1<br>allow 127.0.0.1<br>allow 123.234.12.23/3<br>deny 0.0.0.0/0<br>Each rule is in the form: allow | deny address or allow | deny address/mask.<br>When there comes a request, the rules are checked in sequence until the first match is found. If no rule is matched the request will be allowed. Rule and request are matched if the request address is the same as the rule address or they share the same first mask digits when both written as 32bit binary number.<br>For example IP “1.2.3.4” matches rule “allow 1.2.3.4” because the addresses are the same. And IP “128.127.8.125” matches rule “deny 128.127.4.100/20” because 10000000011111110000010001100100 (128.127.4.100 as binary number) shares the first 20 (mask) digits with 10000000011111110000100001111101 (128.127.8.125 as binary number).<br>Now comes M access requests. Given their IP addresses, your task is to find out which ones are allowed and which ones are denied.<br>Input<br>Line 1: two integers N and M.<br>Line 2-N+1: one rule on each line.<br>Line N+2-N+M+1: one IP address on each line.<br>All addresses are IPv4 addresses(0.0.0.0 - 255.255.255.255). 0 \&lt;= mask \&lt;= 32.</p>
+<p>For 40% of the data: 1 \&lt;= N, M \&lt;= 1000.<br>For 100% of the data: 1 \&lt;= N, M \&lt;= 100000.<br>Output<br>For each request output “YES” or “NO” according to whether it is allowed.<br>Sample Input<br>5 5<br>allow 1.2.3.4/30<br>deny 1.1.1.1<br>allow 127.0.0.1<br>allow 123.234.12.23/3<br>deny 0.0.0.0/0<br>1.2.3.4<br>1.2.3.5<br>1.1.1.1<br>100.100.100.100<br>219.142.53.100<br>Sample Output<br>YES<br>YES<br>NO<br>YES<br>NO</p>
+<p>注意是默认放行，之前在这个地方一直WA，另外就是注意输入的ip也使用long long类型，否则移位会变为负号。</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+
+const int kind = 2;//字母种类
+typedef long long ll;
+struct Treenode//树的结点结构
+{
+    int index;
+    int status;//这个附加变量在本题中记录遍历到该结点形成的字符串出现的次数，在不同题中可记录不同的内容。
+    Treenode *next[kind];//指向儿子结点
+    Treenode(int flag)//每个结点的初始化
+    {
+        status = flag;
+        for(int i=0;i&lt;kind;i++)
+            next[i]=NULL;
+    }
+};
+
+void insert(Treenode *&amp;root, ll ip, int flag, int mask, int index)//向以root为根结点的树中插入串word
+{
+    Treenode *location=root;
+
+    if(location==NULL) {
+        location = new Treenode(-1);
+        root=location;
+    }
+    for (int i = 31; i &gt;= 31 - (mask - 1); i--) {
+        int branch = ((ip &amp; (1 &lt;&lt; i)) &gt;&gt; i);
+        if(!location-&gt;next[branch]) {
+            location-&gt;next[branch]=new Treenode(-1);//如果不存在，建新结点
+        }
+        location=location-&gt;next[branch];
+    }
+    if(location-&gt;status == -1) {
+        location-&gt;status = flag;
+        location-&gt;index = index;
+    }
+}
+
+int search(Treenode *root, ll ip)//查找，与插入类似
+{
+    Treenode *location=root;
+    int ans = 1;
+    int index = 100001;
+    if(location==NULL) return 0;
+
+    for (int i = 31; i &gt;= 0; i--)
+    {
+//        cout &lt;&lt; location-&gt;status;
+        if (location-&gt;status != -1 &amp;&amp; location-&gt;index &lt; 100001)
+        {
+            ans = location-&gt;status;
+        }
+        int k = ((ip&amp;(1 &lt;&lt; i))&gt;&gt;i);
+        if (location-&gt;next[k] == NULL)
+            break;
+        location = location-&gt;next[k];
+    }
+
+
+    return ans;
+}
+int main()
+{
+    int m, n;
+    while (scanf(&quot;%d%d&quot;, &amp;m, &amp;n) != EOF) {
+        Treenode *root = NULL;
+
+        for (int i = 0; i &lt; m; i++) {
+            char a[10];
+            scanf(&quot;%s&quot;, a);
+            ll ip1, ip2, ip3, ip4;
+            char b;
+            scanf(&quot;%lld.%lld.%lld.%lld%c&quot;, &amp;ip1, &amp;ip2, &amp;ip3, &amp;ip4, &amp;b);
+
+            ll ip = (ip1 &lt;&lt; 24) + (ip2 &lt;&lt; 16) + (ip3 &lt;&lt; 8) + ip4;
+            int mask = 32;
+            if (b == &apos;/&apos;) {
+                scanf(&quot;%d&quot;, &amp;mask);
+            }
+
+            if (a[0] == &apos;a&apos;) {
+                insert(root, ip, 1, mask, i);
+            } else {
+                insert(root, ip, 0, mask, i);
+            }
+        }
+        for (int j = 0; j &lt; n; ++j) {
+            ll ip1, ip2, ip3, ip4;
+            scanf(&quot;%lld.%lld.%lld.%lld&quot;, &amp;ip1, &amp;ip2, &amp;ip3, &amp;ip4);
+            ll ip = (ip1 &lt;&lt; 24) + (ip2 &lt;&lt; 16) + (ip3 &lt;&lt; 8) + ip4;
+            if (search(root, ip)) {
+                cout &lt;&lt; &quot;YES&quot; &lt;&lt; endl;
+            } else {
+                cout &lt;&lt; &quot;NO&quot; &lt;&lt; endl;
+            }
+        }
+    }
+
+    return 0;
+}
+</code></pre><blockquote>
+<p><a href="">呼呼呼山</a>(<a href="http://code4fun.me">http://code4fun.me</a>)<br>13 May 2017 11:57 PM </p>
+</blockquote>
+
+    
+  </div>
+
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2017/05/10/leetcode 134. Gas Station/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2017/07/19/来这边实习两周多了/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: '99bca29ad4d85951d688',
+  clientSecret: 'd956164d57277ed8ece2fab34d91f67506dd50d6',
+  repo: 'blog-comment',
+  owner: 'zhangzhishan',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: md5(location.pathname),
+  admin: ['zhangzhishan'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

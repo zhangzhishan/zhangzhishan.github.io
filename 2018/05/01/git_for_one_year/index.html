@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>这些Git技能够你用一年了 | Code4Fun</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="git," />
+  
+
+  <meta name="description" content="用git有一年了，下面是我这一年来的git使用总结，覆盖了日常使用中绝大多数的场景。嗯，至少是够用一年了，整理出来分享给大家，不明白的地方可以回复交流。
+创建和使用git ssh key
+首先设置git的user name和email：
+1git config --global user.name &amp;quot;xxx&amp;quot;git config --global user.email &amp;quo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="这些Git技能够你用一年了">
+<meta property="og:url" content="http://code4fun.me/2018/05/01/git_for_one_year/index.html">
+<meta property="og:site_name" content="Code4Fun">
+<meta property="og:description" content="用git有一年了，下面是我这一年来的git使用总结，覆盖了日常使用中绝大多数的场景。嗯，至少是够用一年了，整理出来分享给大家，不明白的地方可以回复交流。
+创建和使用git ssh key
+首先设置git的user name和email：
+1git config --global user.name &amp;quot;xxx&amp;quot;git config --global user.email &amp;quo">
+<meta property="og:updated_time" content="2025-06-13T10:54:27.237Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="这些Git技能够你用一年了">
+<meta name="twitter:description" content="用git有一年了，下面是我这一年来的git使用总结，覆盖了日常使用中绝大多数的场景。嗯，至少是够用一年了，整理出来分享给大家，不明白的地方可以回复交流。
+创建和使用git ssh key
+首先设置git的user name和email：
+1git config --global user.name &amp;quot;xxx&amp;quot;git config --global user.email &amp;quo">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+<link rel="alternate" href="/atom.xml" title="Code4Fun" type="application/atom+xml">
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-git_for_one_year" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">这些Git技能够你用一年了</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2018.05.01</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>呼呼呼山</span>
+        </span>
+      
+
+      
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>用git有一年了，下面是我这一年来的git使用总结，覆盖了日常使用中绝大多数的场景。嗯，至少是够用一年了，整理出来分享给大家，不明白的地方可以回复交流。</p>
+<p><strong>创建和使用git ssh key</strong></p>
+<p>首先设置git的user name和email：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git config --global user.name &quot;xxx&quot;git config --global user.email &quot;xxx@gmail.com&quot;</div></pre></td></tr></table></figure>
+<p>查看git配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git config --list</div></pre></td></tr></table></figure>
+<p><strong>然后生成SHH密匙：</strong></p>
+<p>查看是否已经有了ssh密钥： <code>cd ~/.ssh</code><br>如果没有密钥则不会有此文件夹，有则备份删除<br>生存密钥：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -t rsa -C &quot;xxx@gmail.com&quot;</div></pre></td></tr></table></figure>
+<p>按3个回车，密码为空这里一般不使用密钥。<br>最后得到了两个文件：id_rsa和id_rsa.pub<br>注意：密匙生成就不要改了，如果已经生成到 <code>~/.ssh</code> 文件夹下去找。</p>
+<p> <strong>git变更项目地址</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git remote set-url origin git@192.168.6.70:res_dev_group/test.gitgit remote -v</div></pre></td></tr></table></figure>
+<p><strong>查看某个文件的修改历史</strong></p>
+<p>git log –pretty=oneline 文件名 # 显示修改历史<br>git show 356f6def9d3fb7f3b9032ff5aa4b9110d4cca87e # 查看更改</p>
+<p><strong>git push 时报错 warning: push.default is unset;</strong></p>
+<p>‘matching’参数是 Git 1.x 的默认行为，其意是如果你执行 git push 但没有指定分支，它将 push 所有你本地的分支到远程仓库中对应匹配的分支。而 Git 2.x 默认的是 simple，意味着执行 git push 没有指定分支时，只有当前分支会被 push 到你使用 git pull 获取的代码。<br>根据提示，修改git push的行为:<br>git config –global push.default matching<br>再次执行git push 得到解决。</p>
+<p> <strong>git submodule的使用拉子项目代码</strong></p>
+<p>开发过程中，经常会有一些通用的部分希望抽取出来做成一个公共库来提供给别的工程来使用，而公共代码库的版本管理是个麻烦的事情。今天无意中发现了git的 <code>git submodule</code> 命令，之前的问题迎刃而解了。<br>添加</p>
+<p>为当前工程添加submodule，命令如下：</p>
+<p><code>git submodule add 仓库地址 路径</code></p>
+<p>其中，仓库地址是指子模块仓库地址，路径指将子模块放置在当前工程下的路径。<br>注意：路径不能以 / 结尾（会造成修改不生效）、不能是现有工程已有的目录（不能順利 Clone）</p>
+<p>命令执行完成，会在当前工程根路径下生成一个名为“.gitmodules”的文件，其中记录了子模块的信息。添加完成以后，再将子模块所在的文件夹添加到工程中即可。<br>删除</p>
+<p>submodule的删除稍微麻烦点：首先，要在“.gitmodules”文件中删除相应配置信息。然后，执行 <code>git rm –cached</code> 命令将子模块所在的文件从git中删除。<br>下载的工程带有submodule</p>
+<p>当使用 <code>git clone</code> 下来的工程中带有submodule时，初始的时候，submodule的内容并不会自动下载下来的，此时，只需执行如下命令：</p>
+<p><code>git submodule update --init --recursive</code></p>
+<p>即可将子模块内容下载下来后工程才不会缺少相应的文件。</p>
+<p> <strong>git add文件取消</strong></p>
+<p>在git的一般使用中，如果发现错误的将不想提交的文件add进入index之后，想回退取消，则可以使用命令： <code>git reset HEAD &lt;file&gt;...</code> ，同时git add完毕之后，git也会做相应的提示。</p>
+<blockquote>
+<p><a href="http://blog.csdn.net/yaoming168/article/details/38777763" target="_blank" rel="external">http://blog.csdn.net/yaoming168/article/details/38777763</a></p>
+</blockquote>
+<p> <strong>git删除文件：</strong></p>
+<p>删除文件跟踪并且删除文件系统中的文件file1 <code>git rm file1</code><br>提交刚才的删除动作，之后git不再管理该文件 <code>git commit</code></p>
+<p>删除文件跟踪但不删除文件系统中的文件file1 <code>git rm --cached file1</code><br>提交刚才的删除动作，之后git不再管理该文件。但是文件系统中还是有file1。 <code>git commit</code></p>
+<p><strong>版本回退</strong></p>
+<p>版本回退用于线上系统出现问题后恢复旧版本的操作。<br>回退到的版本 <code>git reset --hard 248cba8e77231601d1189e3576dc096c8986ae51</code><br>回退的是所有文件，如果后悔回退可以git pull就可以了。</p>
+<p> <strong>历史版本对比</strong></p>
+<p>查看日志 <code>git log</code><br>查看某一历史版本的提交内容 <code>git show 4ebd4bbc3ed321d01484a4ed206f18ce2ebde5ca</code> ，这里能看到版本的详细修改代码。<br>对比不同版本 <code>git diff c0f28a2ec490236caa13dec0e8ea826583b49b7a 2e476412c34a63b213b735e5a6d90cd05b014c33</code></p>
+<blockquote>
+<p><a href="http://blog.csdn.net/lxlzhn/article/details/9356473" target="_blank" rel="external">http://blog.csdn.net/lxlzhn/article/details/9356473</a></p>
+</blockquote>
+<p> <strong>分支的意义与管理</strong></p>
+<p>创建分支可以避免提交代码后对主分支的影响，同时也使你有了相对独立的开发环境。分支具有很重要的意义。<br>创建并切换分支，提交代码后才能在其它机器拉分支代码 <code>git checkout -b new_branch</code><br>查看当前分支 <code>git branch</code><br>切换到master分支 <code>git checkout master</code><br>合并分支到当前分支 <code>git merge new_branch</code> ，合并分支的操作是从new_branch合并到master分支，当前环境在master分支。<br>删除分支 <code>git branch -d new_branch</code></p>
+<p><strong>git冲突文件编辑</strong></p>
+<p>冲突文件冲突的地方如下面这样</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">a123&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEADb789=======b45678910&gt;&gt;&gt;&gt;&gt;&gt;&gt; 6853e5ff961e684d3a6c02d4d06183b5ff330dccc</div></pre></td></tr></table></figure>
+<p>冲突标记&lt;&lt;&lt;&lt;&lt;&lt;&lt; （7个&lt;）与=======之间的内容是我的修改，=======与&gt;&gt;&gt;&gt;&gt;&gt;&gt;之间的内容是别人的修改。<br>此时，还没有任何其它垃圾文件产生。<br>你需要把代码合并好后重新走一遍代码提交流程就好了。</p>
+<p><strong>不顺利的代码提交流程</strong></p>
+<p>在 <code>git push</code> 后出现错误可能是因为其他人提交了代码，而使你的本地代码库版本不是最新。<br>这时你需要先 <code>git pull</code> 代码后，检查是否有文件冲突。<br>没有文件冲突的话需要重新走一遍代码提交流程 <code>add —&gt; commit —&gt; push</code> 。<br>解决文件冲突在后面说。</p>
+<p> <strong>git顺利的提交代码流程</strong></p>
+<p>查看修改的文件 <code>git status</code> ；<br>为了谨慎检查一下代码 <code>git diff</code> ；<br>添加修改的文件 <code>git add dirname1/filename1.py dirname2/filenam2.py</code> ，新加的文件也是直接add就好了；<br>添加修改的日志 <code>git commit -m &quot;fixed:修改了上传文件的逻辑&quot;</code> ；<br>提交代码 <code>git push</code> ，如果提交失败的可能原因是本地代码库版本不是最新。</p>
+<p><strong>理解github的pull request</strong> 有一个仓库，叫Repo A。你如果要往里贡献代码，首先要Fork这个Repo，于是在你的Github账号下有了一个Repo A2,。然后你在这个A2下工作，Commit，push等。然后你希望原始仓库Repo A合并你的工作，你可以在Github上发起一个Pull Request，意思是请求Repo A的所有者从你的A2合并分支。如果被审核通过并正式合并，这样你就为项目A做贡献了。</p>
+<blockquote>
+<p><a href="http://zhidao.baidu.com/question/1669154493305991627.html" target="_blank" rel="external">http://zhidao.baidu.com/question/1669154493305991627.html</a></p>
+</blockquote>
+<p> <strong>一些错误处理</strong> <strong>“pathspec ‘branch’ did not match any file(s) known to git.”错误</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout mastergit pullgit checkout new_branch</div></pre></td></tr></table></figure>
+<p><strong>使用git提交比较大的文件的时候可能会出现这个错误</strong></p>
+<p>error: RPC failed; result=22, HTTP code = 411<br>fatal: The remote end hung up unexpectedly<br>fatal: The remote end hung up unexpectedly<br>Everything up-to-date</p>
+<p>这样的话首先改一下git的传输字节限制</p>
+<p>git config http.postBuffer 524288000<br>然后这时候在传输或许会出现另一个错误</p>
+<p>error: RPC failed; result=22, HTTP code = 413<br>fatal: The remote end hung up unexpectedly<br>fatal: The remote end hung up unexpectedly<br>Everything up-to-date</p>
+<p>这两个错误看上去相似，一个是411，一个是413</p>
+<p>下面这个错误添加一下密钥就可以了</p>
+<p>首先key-keygen 生成密钥</p>
+<p>然后把生成的密钥复制到git中自己的账号下的相应位置</p>
+<p>git push ssh://192.168.64.250/eccp.git branch</p>
+<blockquote>
+<p><a href="">呼呼呼山</a>(<a href="http://code4fun.me">http://code4fun.me</a>)<br>2019-05-01 09:38:53</p>
+</blockquote>
+
+    
+  </div>
+
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2018/05/01/rest/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2018/05/01/php_environment/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: '99bca29ad4d85951d688',
+  clientSecret: 'd956164d57277ed8ece2fab34d91f67506dd50d6',
+  repo: 'blog-comment',
+  owner: 'zhangzhishan',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: md5(location.pathname),
+  admin: ['zhangzhishan'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

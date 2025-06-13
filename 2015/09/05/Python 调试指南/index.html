@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>Python 调试指南 | Code4Fun</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="Python," />
+  
+
+  <meta name="description" content="Python 调试指南很久以前，我的调试都是采用print，由于写的内容比较简单，所以也可以快乐的过下去，但是随着代码量的增加，简单的print调试方法，已经不能很好的解决问题了，再加上听了内核恐慌的调试那一期节目，终于开始了拖了很久的调试的学习，当然Python也有很多的库可以用来进行调试，这里我们只考虑其官方自带的库pdb，本以为是一件很麻烦的事情，可是学习后突然发现，原来是如此的简单，调试一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python 调试指南">
+<meta property="og:url" content="http://code4fun.me/2015/09/05/Python 调试指南/index.html">
+<meta property="og:site_name" content="Code4Fun">
+<meta property="og:description" content="Python 调试指南很久以前，我的调试都是采用print，由于写的内容比较简单，所以也可以快乐的过下去，但是随着代码量的增加，简单的print调试方法，已经不能很好的解决问题了，再加上听了内核恐慌的调试那一期节目，终于开始了拖了很久的调试的学习，当然Python也有很多的库可以用来进行调试，这里我们只考虑其官方自带的库pdb，本以为是一件很麻烦的事情，可是学习后突然发现，原来是如此的简单，调试一">
+<meta property="og:updated_time" content="2025-06-13T10:54:27.235Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python 调试指南">
+<meta name="twitter:description" content="Python 调试指南很久以前，我的调试都是采用print，由于写的内容比较简单，所以也可以快乐的过下去，但是随着代码量的增加，简单的print调试方法，已经不能很好的解决问题了，再加上听了内核恐慌的调试那一期节目，终于开始了拖了很久的调试的学习，当然Python也有很多的库可以用来进行调试，这里我们只考虑其官方自带的库pdb，本以为是一件很麻烦的事情，可是学习后突然发现，原来是如此的简单，调试一">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+<link rel="alternate" href="/atom.xml" title="Code4Fun" type="application/atom+xml">
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Python-调试指南"><span class="toc-text">Python 调试指南</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-不引入pdb库，运行时添加参数。"><span class="toc-text">1.不引入pdb库，运行时添加参数。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-引入pdb库，设置断点"><span class="toc-text">2.引入pdb库，设置断点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-常用快捷键总结"><span class="toc-text">3.常用快捷键总结</span></a></li></ol></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-Python 调试指南" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">Python 调试指南</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2015.09.05</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>呼呼呼山</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/Python/">Python</a>
+  </span>
+
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h1 id="Python-调试指南"><a href="#Python-调试指南" class="headerlink" title="Python 调试指南"></a>Python 调试指南</h1><p>很久以前，我的调试都是采用print，由于写的内容比较简单，所以也可以快乐的过下去，但是随着代码量的增加，简单的print调试方法，已经不能很好的解决问题了，再加上听了内核恐慌的调试那一期节目，终于开始了拖了很久的调试的学习，当然Python也有很多的库可以用来进行调试，这里我们只考虑其官方自带的库<a href="https://docs.python.org/3/library/pdb.html" target="_blank" rel="external">pdb</a>，本以为是一件很麻烦的事情，可是学习后突然发现，原来是如此的简单，调试一共分为两种模式。</p>
+<h2 id="1-不引入pdb库，运行时添加参数。"><a href="#1-不引入pdb库，运行时添加参数。" class="headerlink" title="1.不引入pdb库，运行时添加参数。"></a>1.不引入pdb库，运行时添加参数。</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python -m pdb test.py</div></pre></td></tr></table></figure>
+<p>这时候就需要用到一些快捷键进行调试，对于稍微有点英语基础的人来说这些还是比较简单的，首先我们让他执行下一行命令，可以是 <strong>n</strong> (next),或者显示当前的代码情况<strong>l</strong>(list),打印变量<strong>p</strong>(print),或者对某些变量进行一些操作（<strong>可以声明变量，但是这有一个坑，就是当你声明一个变量为一些命令字符，例如p的时候，就会出现问题，此时需要采用在变量前面加一！的方式解决</strong>）， 从一个函数中返回<strong>r</strong>(return)，进入一个函数<strong>s</strong>(step into)，继续执行 <em>c</em> （continue），以及破坏性地推出<em>q</em>(quit)，以及万能的回车键（会重复上一次执行的命令）。</p>
+<h2 id="2-引入pdb库，设置断点"><a href="#2-引入pdb库，设置断点" class="headerlink" title="2.引入pdb库，设置断点"></a>2.引入pdb库，设置断点</h2><p>有些时候，当函数很长的时候，我们没必要让其从头一步步运行，我们能大致估计出问题出现的位置，此时我们可以设定一个断点。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> pdb</div><div class="line">pdb.set_trace()</div></pre></td></tr></table></figure>
+<p>然后正常运行，在断点位置，自动进入调试状况，快捷键依旧和之气的一样。</p>
+<h2 id="3-常用快捷键总结"><a href="#3-常用快捷键总结" class="headerlink" title="3.常用快捷键总结"></a>3.常用快捷键总结</h2><p>| <em>快捷键</em> | <em>short for</em> | <em>含义</em> |<br>| n | next | 继续执行 |<br>| b | breakpoint | 设置断点，例如 “b 77”，就是在当前脚本的77行打上断点，还能输入函数名作为参数，断点就打到具体的函数入口，如果只敲b，会显示现有的全部断点 |<br>| c | continue | 让程序正常运行，直到遇到断点 |<br>| r | return | 返回执行结果 |<br>| q | quit | 强制退出 |<br>| s | step into | 进入函数 |<br>| p | print | 打印变量 |<br>| l | list | 输出当前代码状况 |<br>| cl | clear | 清除断点 |<br>| h | help | 帮助 |</p>
+
+    
+  </div>
+
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2015/08/24/jsPDF/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2015/12/22/用泛用型播客客户端订阅喜马拉雅内容/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: '99bca29ad4d85951d688',
+  clientSecret: 'd956164d57277ed8ece2fab34d91f67506dd50d6',
+  repo: 'blog-comment',
+  owner: 'zhangzhishan',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: md5(location.pathname),
+  admin: ['zhangzhishan'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

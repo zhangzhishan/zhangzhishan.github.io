@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>面试内容整理—数据结构 | Code4Fun</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="数据结构,jobs," />
+  
+
+  <meta name="description" content="重要参考链接https://juejin.im/post/58ca051f61ff4b0060165122堆与栈(http://blog.csdn.net/hairetz/article/details/4141043/)栈区（stack）由编译器自动分配释放，存放方法（函数）的参数值，局部变量的值等。堆区（heap）一般由程序员分配与释放，若程序员不释放，则会内存溢出。栈：只要栈的剩余空间大于所">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面试内容整理—数据结构">
+<meta property="og:url" content="http://code4fun.me/2017/09/18/数据结构相关面试问题/index.html">
+<meta property="og:site_name" content="Code4Fun">
+<meta property="og:description" content="重要参考链接https://juejin.im/post/58ca051f61ff4b0060165122堆与栈(http://blog.csdn.net/hairetz/article/details/4141043/)栈区（stack）由编译器自动分配释放，存放方法（函数）的参数值，局部变量的值等。堆区（heap）一般由程序员分配与释放，若程序员不释放，则会内存溢出。栈：只要栈的剩余空间大于所">
+<meta property="og:updated_time" content="2025-06-13T10:54:27.292Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="面试内容整理—数据结构">
+<meta name="twitter:description" content="重要参考链接https://juejin.im/post/58ca051f61ff4b0060165122堆与栈(http://blog.csdn.net/hairetz/article/details/4141043/)栈区（stack）由编译器自动分配释放，存放方法（函数）的参数值，局部变量的值等。堆区（heap）一般由程序员分配与释放，若程序员不释放，则会内存溢出。栈：只要栈的剩余空间大于所">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+<link rel="alternate" href="/atom.xml" title="Code4Fun" type="application/atom+xml">
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#重要参考链接https-juejin-im-post-58ca051f61ff4b0060165122"><span class="toc-text">重要参考链接https://juejin.im/post/58ca051f61ff4b0060165122</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#堆与栈-http-blog-csdn-net-hairetz-article-details-4141043"><span class="toc-text">堆与栈(http://blog.csdn.net/hairetz/article/details/4141043/)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hashmap的基础数据结构"><span class="toc-text">hashmap的基础数据结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#循环队列"><span class="toc-text">循环队列</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#循环队列的优点："><span class="toc-text">循环队列的优点：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#循环队列的缺点："><span class="toc-text">循环队列的缺点：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#栈结构与队列的区别？"><span class="toc-text">栈结构与队列的区别？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二叉树的深度优先遍历-递归与非递归（非递归后序最难））"><span class="toc-text">二叉树的深度优先遍历(递归与非递归（非递归后序最难））</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#写出一次快排后的具体变化情况"><span class="toc-text">写出一次快排后的具体变化情况</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是红黑树。"><span class="toc-text">什么是红黑树。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#红黑树的插入和删除"><span class="toc-text">红黑树的插入和删除</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#写一个快排。"><span class="toc-text">写一个快排。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一个单链表怎么判断有没有环？环的起点怎么找？-如何找出环的连接点在哪里？带环链表的长度是多少？"><span class="toc-text">一个单链表怎么判断有没有环？环的起点怎么找？ 如何找出环的连接点在哪里？带环链表的长度是多少？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#哈希表解决冲突的方法"><span class="toc-text">哈希表解决冲突的方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#散列表查找的复杂度"><span class="toc-text">散列表查找的复杂度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#动态规划，最长公共子串等-最长递增子序列（nlogn的算法）"><span class="toc-text">动态规划，最长公共子串等 最长递增子序列（nlogn的算法）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#排序：快排、归并、堆，时间复杂度是一样的，有什么区别？为什么平均情况下快排最快？"><span class="toc-text">排序：快排、归并、堆，时间复杂度是一样的，有什么区别？为什么平均情况下快排最快？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#给定一棵树，除左右节点外，还有一个random域，不一定指向哪，可能是空节点，可能是树中的其他节点，做树拷贝。"><span class="toc-text">给定一棵树，除左右节点外，还有一个random域，不一定指向哪，可能是空节点，可能是树中的其他节点，做树拷贝。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#大整数加、减、乘、除、求模运算实现"><span class="toc-text">大整数加、减、乘、除、求模运算实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二叉查找"><span class="toc-text">二叉查找</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二叉搜索树"><span class="toc-text">二叉搜索树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Top-k"><span class="toc-text">Top(k)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#单链表翻转（两个指针如何实现）、查找、删除、插入以及双向链表、有序链表合并"><span class="toc-text">单链表翻转（两个指针如何实现）、查找、删除、插入以及双向链表、有序链表合并</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#判断一个整数是否是2的整数次幂"><span class="toc-text">判断一个整数是否是2的整数次幂.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数组中只有一个数出现了两次，求这个数，并使得空间效率最优（用位图bitmap，比O（n）的线性空间更优）"><span class="toc-text">数组中只有一个数出现了两次，求这个数，并使得空间效率最优（用位图bitmap，比O（n）的线性空间更优）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二分查找（注意边界条件）"><span class="toc-text">二分查找（注意边界条件）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常见排序算法的实现以及稳定性（快排跟归并考的很多）"><span class="toc-text">常见排序算法的实现以及稳定性（快排跟归并考的很多）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字符串翻转（O-n-）、匹配（KMP算法）"><span class="toc-text">字符串翻转（O(n)）、匹配（KMP算法）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#指定一个数组，求2个数的和等于指定的和（某一个数），如果是3-4-5，n个等于个的和（某一个数）呢？（可以看作背包问题）"><span class="toc-text">指定一个数组，求2个数的和等于指定的和（某一个数），如果是3,4,5，n个等于个的和（某一个数）呢？（可以看作背包问题）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#跳台阶问题"><span class="toc-text">跳台阶问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一堆数据怎么找中位数（分两种，内存是不是能一次装下所用数据，能的话用快排，不能用分桶）"><span class="toc-text">一堆数据怎么找中位数（分两种，内存是不是能一次装下所用数据，能的话用快排，不能用分桶）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#找出一个字符串中只出现一次且是第一个的字符"><span class="toc-text">找出一个字符串中只出现一次且是第一个的字符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在不使用额外空间的情况下，交换两个数？"><span class="toc-text">在不使用额外空间的情况下，交换两个数？</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-数据结构相关面试问题" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">面试内容整理—数据结构</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2017.09.18</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>呼呼呼山</span>
+        </span>
+      
+
+      
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h2 id="重要参考链接https-juejin-im-post-58ca051f61ff4b0060165122"><a href="#重要参考链接https-juejin-im-post-58ca051f61ff4b0060165122" class="headerlink" title="重要参考链接https://juejin.im/post/58ca051f61ff4b0060165122"></a>重要参考链接<a href="https://juejin.im/post/58ca051f61ff4b0060165122" target="_blank" rel="external">https://juejin.im/post/58ca051f61ff4b0060165122</a></h2><h2 id="堆与栈-http-blog-csdn-net-hairetz-article-details-4141043"><a href="#堆与栈-http-blog-csdn-net-hairetz-article-details-4141043" class="headerlink" title="堆与栈(http://blog.csdn.net/hairetz/article/details/4141043/)"></a>堆与栈(<a href="http://blog.csdn.net/hairetz/article/details/4141043/" target="_blank" rel="external">http://blog.csdn.net/hairetz/article/details/4141043/</a>)</h2><p>栈区（stack）由编译器自动分配释放，存放方法（函数）的参数值，局部变量的值等。<br>堆区（heap）一般由程序员分配与释放，若程序员不释放，则会内存溢出。<br>栈：只要栈的剩余空间大于所申请空间，系统将为程序提供内存，否则将报异常提示栈溢出。<br>  堆：首先应该知道操作系统有一个记录空闲内存地址的链表，当系统收到程序的申请时，会遍历该链表，寻找第一个空间大于所申请空间的堆结点，然后将该结点从空闲结点链表中删除，并将该结点的空间分配给程序，另外，对于大多数系统，会在这块内存空间中的首地址处记录本次分配的大小，这样，代码中的delete语句才能正确的释放本内存空间。<br>  另外，由于找到的堆结点的大小不一定正好等于申请的大小，系统会自动的将多余的那部分重新放入空闲链表中。<br> 栈：在Windows下,栈是向低地址扩展的数据结构，是一块连续的内存的区域。这句话的意思是栈顶的地址和栈的最大容量是系统预先规定好的，在WINDOWS下，栈的大小是2M（也有的说是1M，总之是一个编译时就确定的常数），如果申请的空间超过栈的剩余空间时，将提示overflow。因此，能从栈获得的空间较小。<br>  堆：堆是向高地址扩展的数据结构，是不连续的内存区域。这是由于系统是用链表来存储的空闲内存地址的，自然是不连续的，而链表的遍历方向是由低地址向高地址。堆的大小受限于计算机系统中有效的虚拟内存。由此可见，堆获得的空间比较灵活，也比较大。</p>
+<h2 id="hashmap的基础数据结构"><a href="#hashmap的基础数据结构" class="headerlink" title="hashmap的基础数据结构"></a>hashmap的基础数据结构</h2><p>HashMap基于hashing原理，我们通过put()和get()方法储存和获取对象。当我们将键值对传递给put()方法时，它调用键对象的hashCode()方法来计算hashcode，让后找到bucket位置来储存值对象。当获取对象时，通过键对象的equals()方法找到正确的键值对，然后返回值对象。HashMap使用LinkedList来解决碰撞问题，当发生碰撞了，对象将会储存在LinkedList的下一个节点中。 HashMap在每个LinkedList节点中储存键值对对象。</p>
+<h2 id="循环队列"><a href="#循环队列" class="headerlink" title="循环队列"></a>循环队列</h2><h3 id="循环队列的优点："><a href="#循环队列的优点：" class="headerlink" title="循环队列的优点："></a>循环队列的优点：</h3><p>　　可以有效的利用资源。用数组实现队列时，如果不移动，随着数据的不断读写，会出现假满队列的情况。即尾数组已满但头数组还是空的；循环队列也是一种数组，只是它在逻辑上把数组的头和尾相连，形成循环队列，当数组尾满的时候，要判断数组头是否为空，不为空继续存放数据。</p>
+<h3 id="循环队列的缺点："><a href="#循环队列的缺点：" class="headerlink" title="循环队列的缺点："></a>循环队列的缺点：</h3><p>　　循环队列中，由于入队时尾指针向前追赶头指针；出队时头指针向前追赶尾指针，造成队空和队满时头尾指针均相等。因此，无法通过条件front==rear来判别队列是”空”是”满”。</p>
+<p>解决这个问题有两个办法：一是增加一个参数，用来记录数组中当前元素的个数；第二个办法是，少用一个存储空间，也就是数组的最后一个存数空间不用，当（rear+1）%maxsiz=front时，队列满</p>
+<h2 id="栈结构与队列的区别？"><a href="#栈结构与队列的区别？" class="headerlink" title="栈结构与队列的区别？"></a>栈结构与队列的区别？</h2><p>栈（stack）：限定只能在表的一端进行插入和删除操作的线性表。<br>队列（queue）：限定只能在表的一端插入和在另一端进行删除操作的线性表。<br>1）队列先进先出，栈先进后出。<br>2）对插入和删除操作的“限定”不同。<br>3）遍历数据速度不同。队列遍历数据的速度要快得多。</p>
+<h2 id="二叉树的深度优先遍历-递归与非递归（非递归后序最难））"><a href="#二叉树的深度优先遍历-递归与非递归（非递归后序最难））" class="headerlink" title="二叉树的深度优先遍历(递归与非递归（非递归后序最难））"></a>二叉树的深度优先遍历(递归与非递归（非递归后序最难））</h2><h2 id="写出一次快排后的具体变化情况"><a href="#写出一次快排后的具体变化情况" class="headerlink" title="写出一次快排后的具体变化情况"></a>写出一次快排后的具体变化情况</h2><h2 id="什么是红黑树。"><a href="#什么是红黑树。" class="headerlink" title="什么是红黑树。"></a>什么是红黑树。</h2><p>红黑树是每个节点都带有颜色属性的二叉查找树，颜色或红色或黑色。在二叉查找树强制一般要求以外，对于任何有效的红黑树我们增加了如下的额外要求:<br>性质1. 节点是红色或黑色。<br>性质2. 根节点是黑色。<br>性质3 每个叶节点（NIL节点，空节点）是黑色的。<br>性质4 每个红色节点的两个子节点都是黑色。(从每个叶子到根的所有路径上不能有两个连续的红色节点)<br>性质5. 从任一节点到其每个叶子的所有路径都包含相同数目的黑色节点。<br>这些约束强制了红黑树的关键性质: 从根到叶子的最长的可能路径不多于最短的可能路径的两倍长。结果是这个树大致上是平衡的。因为操作比如插入、删除和查找某个值的最坏情况时间都要求与树的高度成比例，这个在高度上的理论上限允许红黑树在最坏情况下都是高效的，而不同于普通的二叉查找树。</p>
+<h2 id="红黑树的插入和删除"><a href="#红黑树的插入和删除" class="headerlink" title="红黑树的插入和删除"></a>红黑树的插入和删除</h2><h2 id="写一个快排。"><a href="#写一个快排。" class="headerlink" title="写一个快排。"></a>写一个快排。</h2><p>Quick Sort是目前已知最快的排序法，平均复杂度为O(NlogN)，可是最坏情况下将达O(N^2)。<br>Quick Sort算法可以叙述如下。假设S代表将被处理的序列：<br>1、如果S的元素个数为0或1，结束。<br>2、取S中的任何一个元素，当做枢轴(pivot) v。<br>3、将S分割为L、R两段，使L内的每一个元素都小于或等于v，R内的每一个元素都大于或等于v。<br>4、对L、R递归执行Quick Sort。</p>
+<h2 id="一个单链表怎么判断有没有环？环的起点怎么找？-如何找出环的连接点在哪里？带环链表的长度是多少？"><a href="#一个单链表怎么判断有没有环？环的起点怎么找？-如何找出环的连接点在哪里？带环链表的长度是多少？" class="headerlink" title="一个单链表怎么判断有没有环？环的起点怎么找？ 如何找出环的连接点在哪里？带环链表的长度是多少？"></a>一个单链表怎么判断有没有环？环的起点怎么找？ 如何找出环的连接点在哪里？带环链表的长度是多少？</h2><p>1、对于问题1，使用追赶的方法，设定两个指针slow、fast，从头指针开始，每次分别前进1步、2步。如存在环，则两者相遇；如不存在环，fast遇到NULL退出。<br>2、对于问题2，记录下问题1的碰撞点p，slow、fast从该点开始，再次碰撞所走过的操作数就是环的长度s。<br>3、问题3：有定理：碰撞点p到连接点的距离=头指针到连接点的距离，因此，分别从碰撞点、头指针开始走，相遇的那个点就是连接点。<br>该定理的证明可参考：<a href="http://fayaa.com/tiku/view/7/" target="_blank" rel="external">http://fayaa.com/tiku/view/7/</a><br>4、问题3中已经求出连接点距离头指针的长度，加上问题2中求出的环的长度，二者之和就是带环单链表的长度</p>
+<h2 id="哈希表解决冲突的方法"><a href="#哈希表解决冲突的方法" class="headerlink" title="哈希表解决冲突的方法"></a>哈希表解决冲突的方法</h2><ul>
+<li>开放定址法（当关键字key的哈希地址p=H（key）出现冲突时，以p为基础，产生另一个哈希地址p1，如果p1仍然冲突，再以p为基础，产生另一个哈希地址p2，…，直到找出一个不冲突的哈希地址pi ，将相应元素存入其中，线性探测再散列，二次探测再散列，伪随机探测再散列）</li>
+<li>再哈希法（这种方法是同时构造多个不同的哈希函数）</li>
+<li>链地址法（这种方法的基本思想是将所有哈希地址为i的元素构成一个称为同义词链的单链表）</li>
+<li>建立一个公共溢出区（将哈希表分为基本表和溢出表两部分，凡是和基本表发生冲突的元素，一律填入溢出表）<h2 id="散列表查找的复杂度"><a href="#散列表查找的复杂度" class="headerlink" title="散列表查找的复杂度"></a>散列表查找的复杂度</h2>O(1)<h2 id="动态规划，最长公共子串等-最长递增子序列（nlogn的算法）"><a href="#动态规划，最长公共子串等-最长递增子序列（nlogn的算法）" class="headerlink" title="动态规划，最长公共子串等 最长递增子序列（nlogn的算法）"></a>动态规划，最长公共子串等 最长递增子序列（nlogn的算法）</h2><a href="http://blog.csdn.net/joylnwang/article/details/6766317" target="_blank" rel="external">http://blog.csdn.net/joylnwang/article/details/6766317</a><h2 id="排序：快排、归并、堆，时间复杂度是一样的，有什么区别？为什么平均情况下快排最快？"><a href="#排序：快排、归并、堆，时间复杂度是一样的，有什么区别？为什么平均情况下快排最快？" class="headerlink" title="排序：快排、归并、堆，时间复杂度是一样的，有什么区别？为什么平均情况下快排最快？"></a>排序：快排、归并、堆，时间复杂度是一样的，有什么区别？为什么平均情况下快排最快？</h2><h2 id="给定一棵树，除左右节点外，还有一个random域，不一定指向哪，可能是空节点，可能是树中的其他节点，做树拷贝。"><a href="#给定一棵树，除左右节点外，还有一个random域，不一定指向哪，可能是空节点，可能是树中的其他节点，做树拷贝。" class="headerlink" title="给定一棵树，除左右节点外，还有一个random域，不一定指向哪，可能是空节点，可能是树中的其他节点，做树拷贝。"></a>给定一棵树，除左右节点外，还有一个random域，不一定指向哪，可能是空节点，可能是树中的其他节点，做树拷贝。</h2><h2 id="大整数加、减、乘、除、求模运算实现"><a href="#大整数加、减、乘、除、求模运算实现" class="headerlink" title="大整数加、减、乘、除、求模运算实现"></a>大整数加、减、乘、除、求模运算实现</h2><h2 id="二叉查找"><a href="#二叉查找" class="headerlink" title="二叉查找"></a>二叉查找</h2><h2 id="二叉搜索树"><a href="#二叉搜索树" class="headerlink" title="二叉搜索树"></a>二叉搜索树</h2><h2 id="Top-k"><a href="#Top-k" class="headerlink" title="Top(k)"></a>Top(k)</h2>1.将输入内容（假设用数组存放）进行完全排序，从中选出排在前K的元素即为所求。有了这个思路，我们可以选择相应的排序算法进行处理，目前来看快速排序，堆排序和归并排序都能达到O(nlogn)的时间复杂度。<pre><code>2.对输入内容进行部分排序，即只对前K大的元素进行排序（这K个元素即为所求）。此时我们可以选择冒泡排序或选择排序进行处理，即每次冒泡（选择）都能找到所求的一个元素。这类策略的时间复杂度是O(Kn)。
+3.对输入内容不进行排序，显而易见，这种策略将会有更好的性能开销。我们此时可以选择两种策略进行处理：
+        a)利用小根堆维护一个大小为K的数组，目前该小根堆中的元素是排名前K的数，其中根是最小的数。此后，每次从原数组中取一个元素与根进行比较，如大于根的元素，则将根元素替换并进行堆调整（下沉），即保证小根堆中的元素仍然是排名前K的数，且根元素仍然最小；否则不予处理，取下一个数组元素继续该过程。该算法的时间复杂度是O(nlogK)，一般来说企业中都采用该策略处理top-K问题，因为该算法不需要一次将原数组中的内容全部加载到内存中，而这正是海量数据处理必然会面临的一个关卡。
+        b)利用快速排序的分划函数找到分划位置K，则其前面的内容即为所求。该算法是一种非常有效的处理方式，时间复杂度是O(n)。对于能一次加载到内存中的数组，该策略非常优秀。
+</code></pre><h2 id="单链表翻转（两个指针如何实现）、查找、删除、插入以及双向链表、有序链表合并"><a href="#单链表翻转（两个指针如何实现）、查找、删除、插入以及双向链表、有序链表合并" class="headerlink" title="单链表翻转（两个指针如何实现）、查找、删除、插入以及双向链表、有序链表合并"></a>单链表翻转（两个指针如何实现）、查找、删除、插入以及双向链表、有序链表合并</h2><h2 id="判断一个整数是否是2的整数次幂"><a href="#判断一个整数是否是2的整数次幂" class="headerlink" title="判断一个整数是否是2的整数次幂."></a>判断一个整数是否是2的整数次幂.</h2>(n&amp;(n-1))<h2 id="数组中只有一个数出现了两次，求这个数，并使得空间效率最优（用位图bitmap，比O（n）的线性空间更优）"><a href="#数组中只有一个数出现了两次，求这个数，并使得空间效率最优（用位图bitmap，比O（n）的线性空间更优）" class="headerlink" title="数组中只有一个数出现了两次，求这个数，并使得空间效率最优（用位图bitmap，比O（n）的线性空间更优）"></a>数组中只有一个数出现了两次，求这个数，并使得空间效率最优（用位图bitmap，比O（n）的线性空间更优）</h2>位运算<br>利用异或的特性，x^y^x=y^x^x=y<h2 id="二分查找（注意边界条件）"><a href="#二分查找（注意边界条件）" class="headerlink" title="二分查找（注意边界条件）"></a>二分查找（注意边界条件）</h2>二分查找算法的填空（PS：注意陷阱：数会溢出的问题）<br>定中间值的时候写错了 mind = low+high/2 ，后面回来一查，说这样子会溢出 low+high 会越界溢出，查阅相关资料 mind = low+（high-low）>>1，这样 才可以，果然，哪里有这么简单的题目…注意陷阱…… <h2 id="常见排序算法的实现以及稳定性（快排跟归并考的很多）"><a href="#常见排序算法的实现以及稳定性（快排跟归并考的很多）" class="headerlink" title="常见排序算法的实现以及稳定性（快排跟归并考的很多）"></a>常见排序算法的实现以及稳定性（快排跟归并考的很多）</h2><h2 id="字符串翻转（O-n-）、匹配（KMP算法）"><a href="#字符串翻转（O-n-）、匹配（KMP算法）" class="headerlink" title="字符串翻转（O(n)）、匹配（KMP算法）"></a>字符串翻转（O(n)）、匹配（KMP算法）</h2><h2 id="指定一个数组，求2个数的和等于指定的和（某一个数），如果是3-4-5，n个等于个的和（某一个数）呢？（可以看作背包问题）"><a href="#指定一个数组，求2个数的和等于指定的和（某一个数），如果是3-4-5，n个等于个的和（某一个数）呢？（可以看作背包问题）" class="headerlink" title="指定一个数组，求2个数的和等于指定的和（某一个数），如果是3,4,5，n个等于个的和（某一个数）呢？（可以看作背包问题）"></a>指定一个数组，求2个数的和等于指定的和（某一个数），如果是3,4,5，n个等于个的和（某一个数）呢？（可以看作背包问题）</h2><h2 id="跳台阶问题"><a href="#跳台阶问题" class="headerlink" title="跳台阶问题"></a>跳台阶问题</h2><h2 id="一堆数据怎么找中位数（分两种，内存是不是能一次装下所用数据，能的话用快排，不能用分桶）"><a href="#一堆数据怎么找中位数（分两种，内存是不是能一次装下所用数据，能的话用快排，不能用分桶）" class="headerlink" title="一堆数据怎么找中位数（分两种，内存是不是能一次装下所用数据，能的话用快排，不能用分桶）"></a>一堆数据怎么找中位数（分两种，内存是不是能一次装下所用数据，能的话用快排，不能用分桶）</h2><a href="http://blog.csdn.net/jiyanfeng1/article/details/8088237" target="_blank" rel="external">http://blog.csdn.net/jiyanfeng1/article/details/8088237</a><h2 id="找出一个字符串中只出现一次且是第一个的字符"><a href="#找出一个字符串中只出现一次且是第一个的字符" class="headerlink" title="找出一个字符串中只出现一次且是第一个的字符"></a>找出一个字符串中只出现一次且是第一个的字符</h2>建立一个hash表，遍历一遍字符串，记录每个字符出现的次数<h2 id="在不使用额外空间的情况下，交换两个数？"><a href="#在不使用额外空间的情况下，交换两个数？" class="headerlink" title="在不使用额外空间的情况下，交换两个数？"></a>在不使用额外空间的情况下，交换两个数？</h2>位操作（异或）或者加减</li>
+</ul>
+<blockquote>
+<p><a href="">呼呼呼山</a>(<a href="http://code4fun.me">http://code4fun.me</a>)<br>18 Sep 2017 9:04 PM </p>
+</blockquote>
+
+    
+  </div>
+
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2017/08/06/微软去实习记/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2017/09/18/面试中思路性质问题/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: '99bca29ad4d85951d688',
+  clientSecret: 'd956164d57277ed8ece2fab34d91f67506dd50d6',
+  repo: 'blog-comment',
+  owner: 'zhangzhishan',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: md5(location.pathname),
+  admin: ['zhangzhishan'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>地图的匹配问题 | Code4Fun</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="study," />
+  
+
+  <meta name="description" content="在查找文献的过程中，发现地图匹配（map matching）主要是基于GPS信号等获取到的地理坐标信息和实际的地图信息来进行匹配，好像和我们的问题并不是一样的，所以我就没有查找这方面的，而是将其当作一个图像问题。（唐进君, 曹凯. 一种自适应轨迹曲线地图匹配算法J. 測繪學報, 2008, 37(3): 308-315.）（Chen W, Li Z, Yu M, et al. An integra">
+<meta property="og:type" content="article">
+<meta property="og:title" content="地图的匹配问题">
+<meta property="og:url" content="http://code4fun.me/2018/01/11/地图匹配理解/index.html">
+<meta property="og:site_name" content="Code4Fun">
+<meta property="og:description" content="在查找文献的过程中，发现地图匹配（map matching）主要是基于GPS信号等获取到的地理坐标信息和实际的地图信息来进行匹配，好像和我们的问题并不是一样的，所以我就没有查找这方面的，而是将其当作一个图像问题。（唐进君, 曹凯. 一种自适应轨迹曲线地图匹配算法J. 測繪學報, 2008, 37(3): 308-315.）（Chen W, Li Z, Yu M, et al. An integra">
+<meta property="og:image" content="https://raw.githubusercontent.com/zhangzhishan/blogpics/dev/14818178326192.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/zhangzhishan/blogpics/dev/14818178491237.jpg">
+<meta property="og:updated_time" content="2025-06-13T10:54:27.292Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="地图的匹配问题">
+<meta name="twitter:description" content="在查找文献的过程中，发现地图匹配（map matching）主要是基于GPS信号等获取到的地理坐标信息和实际的地图信息来进行匹配，好像和我们的问题并不是一样的，所以我就没有查找这方面的，而是将其当作一个图像问题。（唐进君, 曹凯. 一种自适应轨迹曲线地图匹配算法J. 測繪學報, 2008, 37(3): 308-315.）（Chen W, Li Z, Yu M, et al. An integra">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zhangzhishan/blogpics/dev/14818178326192.jpg">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+<link rel="alternate" href="/atom.xml" title="Code4Fun" type="application/atom+xml">
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Shape-matching"><span class="toc-text">Shape matching</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-地图匹配理解" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">地图的匹配问题</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2018.01.11</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>呼呼呼山</span>
+        </span>
+      
+
+      
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>在查找文献的过程中，发现地图匹配（map matching）主要是基于GPS信号等获取到的地理坐标信息和实际的地图信息来进行匹配，好像和我们的问题并不是一样的，所以我就没有查找这方面的，而是将其当作一个图像问题。（唐进君, 曹凯. 一种自适应轨迹曲线地图匹配算法<a href="">J</a>. 測繪學報, 2008, 37(3): 308-315.）（Chen W, Li Z, Yu M, et al. An integrated map-match algorithm with position feedback and shape-based mismatch detection and correction<a href="">J</a>. Journal of Intelligent Transportation Systems, 2008, 12(4): 168-175.）</p>
+<p>对于普通的图像问题，有两类相关的问题：图像匹配（image matching）和图像配准(image registration)。图像匹配是寻找与一幅图相似的图像（不对寻找到的图像做矫正）；而图像配准是寻找相似图像但是变形后的图像（需要做一些旋转之类的校正变换）。图像配准一般是指针对与同一个传感器在不同的时间、不同的视角或者不同的传感器所获取的图像进行叠加（或者说是融合）的过程，所以其必然会考虑图像的畸变以及对原始图像进行优化。其基本包括四个步骤（Zitova B, Flusser J. Image registration methods: a survey<a href="">J</a>. Image and vision computing, 2003, 21(11): 977-1000.）：</p>
+<ul>
+<li>feature detection</li>
+<li>feature matching </li>
+<li>mapping function design</li>
+<li>image transformation and resampling</li>
+</ul>
+<p>对于前两个步骤，这是和图像匹配过程是相近的。由于我们的地图匹配问题，不需要配准的过程，所以下面主要叙述图像匹配方面的内容。</p>
+<p>图像匹配一般分为两类：基于灰度的匹配和基于特征的匹配，由于我们的问题中并不存在颜色特征，故只可以使用基于特征的匹配方法。特征方面，在地图匹配中，由于地图只有形状信息，故只考虑基于特征的匹配方法。当不考虑图形的颜色、纹理等问题后，我们相当于可以将一副图形抽象为一个形状(shape)，所以这个问题可以近似为形状匹配（Shape matching）</p>
+<h2 id="Shape-matching"><a href="#Shape-matching" class="headerlink" title="Shape matching"></a>Shape matching</h2><p>对于该问题可以将其拆分为两个方面，一个是图形的特征值部分（也即shape representation and description），另一个就是根据特征进行匹配的算法。</p>
+<p>对于图形的特征部分，传统的分类方法（Zhang D, Lu G. Review of shape representation and description techniques<a href="">J</a>. Pattern recognition, 2004, 37(1): 1-19.）将特征分为基于轮廓（contour-based）和基于区域(region-based)两类，同时每一类中又根据是选取整体还是分段选取而分为structural 和 global 两类，其分类图如下：</p>
+<p><img src="https://raw.githubusercontent.com/zhangzhishan/blogpics/dev/14818178326192.jpg" alt=""></p>
+<p>随着越来越多的形状特征描述方法被提出，并且各种方法之间的融合也被提出，简单的按照获取特征的方法进行分类不再合适（例如对于矩-moments，即包括boundary moments也包括region moments如代数不变矩等）。于是参考文献（Yang M, Kpalma K, Ronsin J. A survey of shape feature extraction techniques<a href="">J</a>. Pattern recognition, 2008: 43-90.）根据过程提出了下面的分类：</p>
+<p><img src="https://raw.githubusercontent.com/zhangzhishan/blogpics/dev/14818178491237.jpg" alt=""></p>
+<p>该文献详细介绍了各种shape 以及 shape feature 的表示方法并在最后总结了各种 feature 针对于不变性（旋转、平移、伸缩、仿射变换）和鲁棒性（噪声、遮挡、畸变）。可以作为一个重要的参考资料。由于，现在无法确定最终的地理轮廓样式，所以无法确定对于 feature 的最终旋转，不过在对基本表达公式分析可以发现应该大部分是可以使用的。</p>
+<p>借助上面的特征然后添加较为简单的代价函数就可以进行形状匹配，如（饶芮菱, 金雪峰, 鲁怀伟. 基于链码的二维碎片轮廓匹配算法<a href="">J</a>. 計算技術與自動化, 2007, 26(2): 34-37.）（赵东保, 贺添, 张卡. 基于复数矩的形状轮廓描述与匹配方法<a href="">J</a>. 四川大学学报: 工程科学版, 2011, 43(2): 109-115.）（朱延娟, 周来水, 张丽艳, 等. 基于 Hausdorff 距离的多尺度轮廓匹配算法<a href="">J</a>. 中国机械工程, 2004, 15(17): 1553-1556.）（王琼, 袁建英, 李柏林. 一种融合特征点与轮廓信息的匹配算法<a href="">J</a>. 计算机应用研究, 2014, 31(10): 3145-3147.）（Wang J, Bai X, You X, et al. Shape matching and classification using height functions<a href="">J</a>. Pattern Recognition Letters, 2012, 33(2): 134-143.）（Hong B W, Soatto S. Shape matching using multiscale integral invariants<a href="">J</a>. IEEE transactions on pattern analysis and machine intelligence, 2015, 37(1): 151-160.）。</p>
+<p>对于根据特征点来进行匹配的算法，我并没有找到很好的综述性质的文章，然后找到了两篇相关的文章</p>
+<p>Su Z, Wang Y, Shi R, et al. Optimal mass transport for shape matching and comparison<a href="">J</a>. IEEE transactions on pattern analysis and machine intelligence, 2015, 37(11): 2246-2259.</p>
+<p>Hasanbelliu E, Giraldo L S, Principe J C. Information theoretic shape matching<a href="">J</a>. IEEE transactions on pattern analysis and machine intelligence, 2014, 36(12): 2436-2451.</p>
+<p>对于上面两篇文章，现在还没有太看明白，另外就是感觉对于我们的问题，可能并不需要很复杂的匹配过程。</p>
+<blockquote>
+<p><a href="">呼呼呼山</a>(<a href="http://code4fun.me">http://code4fun.me</a>)<br>11 Jan 2018 10:48 PM </p>
+</blockquote>
+
+    
+  </div>
+
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2018/01/11/面试内容整理--iOS/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2018/01/11/C++算法模板 - 2/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: '99bca29ad4d85951d688',
+  clientSecret: 'd956164d57277ed8ece2fab34d91f67506dd50d6',
+  repo: 'blog-comment',
+  owner: 'zhangzhishan',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: md5(location.pathname),
+  admin: ['zhangzhishan'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

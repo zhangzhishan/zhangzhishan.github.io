@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>jsPDF 那些坑 | Code4Fun</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="javascript," />
+  
+
+  <meta name="description" content="jsPDF 那些坑前段时间由于工作需要，需要把之前网页上的打印报名表功能改成打印成pdf，于是Google之，发现了jsPDF这个js插件，本以为可以快快的解决问题，却发现里面真是太多坑了。
+引用这个很简单只需要，从Github上下载源代码，然后你会发现里面是包括着各种库文件以及多个测试，当然这些都不是必须的，我们只需要引用里面的dist中的一个文件以及两个插件即可。如下
+12345678910&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jsPDF 那些坑">
+<meta property="og:url" content="http://code4fun.me/2015/08/24/jsPDF/index.html">
+<meta property="og:site_name" content="Code4Fun">
+<meta property="og:description" content="jsPDF 那些坑前段时间由于工作需要，需要把之前网页上的打印报名表功能改成打印成pdf，于是Google之，发现了jsPDF这个js插件，本以为可以快快的解决问题，却发现里面真是太多坑了。
+引用这个很简单只需要，从Github上下载源代码，然后你会发现里面是包括着各种库文件以及多个测试，当然这些都不是必须的，我们只需要引用里面的dist中的一个文件以及两个插件即可。如下
+12345678910&amp;">
+<meta property="og:updated_time" content="2025-06-13T10:54:27.287Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="jsPDF 那些坑">
+<meta name="twitter:description" content="jsPDF 那些坑前段时间由于工作需要，需要把之前网页上的打印报名表功能改成打印成pdf，于是Google之，发现了jsPDF这个js插件，本以为可以快快的解决问题，却发现里面真是太多坑了。
+引用这个很简单只需要，从Github上下载源代码，然后你会发现里面是包括着各种库文件以及多个测试，当然这些都不是必须的，我们只需要引用里面的dist中的一个文件以及两个插件即可。如下
+12345678910&amp;">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+<link rel="alternate" href="/atom.xml" title="Code4Fun" type="application/atom+xml">
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#jsPDF-那些坑"><span class="toc-text">jsPDF 那些坑</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#引用"><span class="toc-text">引用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#打印输出"><span class="toc-text">打印输出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分页"><span class="toc-text">分页</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小坑"><span class="toc-text">小坑</span></a></li></ol></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-jsPDF" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">jsPDF 那些坑</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2015.08.24</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>呼呼呼山</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/javascript/">javascript</a>
+  </span>
+
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h1 id="jsPDF-那些坑"><a href="#jsPDF-那些坑" class="headerlink" title="jsPDF 那些坑"></a>jsPDF 那些坑</h1><p>前段时间由于工作需要，需要把之前网页上的打印报名表功能改成打印成pdf，于是Google之，发现了<a href="https://parall.ax/products/jspdf" target="_blank" rel="external">jsPDF</a>这个js插件，本以为可以快快的解决问题，却发现里面真是太多坑了。</p>
+<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><p>这个很简单只需要，从<a href="https://github.com/MrRio/jsPDF" target="_blank" rel="external">Github</a>上下载源代码，然后你会发现里面是包括着各种库文件以及多个测试，当然这些都不是必须的，我们只需要引用里面的dist中的一个文件以及两个插件即可。如下</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- Scripts down here --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://html2canvas.hertzen.com/build/html2canvas.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- Code editor --&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/ace/1.1.01/noconflict/ace.js"</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- Scripts in development mode --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"dist/jspdf.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>这时候坑就出现了，因为里面的依赖的jQuery库是用的Google的cdn，所以我们就跪了，还是乖乖换成百度的cdn或者存成本地吧。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://libs.baidu.com/jquery/1.8.3/jquery.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="打印输出"><a href="#打印输出" class="headerlink" title="打印输出"></a>打印输出</h2><p>由于我的主要应用是打印页面上的html文件，所以在此就以此举例。要打印的html文档部分如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"my_show"</span>&gt;</span>code<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"my_show"</span>&gt;</span>4<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"my_show"</span>&gt;</span>fun<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>对于网页有两个函数可以使用一个是fromHTML另一个是addHTML，但是比较悲剧的事fromHTML不支持中文，所以我们就只能使用addHTML这个函数了，直接打印的函数很简单，如下，不过就是这个函数导致了后面的诸多坑。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> pdf = <span class="keyword">new</span> jsPDF(<span class="string">'p'</span>, <span class="string">'mm'</span>, <span class="string">'a4'</span>);</div><div class="line"><span class="keyword">var</span> print_content = $(<span class="string">'.my_show'</span>);</div><div class="line"><span class="keyword">var</span> filename = <span class="string">'准考证.pdf'</span>;</div><div class="line">pdf.addHTML(print_content,<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    pdf.output(<span class="string">'dataurlnewwindow'</span>);</div><div class="line">    pdf.output(<span class="string">'save'</span>, filename);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="分页"><a href="#分页" class="headerlink" title="分页"></a>分页</h2><p>在这举例的html文档比较短，完全可以容纳到一页里面，但是在实际使用中的html内容比较多，不可能容纳到一个页面里面，但是这样打印，并不会分页，只打印一页的内容，这样怎么破呢？官方给的方案是使用参数’pagesplit’，示例如下。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> pdf = <span class="keyword">new</span> jsPDF(<span class="string">'p'</span>, <span class="string">'pt'</span>, <span class="string">'a4'</span>);</div><div class="line"><span class="keyword">var</span> options = &#123;</div><div class="line">         pagesplit: <span class="literal">true</span></div><div class="line">    &#125;;</div><div class="line"></div><div class="line">pdf.addHTML($(<span class="string">".pdf-wrapper"</span>), options, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span></div><div class="line">&#123;</div><div class="line">    pdf.save(<span class="string">"test.pdf"</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>但是采用这个生成的pdf的分辨率兼职时惨不忍睹，这能干毛啊。于是考虑多次调用addHTML来生成，首先在浏览器的console中进行测试，发现OK，于是开心的码出了下面的代码，以为可以解决问题。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = print_content.length - <span class="number">1</span>; i &lt;= <span class="number">0</span>; i--)</div><div class="line">&#123;</div><div class="line">  pdf.addPage();</div><div class="line">  pdf.addHTML(print_content[i], <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;);</div><div class="line">&#125;;</div><div class="line">pdf.output(<span class="string">'dataurlnewwindow'</span>);</div></pre></td></tr></table></figure>
+<p>结果没有成功，于是就蛋疼了，在console里明明测试成功，为什么就是不行呢，后来发现是用for循环的问题，不用for循环的时候就OK的，这实在想不通了，后来经过多次测试，估计是因为addHTML函数的时候，可能还没有把内容打印出来，就已经运行到输出了，所以才会生成空白的文件，于是果断添加了个延时进行测试，然后可以正常生产pdf了，可是这样太慢了，又想到了采用循环调用的方法，这也是最后的解决方案。如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">printbypage</span>(<span class="params">pdf, k</span>)</span>&#123;</div><div class="line">  <span class="keyword">if</span>(k &lt;= $(<span class="string">'.my_show'</span>).length)</div><div class="line">  &#123;</div><div class="line">    pdf.output(<span class="string">'dataurlnewwindow'</span>);</div><div class="line">  &#125;</div><div class="line">  pdf.addHTML($(<span class="string">'.my_show'</span>)[k], <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(k &amp;lt; $(<span class="string">'.my_show'</span>).length - <span class="number">1</span>)</div><div class="line">    &#123;</div><div class="line">      pdf.addPage();</div><div class="line">    &#125;</div><div class="line">    printbypage(pdf, k + <span class="number">1</span>);</div><div class="line">  &#125;);</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">printmyshow</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> pdf = <span class="keyword">new</span> jsPDF(<span class="string">'p'</span>, <span class="string">'mm'</span>, <span class="string">'a4'</span>);</div><div class="line">  printbypage(pdf, <span class="number">0</span>);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>完美解决问题。</p>
+<h2 id="小坑"><a href="#小坑" class="headerlink" title="小坑"></a>小坑</h2><ul>
+<li>当打印生成背景为黑白的时候，只需要设置打印元素的背景颜色为白色。</li>
+<li>一些国外的脚本引用最好都更换为本地的，以防止不稳定。</li>
+<li>坑爹的不支持IE9以下，好在数字公司，企鹅公司等的浏览器具有chrome内核，不过有的时候会默认为兼容模式，所以可以采用meta标签让其使用chrome内核，如下:<ul>
+<li>若页面需默认用极速核，增加标签：<code>&lt;meta name=”renderer” content=”webkit” /&gt;</code></li>
+<li>若页面需默认用ie兼容内核，增加标签：<code>&lt;meta name=”renderer” content=”ie-comp” /&gt;</code></li>
+<li>若页面需默认用ie标准内核，增加标签：<code>&lt;meta name=”renderer” content=”ie-stand” /&gt;</code></li>
+</ul>
+</li>
+</ul>
+
+    
+  </div>
+
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2015/08/19/让你的Mac也可以不走锐捷（Npucat for ＊nix）/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2015/09/05/Python 调试指南/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: '99bca29ad4d85951d688',
+  clientSecret: 'd956164d57277ed8ece2fab34d91f67506dd50d6',
+  repo: 'blog-comment',
+  owner: 'zhangzhishan',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: md5(location.pathname),
+  admin: ['zhangzhishan'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

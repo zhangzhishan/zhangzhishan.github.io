@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>面试内容整理--数据库 | Code4Fun</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="jobs," />
+  
+
+  <meta name="description" content="基本原理B+树 哈希表
+SQL语句（阿里157、8习题）数据分组(max,min,avg,sum,count)    SQL&amp;gt;SELECT MAX(sal),MIN(age),AVG(sal),SUM(sal) from emp;    SQL&amp;gt;SELECT  FROM emp where sal=(SELECT MAX(sal) from emp));    SQL&amp;gt;SELEC">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面试内容整理--数据库">
+<meta property="og:url" content="http://code4fun.me/2018/01/11/面试内容整理--数据库/index.html">
+<meta property="og:site_name" content="Code4Fun">
+<meta property="og:description" content="基本原理B+树 哈希表
+SQL语句（阿里157、8习题）数据分组(max,min,avg,sum,count)    SQL&amp;gt;SELECT MAX(sal),MIN(age),AVG(sal),SUM(sal) from emp;    SQL&amp;gt;SELECT  FROM emp where sal=(SELECT MAX(sal) from emp));    SQL&amp;gt;SELEC">
+<meta property="og:updated_time" content="2025-06-13T10:54:27.294Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="面试内容整理--数据库">
+<meta name="twitter:description" content="基本原理B+树 哈希表
+SQL语句（阿里157、8习题）数据分组(max,min,avg,sum,count)    SQL&amp;gt;SELECT MAX(sal),MIN(age),AVG(sal),SUM(sal) from emp;    SQL&amp;gt;SELECT  FROM emp where sal=(SELECT MAX(sal) from emp));    SQL&amp;gt;SELEC">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+<link rel="alternate" href="/atom.xml" title="Code4Fun" type="application/atom+xml">
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本原理"><span class="toc-text">基本原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL语句（阿里157、8习题）"><span class="toc-text">SQL语句（阿里157、8习题）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据库调优（索引，mongodb）"><span class="toc-text">数据库调优（索引，mongodb）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据库五范式"><span class="toc-text">数据库五范式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sqlite和服务器数据库的区别"><span class="toc-text">sqlite和服务器数据库的区别</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-面试内容整理--数据库" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">面试内容整理--数据库</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2018.01.11</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>呼呼呼山</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/校招/">校招</a>
+  </span>
+
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h3 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h3><p>B+树 哈希表</p>
+<h3 id="SQL语句（阿里157、8习题）"><a href="#SQL语句（阿里157、8习题）" class="headerlink" title="SQL语句（阿里157、8习题）"></a>SQL语句（阿里157、8习题）</h3><p>数据分组(max,min,avg,sum,count)<br>    SQL&gt;SELECT MAX(sal),MIN(age),AVG(sal),SUM(sal) from emp;<br>    SQL&gt;SELECT <em> FROM emp where sal=(SELECT MAX(sal) from emp));<br>    SQL&gt;SELEC COUNT(</em>) FROM emp;<br>group by（用于对查询结果的分组统计） 和 having子句（用于限制分组显示结果）<br>    SQL&gt;SELECT deptno,MAX(sal),AVG(sal) FROM emp GROUP BY deptno;<br>    SQL&gt;SELECT deptno, job, AVG(sal),MIN(sal) FROM emp group by deptno,job having AVG(sal)<2000; 对于数据分组的总结：="" a.="" 分组函数只能出现在选择列表、having、order="" by子句中（不能出现在where中）="" b.="" 如果select语句中同时包含有group="" by,="" having,="" order="" by，那么它们的顺序是group="" by。="" c.="" 在选择列中如果有列、表达式和分组函数，那么这些列和表达式必须出现在group="" by子句中，否则就是会出错。="" 使用group="" by不是使用having的前提条件。="" 多表查询="" sql="">SELECT e.name,e.sal,d.dname FROM emp e, dept d WHERE e.deptno=d.deptno order by d.deptno;<br>    SQL&gt;SELECT e.ename,e.sal,s.grade FROM emp e,salgrade s WHER e.sal BETWEEN s.losal AND s.hisal;</2000;></p>
+<h3 id="数据库调优（索引，mongodb）"><a href="#数据库调优（索引，mongodb）" class="headerlink" title="数据库调优（索引，mongodb）"></a>数据库调优（索引，mongodb）</h3><p>11、一次更新多条记录比分多次更新每次一条快,就是说批处理好</p>
+<p>1、把数据、日志、索引放到不同的I/O设备上，增加读取速度，以前可以将Tempdb应放在RAID0上，SQL2000不在支持。数据量（尺寸）越大，提高I/O越重要.<br>  2、纵向、横向分割表，减少表的尺寸(<code>sp_spaceuse</code>)<br>  3、升级硬件<br>  4、根据查询条件,建立索引,优化索引、优化访问方式，限制结果集的数据量。注意填充因子要适当（最好是使用默认值0）。索引应该尽量小，使用字节数小的列建索引好（参照索引的创建）,不要对有限的几个值的字段建单一索引如性别字段<br>  5、提高网速;<br>  6、扩大服务器的内存,Windows 2000和SQL server 2000能支持4-8G的内存。配置虚拟内存：虚拟内存大小应基于计算机上并发运行的服务进行配置。运行 Microsoft SQL Server 2000 时，可考虑将虚拟内存大小设置为计算机中安装的物理内存的 1.5 倍。如果另外安装了全文检索功能，并打算运行 Microsoft 搜索服务以便执行全文索引和查询，可考虑：将虚拟内存大小配置为至少是计算机中安装的物理内存的 3 倍。将 SQL Server max server memory 服务器配置选项配置为物理内存的 1.5 倍（虚拟内存大小设置的一半）。<br>  7、增加服务器CPU个数;但是必须明白并行处理串行处理更需要资源例如内存。使用并行还是串行程是MsSQL自动评估选择的。单个任务分解成多个任务， 就可以在处理器上运行。例如耽搁查询的排序、连接、扫描和GROUP BY字句同时执行，SQL SERVER根据系统的负载情况决定最优的并行等级，复杂的需要消耗大量的CPU的查询最适合并行处理。但是更新操作 UPDATE,INSERT，DELETE还不能并行处理。<br>  8、如果是使用like进行查询的话，简单的使用index是不行的，但是全文索引，耗空间。 like ‘a%’ 使用索引 like ‘%a’ 不使用索引用 like ‘%a%’ 查询时，查询耗时和字段值总长度成正比,所以不能用CHAR类型，而是VARCHAR。对于字段的值很长的建全文索引。<br>  9、DB Server 和APPLication Server 分离；OLTP和OLAP分离<br>  10、分布式分区视图可用于实现数据库服务器联合体。联合体是一组分开管理的服务器，但它们相互协作分担系统的处理负荷。这种通过分区数据形成数据库服务 器联合体的机制能够扩大一组服务器，以支持大型的多层 Web 站点的处理需要。有关更多信息，参见设计联合数据库服务器。（参照SQL帮助文件’分区视图’）<br>  a、在实现分区视图之前，必须先水平分区表<br>  b、在创建成员表后，在每个成员服务器上定义一个分布式分区视图，并且每个视图具有相同的名称。这样，引用分布式分区视图名的查询可以在任何一个成员服务 器上运行。系统操作如同每个成员服务器上都有一个原始表的复本一样，但其实每个服务器上只有一个成员表和一个分布式分区视图。数据的位置对应用程序是透明 的。<br>  11、重建索引 DBCC REINDEX ,DBCC INDEXDEFRAG,收缩数据和日志 DBCC SHRINKDB,DBCC SHRINKFILE. 设置自动收缩日志.对于大的数据库不要设置数据库自动增长，它会降低服务器的性能。 在T-sql的写法上有很大的讲究，下面列出常见的要点：首先，DBMS处理查询计划的过程是这样的：<br>  1、 查询语句的词法、语法检查<br>  2、 将语句提交给DBMS的查询优化器<br>  3、 优化器做代数优化和存取路径的优化<br>  4、 由预编译模块生成查询规划<br>  5、 然后在合适的时间提交给系统处理执行<br>  6、 最后将执行结果返回给用户其次，看一下SQL SERVER的数据存放的结构：一个页面的大小为8K(8060)字节，8个页面为一个盘区，按照B树存放。  </p>
+<h3 id="数据库五范式"><a href="#数据库五范式" class="headerlink" title="数据库五范式"></a>数据库五范式</h3><p>第一范式：<br>对于表中的每一行，必须且仅仅有唯一的行值.在一行中的每一列仅有唯一的值并且具有原子性.<br>（第一范式是通过把重复的组放到每个独立的表中，把这些表通过一对多关联联系起来这种方式来消除重复组的。）<br>第二范式：<br>第二范式要求非主键列是主键的子集，非主键列活动必须完全依赖整个主键。主键必须有唯一性的元素,一个主键可以由一个或更多的组成唯一值的列组成。一旦创建，主键无法改变，外键关联一个表的主键。主外键关联意味着一对多的关系.<br>（第二范式处理冗余数据的删除问题。当某张表中的信息依赖于该表中其它的不是主键部分的列的时候，通常会违反第二范式。）<br>第三范式：<br>第三范式要求非主键列互不依赖.<br>（第三范式规则查找以消除没有直接依赖于第一范式和第二范式形成的表的主键的属性。我们为没有与表的主键关联的所有信息建立了一张新表。每张新表保存了来自源表的信息和它们所依赖的主键。）<br>第四范式：<br>第四范式禁止主键列和非主键列一对多关系不受约束<br>第五范式：<br>第五范式将表分割成尽可能小的块，为了排除在表中所有的冗余. </p>
+<h3 id="sqlite和服务器数据库的区别"><a href="#sqlite和服务器数据库的区别" class="headerlink" title="sqlite和服务器数据库的区别"></a>sqlite和服务器数据库的区别</h3><p>SQLITE是单机数据库。功能简约，小型化，追求最大磁盘效率<br>MYSQL是完善的服务器数据库。功能全面，综合化，追求最大并发效率<br>MYSQL、Sybase、Oracle等这些都是适用于服务器数据量大功能多需要安装，例如网站访问量比较大的。而sqlite是一款小型数据库，简单移植性好无需安装只需要几个文件。一般手机，终端等用的比较多</p>
+<blockquote>
+<p><a href="">呼呼呼山</a>(<a href="http://code4fun.me">http://code4fun.me</a>)<br>11 Jan 2018 10:49 PM </p>
+</blockquote>
+
+    
+  </div>
+
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2018/01/11/C++算法模板 - 2/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2018/01/11/C++算法模板/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: '99bca29ad4d85951d688',
+  clientSecret: 'd956164d57277ed8ece2fab34d91f67506dd50d6',
+  repo: 'blog-comment',
+  owner: 'zhangzhishan',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: md5(location.pathname),
+  admin: ['zhangzhishan'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

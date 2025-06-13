@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>Powershell is the best | Code4Fun</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="powershell," />
+  
+
+  <meta name="description" content="A good document with many expamles
+use it to do some quick jobs.
+Get-Content ./log.log -Wait -Tail 10
+Cmdlet FormatA cmdlet always consists of a verb (or a word that functions as a verb) and a noun, s">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Powershell is the best">
+<meta property="og:url" content="http://code4fun.me/2019/03/26/powershell/index.html">
+<meta property="og:site_name" content="Code4Fun">
+<meta property="og:description" content="A good document with many expamles
+use it to do some quick jobs.
+Get-Content ./log.log -Wait -Tail 10
+Cmdlet FormatA cmdlet always consists of a verb (or a word that functions as a verb) and a noun, s">
+<meta property="og:updated_time" content="2025-06-13T10:54:27.290Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Powershell is the best">
+<meta name="twitter:description" content="A good document with many expamles
+use it to do some quick jobs.
+Get-Content ./log.log -Wait -Tail 10
+Cmdlet FormatA cmdlet always consists of a verb (or a word that functions as a verb) and a noun, s">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+<link rel="alternate" href="/atom.xml" title="Code4Fun" type="application/atom+xml">
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Cmdlet-Format"><span class="toc-text">Cmdlet Format</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Get-system-information"><span class="toc-text">Get system information</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#K-drive-speed"><span class="toc-text">K drive speed</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Network-stream"><span class="toc-text">Network stream</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Environment-info"><span class="toc-text">Environment info</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#start-transcript"><span class="toc-text">start-transcript</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pipes"><span class="toc-text">Pipes</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#For-loop"><span class="toc-text">For loop</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-powershell" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">Powershell is the best</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2019.03.26</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>呼呼呼山</span>
+        </span>
+      
+
+      
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p><a href="https://ss64.com/ps/syntax.html" target="_blank" rel="external">A good document with many expamles</a></p>
+<p>use it to do some quick jobs.</p>
+<p><code>Get-Content ./log.log -Wait -Tail 10</code></p>
+<h2 id="Cmdlet-Format"><a href="#Cmdlet-Format" class="headerlink" title="Cmdlet Format"></a>Cmdlet Format</h2><p>A cmdlet always consists of a verb (or a word that functions as a verb) and a noun, separated with a hyphen (the “verb-noun” rule). For example, some of the verbs include:</p>
+<ul>
+<li>Get — To get something</li>
+<li>Set — To define something</li>
+<li>Start — To run something</li>
+<li>Stop — To stop something that is running</li>
+<li>Out — To output something</li>
+<li>New — To create something (“new” is not a verb, of course, but it functions as one)</li>
+</ul>
+<h2 id="Get-system-information"><a href="#Get-system-information" class="headerlink" title="Get system information"></a>Get system information</h2><p><a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.diagnostics/get-counter?view=powershell-5.1" target="_blank" rel="external">Get-Counter (Microsoft.PowerShell.Diagnostics)</a></p>
+<p>some examples:</p>
+<figure class="highlight ps"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Get-Counter</span> -Counter <span class="string">"\Processor(_Total)\% Processor Time"</span> -Continuous</div><div class="line"><span class="built_in">get-counter</span> -Counter <span class="string">"\Processor(*)\% Processor Time"</span> -SampleInterval <span class="number">2</span> -MaxSamples <span class="number">10</span></div><div class="line"><span class="built_in">get-counter</span> -ListSet *</div><div class="line"><span class="built_in">get-counter</span> -listset * | <span class="built_in">sort-object</span> countersetname | <span class="built_in">format-table</span> countersetname</div><div class="line">(<span class="built_in">get-counter</span> -listset memory).paths</div><div class="line">(<span class="built_in">get-counter</span> -listset memory).paths | where &#123;<span class="variable">$_</span> <span class="nomarkup">-like</span> <span class="string">"*cache*"</span>&#125;</div></pre></td></tr></table></figure>
+<p>Save the Disk Reads/sec counter path in the $diskreads variable..  Pipe the counter path (in $diskreads) to Get-Counter:<br><figure class="highlight ps"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$diskreads</span> = <span class="string">"\LogicalDisk(C:)\Disk Reads/sec"</span></div><div class="line"><span class="variable">$diskreads</span> | <span class="built_in">get-counter</span> -computer Server64, Server65 -maxsamples <span class="number">10</span></div></pre></td></tr></table></figure></p>
+<p>Get a list of 50 randomly selected servers from the Servers.txt file and store in a variable: Save a counter path in the $Counter variable and then get the counter values for all the servers.<br><figure class="highlight ps"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$servers</span> = <span class="built_in">get-random</span> (<span class="built_in">get-content</span> servers.txt) -count <span class="number">50</span></div><div class="line"><span class="variable">$counter</span> = <span class="string">"\Processor(*)\% DPC Time"</span></div><div class="line"><span class="built_in">get-counter</span> -Counter <span class="variable">$counter</span> -computername <span class="variable">$servers</span></div></pre></td></tr></table></figure></p>
+<p>Get a single value for all of the performance counters in the memory counter set on the local computer. First get the counter paths and then get the counter data for each counter:<br><figure class="highlight ps"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$memCounters</span> = (<span class="built_in">get-counter</span> -list memory).paths</div><div class="line"><span class="built_in">get-counter</span> -counter <span class="variable">$memCounters</span></div></pre></td></tr></table></figure></p>
+<p>The properties of the CounterSamples object can be used to examine, select, sort, and group data:<br><figure class="highlight ps"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$counter</span> = <span class="string">"\\SERVER64\Process(Idle)\% Processor Time"</span> </div><div class="line"><span class="variable">$data</span> = <span class="built_in">get-counter</span> <span class="variable">$counter</span></div><div class="line"><span class="variable">$data</span>.countersamples | <span class="built_in">format-list</span> -property *</div></pre></td></tr></table></figure></p>
+<p>Run a Get-Counter command as background job.<br><figure class="highlight ps"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$counters</span> = <span class="string">"\LogicalDisk(_Total)\% Free Space"</span></div><div class="line"><span class="built_in">start-job</span> -scriptblock &#123;<span class="built_in">get-counter</span> -counter <span class="variable">$counters</span> -maxsamples <span class="number">1000</span>)</div></pre></td></tr></table></figure></p>
+<p>Find the ‘% free disk space’ on 50 computers selected randomly from Servers.txt<br><figure class="highlight ps"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">get-counter</span> -computername (<span class="built_in">get-random</span> servers.txt -count <span class="number">50</span>) -counter <span class="string">"\LogicalDisk(*)\% Free Space"</span></div></pre></td></tr></table></figure></p>
+<h3 id="K-drive-speed"><a href="#K-drive-speed" class="headerlink" title="K drive speed"></a>K drive speed</h3><figure class="highlight ps"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">PS D:\&gt; (<span class="built_in">get-counter</span> <span class="string">"\LogicalDisk(K:)\Disk Reads/sec"</span> -SampleInterval <span class="number">1</span> -MaxSamples <span class="number">2</span>).CounterSamples | <span class="built_in">Out-File</span> .\test.txt</div><div class="line">PS D:\&gt; (<span class="built_in">get-counter</span> <span class="string">"\LogicalDisk(K:)\Disk Read Bytes/sec"</span> -SampleInterval <span class="number">1</span> -MaxSamples <span class="number">2</span>).CounterSamples | <span class="built_in">Out-File</span> .\test.txt</div></pre></td></tr></table></figure>
+<h3 id="Network-stream"><a href="#Network-stream" class="headerlink" title="Network stream"></a>Network stream</h3><figure class="highlight ps"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Get-Counter</span> <span class="string">"\Network Adapter(*)\Bytes Received/sec"</span></div><div class="line"><span class="built_in">Get-Counter</span> <span class="string">"\Network Adapter(*)\Bytes Sent/sec"</span></div><div class="line"><span class="built_in">Get-Counter</span> <span class="string">"\Network Adapter(*)\Bytes Received/sec"</span> -Continuous | <span class="built_in">Out-File</span> .\receivedbytes.txt</div><div class="line"><span class="built_in">Get-Counter</span> <span class="string">"\Network Adapter(*)\Bytes Sent/sec"</span> -Continuous | <span class="built_in">Out-File</span> .\sentbytes.txt</div></pre></td></tr></table></figure>
+<h3 id="Environment-info"><a href="#Environment-info" class="headerlink" title="Environment info"></a>Environment info</h3><figure class="highlight ps"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[Environment] | gm -s</div><div class="line">[Environment]::ProcessorCount</div></pre></td></tr></table></figure>
+<h2 id="start-transcript"><a href="#start-transcript" class="headerlink" title="start-transcript"></a>start-transcript</h2><p><code>yyyyMMddHHmmss</code> 为其时间格式</p>
+<p>Get-ChildItem cmdlet can be used to get files or folders list</p>
+<p>an example</p>
+<figure class="highlight ps"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$path</span> = <span class="string">"k:\Index\1\"</span></div><div class="line"><span class="comment"># $path = "D:\zhizha\tmp\"</span></div><div class="line"></div><div class="line"><span class="variable">$files</span> = <span class="built_in">Get-ChildItem</span> <span class="variable">$path</span> -file</div><div class="line"></div><div class="line"><span class="keyword">foreach</span> (<span class="variable">$file</span> <span class="keyword">in</span> <span class="variable">$files</span>) &#123;</div><div class="line">    <span class="variable">$filename</span> = <span class="variable">$file</span>.Name</div><div class="line">    <span class="variable">$fullname</span> = <span class="variable">$path</span> + <span class="variable">$filename</span></div><div class="line">    <span class="variable">$timeRecordName</span> = <span class="string">"D:\zhizha\"</span> + <span class="variable">$filename</span> + <span class="string">"runwstime.txt"</span></div><div class="line">    <span class="variable">$parsedIndexName</span> = <span class="string">"D:\zhizha\parsedindex\"</span> + <span class="variable">$filename</span> + <span class="string">".bin"</span></div><div class="line"></div><div class="line">    <span class="built_in">Start-Transcript</span> <span class="variable">$timeRecordName</span></div><div class="line"></div><div class="line">    <span class="built_in">Write-Output</span> <span class="variable">$fullname</span> <span class="string">"satasics results:"</span></div><div class="line">    <span class="built_in">Write-Output</span> <span class="string">""</span></div><div class="line">    <span class="built_in">Write-Output</span> <span class="string">""</span></div><div class="line"></div><div class="line">    .\ParseIndexzhizha.exe <span class="variable">$fullname</span> ws</div><div class="line">   <span class="comment"># .\ParseIndexzhizha.exe $fullname allword $parsedIndexName</span></div><div class="line"></div><div class="line">    <span class="built_in">Stop-Transcript</span></div><div class="line">	<span class="built_in">Write-Output</span> <span class="string">""</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Pipes"><a href="#Pipes" class="headerlink" title="Pipes"></a>Pipes</h2><p>A pipe passes data from one cmdlet to another. I used a pipe earlier to get all properties of an object.</p>
+<h2 id="For-loop"><a href="#For-loop" class="headerlink" title="For loop"></a>For loop</h2>
+    
+  </div>
+
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2019/03/25/vscode shortcuts/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2019/03/26/Cpp lambda/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: '99bca29ad4d85951d688',
+  clientSecret: 'd956164d57277ed8ece2fab34d91f67506dd50d6',
+  repo: 'blog-comment',
+  owner: 'zhangzhishan',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: md5(location.pathname),
+  admin: ['zhangzhishan'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

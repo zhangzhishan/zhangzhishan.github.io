@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>Xperf diskio action[8/15] | Code4Fun</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="performance, xperf," />
+  
+
+  <meta name="description" content="可以使用的命令在官方文档里面都包含了,很简单的一条命令, -a diskio [-util &amp;lt;n&amp;gt;] [-summary] [-counts] [-detail] [-overlap] [-range T1 T2], 参数也就五个:
+
+-util [n] disk utilization report, 其中 n 为这个 report 的时间间隔, 默认是 1s.
+-summary 输">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Xperf diskio action[8/15]">
+<meta property="og:url" content="http://code4fun.me/2020/06/23/xperf_diskio/index.html">
+<meta property="og:site_name" content="Code4Fun">
+<meta property="og:description" content="可以使用的命令在官方文档里面都包含了,很简单的一条命令, -a diskio [-util &amp;lt;n&amp;gt;] [-summary] [-counts] [-detail] [-overlap] [-range T1 T2], 参数也就五个:
+
+-util [n] disk utilization report, 其中 n 为这个 report 的时间间隔, 默认是 1s.
+-summary 输">
+<meta property="og:image" content="http://code4fun.me/images/20200628140316905_1946.png">
+<meta property="og:image" content="http://code4fun.me/images/20200628141230255_20839.png">
+<meta property="og:image" content="http://code4fun.me/images/20200628142002577_12105.png">
+<meta property="og:image" content="http://code4fun.me/images/20200628142949777_32343.png">
+<meta property="og:image" content="http://code4fun.me/images/20200628143602516_2846.png">
+<meta property="og:image" content="http://code4fun.me/images/20200628144519909_19384.png">
+<meta property="og:updated_time" content="2025-06-13T10:54:27.292Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Xperf diskio action[8/15]">
+<meta name="twitter:description" content="可以使用的命令在官方文档里面都包含了,很简单的一条命令, -a diskio [-util &amp;lt;n&amp;gt;] [-summary] [-counts] [-detail] [-overlap] [-range T1 T2], 参数也就五个:
+
+-util [n] disk utilization report, 其中 n 为这个 report 的时间间隔, 默认是 1s.
+-summary 输">
+<meta name="twitter:image" content="http://code4fun.me/images/20200628140316905_1946.png">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+<link rel="alternate" href="/atom.xml" title="Code4Fun" type="application/atom+xml">
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#examples"><span class="toc-text">examples</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#util"><span class="toc-text">-util</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#summary"><span class="toc-text">-summary</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#detail"><span class="toc-text">-detail</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#overlap"><span class="toc-text">-overlap</span></a></li></ol></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-xperf_diskio" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">Xperf diskio action[8/15]</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2020.06.23</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>呼呼呼山</span>
+        </span>
+      
+
+      
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>可以使用的命令在<a href="https://docs.microsoft.com/en-us/windows-hardware/test/wpt/diskio" target="_blank" rel="external">官方文档</a>里面都包含了,很简单的一条命令, <code>-a diskio [-util &lt;n&gt;] [-summary] [-counts] [-detail] [-overlap] [-range T1 T2]</code>, 参数也就五个:</p>
+<ul>
+<li><code>-util [n]</code> disk utilization report, 其中 n 为这个 report 的时间间隔, 默认是 1s.</li>
+<li><code>-summary</code> 输出 I/O summary report</li>
+<li><code>-detail</code> 输出每个 I/O event</li>
+<li><code>-overlap</code> 输出 I/O events 的 overlapping 关系, 也即当多线程执行的时候, 各个 IO 的开始与结束周期.</li>
+<li><code>-range</code> T1 T2 把输出限制到 [T1, T2) 这个时间范围里面, 单位是微秒.</li>
+</ul>
+<p>默认的 report 就是  disk utilization report.</p>
+<p>这个就是官方的所有文档了, 但是 report 是什么样子, 以及其中每个column的含义并没有详细的介绍. 下面通过一些例子来说明这个的使用.</p>
+<h2 id="examples"><a href="#examples" class="headerlink" title="examples"></a>examples</h2><h3 id="util"><a href="#util" class="headerlink" title="-util"></a>-util</h3><p>我们可以在默认的不加任何参数的情况下使用, <code>-util</code> 获得所有disk分时间的使用率.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xperf -i D:\xperflog\xperf_trace_log.etl -tle -o d:\disk_usage.txt -a diskio -util</div></pre></td></tr></table></figure>
+<p>如下图, 时间的单位是微秒, 所以也就是每 1s 各个硬盘的读写和使用率的统计信息, 下图有四组 Read, Write, Usage 对应着四块硬盘.</p>
+<p><img src="/images/20200628140316905_1946.png" alt="disk util"></p>
+<p>根据这些信息, 我们可以方便的统计在一段时间内, 硬盘使用率变化情况, 以及不同硬盘间的区别.</p>
+<p><img src="/images/20200628141230255_20839.png" alt="disk usage"></p>
+<p>上图就反应了两块硬盘以RAID0形式组成一个 volume 在一个时间段内进行大规模的读的时候的 disk usage 变化图. 我们可以发现随时间变化, disk usage越来越少, 而且下降频率越来越慢, 同时两块盘的 usage 基本保持一致, 也即两边负载相同. 这时候我们其实是可以去探究一下,为什么disk usage会在负载不变的情况下逐渐降低.</p>
+<h3 id="summary"><a href="#summary" class="headerlink" title="-summary"></a>-summary</h3><p>summary 是按照文件来做的统计信息. 在一个给定或者全部的时间内, 每一个文件进行的读写的次数, 以及总共的 IO time.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xperf -i D:\xperf_trace_log.etl -tle -o diskio_summary.txt -a diskio -summary -range 368000000 866000000</div></pre></td></tr></table></figure>
+<p><img src="/images/20200628142002577_12105.png" alt="summary"></p>
+<p>一个典型的<code>-summary</code> 的output 如上图所示, 前三列对应总的 IO 次数(Count), IO 大小(Size, 单位是 bytes), IO 硬盘服务的时间 (SrvT, 单位是微秒), 后面紧跟着的是读(R)操作和写(W)操作各自的信息, 然后就是总的IO 所用的时间 (IOTime). 根据这个, 我们可以进一步分析每个文件的读写 IO 占比是多少, 是否符合预期, 以及其平均的 IO 时间是多少, 是否和硬盘所能提供的性能差不多, 平均一次 IO 处理多少数据, 是否过多或者过少.</p>
+<h3 id="detail"><a href="#detail" class="headerlink" title="-detail"></a>-detail</h3><p>detail  包含所有单次 IO 的信息, 把所有 IO 发生的时候的情况按照时间顺序排列下来.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xperf -i D:\xperf_trace_log.etl  -tle -o diskio_detail.txt  -a diskio -detail -range 368000000 370000000</div></pre></td></tr></table></figure></p>
+<p>一个输出结果如下图所示, 第一列就是 IO Type 有可能是 DiskWrite 也有可能是 DiskRead. 然后就是这次 IO 的开始时间和结束时间, 以及两种之差, 也就是这次 IO 的时间, 接下来是硬盘服务的时间, 以及该次 IO 的大小, 然后就是这次 IO 作用于硬盘上位置偏移量. Pri 指的是 IO 的优先级, 后面几个在报告里给出了解释.</p>
+<ul>
+<li>QD/I - Number of outstanding IOs at IO start time. IO 开始的时候的 queuelength</li>
+<li>QD/C - Number of outstanding IOs at IO Completion time. IO 结束的时候的 queuelength</li>
+<li>IBCB - Number of IOs that initialized before start time and completed before end time. 当前IO 开始前初始化且在当前IO结束之前结束的IO数量.</li>
+<li>IBCA - Number of IOs that initialized before start time and completed after end time. 当前IO 开始前初始化且在当前IO结束之后才结束的IO数量.</li>
+<li>IACB - Number of IOs that initialized after start time and completed before end time. 当前IO 开始后才初始化且在当前IO结束之前就结束的IO数量.</li>
+</ul>
+<p>然后就是 issue 该IO的 process 的名字及PID, 以及该IO 对应的硬盘和文件名.</p>
+<p><img src="/images/20200628142949777_32343.png" alt="disk detail"></p>
+<p>这里的信息是更进一步细节化的, 我们可以从中发现一些IO 的野值情况, 也可以发现单次IO是否稳定之类的信息, 如下图蓝色的线和橘色的线分别对应着不同 IO event中 IOTime 和 Disk SrvT的变化曲线.</p>
+<p><img src="/images/20200628143602516_2846.png" alt="diskiotime"></p>
+<h3 id="overlap"><a href="#overlap" class="headerlink" title="-overlap"></a>-overlap</h3><p>overlap 顾名思义是表示着不同的 IO 之间的交叠关系, 其大部分信息和detail 中的是相同的, 主要是把 IBCB等参数给具象化了, 你不但可以知道有几个这样的IO 还可以知道是哪些IO.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xperf -i D:\xperf_trace_log.etl -tle -o diskio_overlap.txt  -a diskio -overlap -range 368000000 370000000</div></pre></td></tr></table></figure>
+<p>结果类似于下图这样, 他会对每个disk产生单独的数据,会在最开始标明是针对于哪个disk的, 在最左侧就是该IO 的event, <code>+</code> 表示 IO 的开始 <code>-</code> 表示结束, 而 <code>|</code> 表示仍在继续进行. 别的都可以根据文件名自行理解到, 其中 <code>IrpFlags</code> 是当前IO产生的时候我们给的一些 flag的组合, 其中 <code>Irp</code> 是 <code>IO request packet</code>的缩写, 其基本内容定义在 <code>wdm.h</code> 中, </p>
+<p><img src="/images/20200628144519909_19384.png" alt="disk overlap"></p>
+<p>其各个flag 的含义如下:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">define</span> IRP_NOCACHE                     0x00000001</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> IRP_PAGING_IO                   0x00000002</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> IRP_MOUNT_COMPLETION            0x00000002</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> IRP_SYNCHRONOUS_API             0x00000004</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> IRP_ASSOCIATED_IRP              0x00000008</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> IRP_BUFFERED_IO                 0x00000010</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> IRP_DEALLOCATE_BUFFER           0x00000020</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> IRP_INPUT_OPERATION             0x00000040</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> IRP_SYNCHRONOUS_PAGING_IO       0x00000040</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> IRP_CREATE_OPERATION            0x00000080</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> IRP_READ_OPERATION              0x00000100</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> IRP_WRITE_OPERATION             0x00000200</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> IRP_CLOSE_OPERATION             0x00000400</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> IRP_DEFER_IO_COMPLETION         0x00000800</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> IRP_OB_QUERY_NAME               0x00001000</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> IRP_HOLD_DEVICE_QUEUE           0x00002000</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> IRP_RETRY_IO_COMPLETION         0x00004000</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> IRP_CLASS_CACHE_OPERATION       0x00008000</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> IRP_QUOTA_CHARGED                 0x01</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> IRP_ALLOCATED_MUST_SUCCEED        0x02</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> IRP_ALLOCATED_FIXED_SIZE          0x04</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> IRP_LOOKASIDE_ALLOCATION          0x08</span></div></pre></td></tr></table></figure>
+<p>那么这里的 <code>0x062901</code> 也就很容易发现是由 <code>IRP_NOCACHE, IRP_DEFER_IO_COMPLETION, IRP_READ_OPERATION, IRP_HOLD_DEVICE_QUEUE</code> 这些 flag组合起来的, 说明这是一个不使用 cache, 直接读取内容的 raw io.</p>
+<blockquote>
+<p><a href="http://code4fun.me">呼呼呼山</a><br>2020-06-23 14:03:19</p>
+</blockquote>
+
+    
+  </div>
+
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2020/06/23/disk_allocation_size/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2020/06/23/china_internet/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: '99bca29ad4d85951d688',
+  clientSecret: 'd956164d57277ed8ece2fab34d91f67506dd50d6',
+  repo: 'blog-comment',
+  owner: 'zhangzhishan',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: md5(location.pathname),
+  admin: ['zhangzhishan'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>Filemap in windows and linux | Code4Fun</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="cpp," />
+  
+
+  <meta name="description" content="filemap的含义是将文件里面的一段内容映射到内存空间里面，从而可以提高读写速度。
+Windows123456789101112131415161718192021// Now open viewHANDLE hFile = ::CreateFileA(p_fileName, GENERIC_READ, p_fileShareRead ? FILE_SHARE_READ : FILE_SHARE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Filemap in windows and linux">
+<meta property="og:url" content="http://code4fun.me/2019/04/29/filemaping in different system/index.html">
+<meta property="og:site_name" content="Code4Fun">
+<meta property="og:description" content="filemap的含义是将文件里面的一段内容映射到内存空间里面，从而可以提高读写速度。
+Windows123456789101112131415161718192021// Now open viewHANDLE hFile = ::CreateFileA(p_fileName, GENERIC_READ, p_fileShareRead ? FILE_SHARE_READ : FILE_SHARE">
+<meta property="og:updated_time" content="2025-06-13T10:54:27.237Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Filemap in windows and linux">
+<meta name="twitter:description" content="filemap的含义是将文件里面的一段内容映射到内存空间里面，从而可以提高读写速度。
+Windows123456789101112131415161718192021// Now open viewHANDLE hFile = ::CreateFileA(p_fileName, GENERIC_READ, p_fileShareRead ? FILE_SHARE_READ : FILE_SHARE">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+<link rel="alternate" href="/atom.xml" title="Code4Fun" type="application/atom+xml">
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows"><span class="toc-text">Windows</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#linux"><span class="toc-text">linux</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-filemaping in different system" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">Filemap in windows and linux</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2019.04.29</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>呼呼呼山</span>
+        </span>
+      
+
+      
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>filemap的含义是将文件里面的一段内容映射到内存空间里面，从而可以提高读写速度。</p>
+<h2 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Now open view</span></div><div class="line">HANDLE hFile = ::CreateFileA(p_fileName, GENERIC_READ, p_fileShareRead ? FILE_SHARE_READ : FILE_SHARE_DELETE,</div><div class="line">                             <span class="number">0</span>, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, <span class="number">0</span>);</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> (INVALID_HANDLE_VALUE == hFile)</div><div class="line">&#123;</div><div class="line">    LogAssert(INVALID_HANDLE_VALUE != hFile,</div><div class="line">              <span class="string">"Cannot open file [%s] due to win32 error: %u\n"</span>,</div><div class="line">              p_fileName,</div><div class="line">              IndexServer::GetLastSystemError());</div><div class="line">&#125;</div><div class="line"></div><div class="line">SCOPEGUARD(::MakeGuard(::CloseHandle, hFile));</div><div class="line"></div><div class="line">HANDLE hMapping = ::CreateFileMapping(hFile, <span class="number">0</span>, PAGE_READONLY, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</div><div class="line">LogAssert(<span class="number">0</span> != hMapping);</div><div class="line">SCOPEGUARD(::MakeGuard(::CloseHandle, hMapping));</div><div class="line"></div><div class="line"><span class="keyword">void</span>* hView = FileUtils::MapViewOfFileAligned(hMapping,</div><div class="line">                                          FILE_MAP_READ, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</div></pre></td></tr></table></figure>
+<p>上面为一个只读映射的file,<code>CreateFileA</code>参数描述:</p>
+<ul>
+<li><code>GENERIC_READ</code> 允许对设备进行读访问</li>
+<li><code>FILE_SHARE_READ</code> 允许对文件进行共享访问</li>
+<li><code>OPEN_EXISTING</code> 文件必须存在</li>
+<li><code>FILE_ATTRIBUTE_NORMAL</code> 默认属性</li>
+</ul>
+<p><code>CreateFileMapping</code>参数描述:</p>
+<ul>
+<li><code>PAGE_READONLY</code> 只读属性, <code>hFile</code>需要对应为以<code>GENERIC_READ</code>形式打开</li>
+<li><code>dwMaximumSizeHigh</code>，<code>dwMaximumSizeLow</code>：如果这两个参数为0，则文件映射对象的最大长度等于hFile指定的文件长度,需要注意的一点是当两个构成的区间大于现有的文件的时候，会对现在的文件做一个写操作，也即用0把文件扩充到指定的大小。</li>
+<li><code>lpName</code> 此参数为空,创建一个无名字的文件映射对象.</li>
+</ul>
+<p><code>MapViewOfFile</code>参数描述:<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function">LPVOID <span class="title">MapViewOfFile</span><span class="params">(</span></span></div><div class="line">  HANDLE hFileMappingObject,</div><div class="line">  DWORD  dwDesiredAccess,</div><div class="line">  DWORD  dwFileOffsetHigh,</div><div class="line">  DWORD  dwFileOffsetLow,</div><div class="line">  SIZE_T dwNumberOfBytesToMap</div><div class="line">);</div></pre></td></tr></table></figure></p>
+<ul>
+<li><code>FILE_MAP_READ</code> ：  一个只读属性的文件视图被创建，保护模式为 <code>PAGE_READWRITE</code> 或 <code>PAGE_READONLY</code></li>
+<li>The combination of the high and low offsets must specify an offset within the file mapping. They must also match the memory allocation granularity of the system. That is, the offset must be a multiple of the allocation granularity.</li>
+<li><code>dwNumberOfBytesToMap</code>：映射文件部分的大小，如果为0，则映射整个文件。</li>
+</ul>
+<p>可以利用<code>SYSTEM_INFO</code>的<code>dwAllocationGranularity</code>获取到虚拟内存的分配粒度，这个再linux下没有这个选项，一般取pagesize。</p>
+<h2 id="linux"><a href="#linux" class="headerlink" title="linux"></a>linux</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">open</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *pathname, <span class="keyword">int</span> flags, <span class="keyword">mode_t</span> mode)</span></span>;</div></pre></td></tr></table></figure>
+<p>The argument flags must include one of the following access modes: <code>O_RDONLY</code>, <code>O_WRONLY</code>, or <code>O_RDWR</code>.  These request opening the file read-only, write-only, or read/write, respectively.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span>* <span class="title">mmap</span><span class="params">(<span class="keyword">void</span> *addr, <span class="keyword">size_t</span> length, <span class="keyword">int</span> prot, <span class="keyword">int</span> flags,</span></span></div><div class="line">                  <span class="keyword">int</span> fd, <span class="keyword">off_t</span> offset);</div></pre></td></tr></table></figure>
+<ul>
+<li>If <code>addr</code> is <code>NULL</code>, then the kernel chooses the (page-aligned) address at which to create the mapping; this is the most portable method of creating a new mapping.</li>
+<li>The <code>length</code> argument specifies the length of the mapping (which must be greater than 0).</li>
+<li>The <code>prot</code> argument describes the desired memory protection of the mapping (and must not conflict with the open mode of the file).</li>
+<li><code>offset</code> must be a multiple of the page size as returned by <code>sysconf(_SC_PAGE_SIZE)</code>.</li>
+</ul>
+<p>在写操作上Linux和Windows有一个不同的点是，在linux下利用<code>mmap</code>获得文件指针之后，对指针内容进行修改之后必须利用<code>unmmap</code>操作，才能使得修改写到文件当中，可以查看下面的例子。<br>并且<code>mmap</code>的方式必须选择，<code>MAP_SHARED</code>。<br>当对一个文件做两次map操作的时候，如果map之后操作了<code>unmap</code>那么返回的地址可能是相同的，否则返回的是不同的地址。相当于unmap之后可以继续到指定的区域操作.<br>在把结构体写成二进制的时候,windows和linux的补齐位是不同的,一个是<code>CC</code>,一个是<code>00</code>.</p>
+<p>Windows:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;Windows.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	SYSTEM_INFO sysInfo;</div><div class="line"></div><div class="line">	::GetSystemInfo(&amp;sysInfo);</div><div class="line">	<span class="keyword">auto</span> gra = sysInfo.dwAllocationGranularity;</div><div class="line">	<span class="comment">//		gra	65536	unsigned long</span></div><div class="line"></div><div class="line">	<span class="keyword">const</span> <span class="keyword">char</span>* ret = <span class="string">"test"</span>;</div><div class="line">	<span class="keyword">const</span> <span class="keyword">char</span>* ret2 = <span class="string">"hekekdladfajgkjag"</span>;</div><div class="line"></div><div class="line">	HANDLE hFile = ::CreateFileA(<span class="string">"hellozhizha"</span>,</div><div class="line">		GENERIC_WRITE | GENERIC_READ,</div><div class="line">		FILE_SHARE_READ,</div><div class="line">		<span class="number">0</span>,</div><div class="line">		OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL,</div><div class="line">		<span class="number">0</span>);</div><div class="line"></div><div class="line">	HANDLE hMapFile = CreateFileMappingA(hFile,</div><div class="line">		<span class="literal">NULL</span>,</div><div class="line">		PAGE_READWRITE,</div><div class="line">		<span class="number">0</span>,</div><div class="line">		<span class="number">1200000</span>,</div><div class="line">		<span class="number">0</span>);</div><div class="line">	<span class="comment">// This can extend the file to offset size</span></div><div class="line"></div><div class="line">    <span class="comment">// 		hView	0x000001fd76800000	void *</span></div><div class="line">	<span class="keyword">void</span>* hView = ::MapViewOfFile(hMapFile,</div><div class="line">		FILE_MAP_ALL_ACCESS,</div><div class="line">		<span class="number">0</span>,</div><div class="line">		<span class="number">0</span>,</div><div class="line">		<span class="built_in">strlen</span>(ret));</div><div class="line"></div><div class="line">	<span class="built_in">memcpy</span>(hView, ret, <span class="built_in">strlen</span>(ret));</div><div class="line"></div><div class="line">    <span class="comment">//		checksumInFile	0x000001fd76970000	void *</span></div><div class="line">	<span class="keyword">void</span>* checksumInFile = ::MapViewOfFile(hMapFile,</div><div class="line">		FILE_MAP_ALL_ACCESS,</div><div class="line">		<span class="number">0</span>,</div><div class="line">		<span class="number">1</span> * gra,</div><div class="line">		<span class="built_in">strlen</span>(ret2));</div><div class="line"></div><div class="line">	<span class="built_in">memcpy</span>(checksumInFile, ret2, <span class="built_in">strlen</span>(ret2));</div><div class="line"></div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Linux:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/mman.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fcntl.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">const</span> <span class="keyword">char</span>* ret = <span class="string">"test"</span>;</div><div class="line">	<span class="keyword">const</span> <span class="keyword">char</span>* ret2 = <span class="string">"hekekdladfajgkjag"</span>;</div><div class="line">	<span class="keyword">auto</span> gra = sysconf(<span class="number">_</span>SC_PAGESIZE);</div><div class="line"></div><div class="line">    <span class="comment">// we need this file size larger than offset in advance.</span></div><div class="line">	<span class="keyword">int</span> fd = open(<span class="string">"hellozhizha"</span>, O_RDWR, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);</div><div class="line"></div><div class="line">	<span class="keyword">void</span>* hView = mmap(<span class="literal">NULL</span>, <span class="built_in">strlen</span>(ret), PROT_READ | PROT_WRITE, MAP_SHARED, fd, <span class="number">0</span>);</div><div class="line">	<span class="built_in">memcpy</span>(hView, ret, <span class="built_in">strlen</span>(ret));</div><div class="line">	munmap(hView, <span class="built_in">strlen</span>(ret));</div><div class="line"></div><div class="line">	<span class="keyword">void</span>* checksumInFile = mmap(<span class="literal">NULL</span>, <span class="built_in">strlen</span>(ret2), PROT_READ | PROT_WRITE, MAP_SHARED, fd, gra);</div><div class="line">	<span class="built_in">memcpy</span>(checksumInFile, ret2, <span class="built_in">strlen</span>(ret2));</div><div class="line">	munmap(checksumInFile, <span class="built_in">strlen</span>(ret2));</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p><a href="http://code4fun.me">呼呼呼山</a><br>2019-04-29 14:54:37</p>
+</blockquote>
+
+    
+  </div>
+
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2019/04/19/parallel sort benchmark/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2019/04/30/windbg/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: '99bca29ad4d85951d688',
+  clientSecret: 'd956164d57277ed8ece2fab34d91f67506dd50d6',
+  repo: 'blog-comment',
+  owner: 'zhangzhishan',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: md5(location.pathname),
+  admin: ['zhangzhishan'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

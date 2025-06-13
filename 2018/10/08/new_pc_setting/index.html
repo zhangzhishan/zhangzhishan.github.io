@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>Windows新机设置 | Code4Fun</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="windows," />
+  
+
+  <meta name="description" content="由于最近入职，多了一台Windows笔记本，一台台式机以及数台虚拟机，由于这些环境都是Windows，而以后难免要长期混迹再这个平台上，所以就总结一下该如何配置环境。
+install dependences当然，第一步是安装一些必须的软件，主要是大平台的软件，开箱即用，没有什么配置的要求，比较简单，列个列表足矣。
+利用Scoop安装相应的软件并进行配置，在powershell中执行下述命令
+12S">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows新机设置">
+<meta property="og:url" content="http://code4fun.me/2018/10/08/new_pc_setting/index.html">
+<meta property="og:site_name" content="Code4Fun">
+<meta property="og:description" content="由于最近入职，多了一台Windows笔记本，一台台式机以及数台虚拟机，由于这些环境都是Windows，而以后难免要长期混迹再这个平台上，所以就总结一下该如何配置环境。
+install dependences当然，第一步是安装一些必须的软件，主要是大平台的软件，开箱即用，没有什么配置的要求，比较简单，列个列表足矣。
+利用Scoop安装相应的软件并进行配置，在powershell中执行下述命令
+12S">
+<meta property="og:image" content="https://raw.githubusercontent.com/zhangzhishan/blogpics/dev/1539004595_4563.png">
+<meta property="og:updated_time" content="2025-06-13T10:54:27.289Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Windows新机设置">
+<meta name="twitter:description" content="由于最近入职，多了一台Windows笔记本，一台台式机以及数台虚拟机，由于这些环境都是Windows，而以后难免要长期混迹再这个平台上，所以就总结一下该如何配置环境。
+install dependences当然，第一步是安装一些必须的软件，主要是大平台的软件，开箱即用，没有什么配置的要求，比较简单，列个列表足矣。
+利用Scoop安装相应的软件并进行配置，在powershell中执行下述命令
+12S">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zhangzhishan/blogpics/dev/1539004595_4563.png">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+<link rel="alternate" href="/atom.xml" title="Code4Fun" type="application/atom+xml">
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#install-dependences"><span class="toc-text">install dependences</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mklink-相关配置"><span class="toc-text">mklink 相关配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Visual-Studio-Code"><span class="toc-text">Visual Studio Code</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#install-cquery"><span class="toc-text">install cquery</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#输入法-Rime"><span class="toc-text">输入法 Rime</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ConEmu"><span class="toc-text">ConEmu</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Powershell-setting"><span class="toc-text">Powershell setting</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#install-poweline-fonts"><span class="toc-text">install poweline fonts</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vim"><span class="toc-text">Vim</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字体设置"><span class="toc-text">字体设置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#install-nerd-fonts"><span class="toc-text">install nerd-fonts</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#blog-setting"><span class="toc-text">blog setting</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-new_pc_setting" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">Windows新机设置</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2018.10.08</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>呼呼呼山</span>
+        </span>
+      
+
+      
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>由于最近入职，多了一台Windows笔记本，一台台式机以及数台虚拟机，由于这些环境都是Windows，而以后难免要长期混迹再这个平台上，所以就总结一下该如何配置环境。</p>
+<h2 id="install-dependences"><a href="#install-dependences" class="headerlink" title="install dependences"></a>install dependences</h2><p>当然，第一步是安装一些必须的软件，主要是大平台的软件，开箱即用，没有什么配置的要求，比较简单，列个列表足矣。</p>
+<p>利用Scoop安装相应的软件并进行配置，在powershell中执行下述命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Set-ExecutionPolicy Unrestricted</div><div class="line">iex (new-object net.webclient).downloadstring(&apos;https://get.scoop.sh&apos;)</div></pre></td></tr></table></figure>
+<p>添加额外的库，该库里面包含一些常用的软件。 <a href="https://git-fork.com/" target="_blank" rel="external">fork</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Mouse Without Borders</div></pre></td></tr></table></figure></p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">scoop install git</div><div class="line">scoop bucket add extras</div><div class="line">scoop bucket add Versions</div><div class="line">scoop bucket add Ash258 'https://github.com/Ash258/scoop-Ash258.git'</div><div class="line">scoop bucket add nerd-fonts</div><div class="line">; picgo</div><div class="line">; scoop bucket add helbing https://github.com/helbing/scoop-bucket</div></pre></td></tr></table></figure>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div></pre></td><td class="code"><pre><div class="line">scoop install sudo</div><div class="line">sudo scoop install <span class="number">3270</span>-NF</div><div class="line">scoop install ack</div><div class="line">scoop install Ag</div><div class="line">scoop install autohotkey</div><div class="line">scoop install bandzip</div><div class="line">scoop install bat</div><div class="line">scoop install beyondcompare</div><div class="line">; scoop install brave</div><div class="line">scoop install caffeine</div><div class="line">scoop install calibre-normal</div><div class="line">; scoop install chromium</div><div class="line">scoop install cmake</div><div class="line">scoop install cmake-rc</div><div class="line">scoop install copyq</div><div class="line">scoop install ditto</div><div class="line">scoop install dropit</div><div class="line">scoop install everything</div><div class="line">scoop install firefox</div><div class="line">scoop install fork</div><div class="line">scoop install fzf</div><div class="line">; scoop install gitkraken</div><div class="line">scoop install graphviz</div><div class="line">scoop install gdrive</div><div class="line">scoop install keypirinha</div><div class="line">scoop install lepton</div><div class="line">scoop install less</div><div class="line">scoop install listen1desktop</div><div class="line">scoop install llvm</div><div class="line">scoop install megasync</div><div class="line">scoop install neovim</div><div class="line">scoop install nodejs</div><div class="line">scoop install oh-my-posh</div><div class="line">scoop install pandoc</div><div class="line">scoop install perl</div><div class="line">scoop install picgo</div><div class="line">scoop install postman</div><div class="line">scoop install PotPlayer</div><div class="line">scoop install powertoys</div><div class="line">scoop install python27</div><div class="line">; scoop install python</div><div class="line">scoop install rescuetime</div><div class="line">scoop install ripgrep</div><div class="line">scoop install rustup</div><div class="line">scoop install ruby</div><div class="line">scoop install sharex</div><div class="line">scoop install sharpkeys</div><div class="line">scoop install spotify</div><div class="line">; scoop install steam</div><div class="line">scoop install sublime-merge</div><div class="line">scoop install sumatrapdf</div><div class="line">scoop install SyncTrayzor</div><div class="line">scoop install telegram</div><div class="line">; scoop install terminus</div><div class="line">scoop install typora</div><div class="line">scoop install vim</div><div class="line">scoop install vnote</div><div class="line">scoop install vscode</div><div class="line">; scoop install weasel</div><div class="line">scoop install wiztree</div><div class="line">; scoop install workflowy</div><div class="line">scoop install zeal</div><div class="line"></div><div class="line">curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py</div></pre></td></tr></table></figure>
+<h2 id="mklink-相关配置"><a href="#mklink-相关配置" class="headerlink" title="mklink 相关配置"></a>mklink 相关配置</h2><p>有些软件只有一个主配置文件存在于用户目录，对于这种只需要直接进行一次HardLink，可以借助<code>mklink</code>命令。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">mklink /H c:\Users\zhizha\vimrc.bundles &quot;c:\Users\zhizha\Dropbox (Personal)\settingsync\dotfiles\vim\winvim\vimrc.bundles&quot;</div><div class="line">del c:\Users\zhizha\_vimrc</div><div class="line">mklink /H c:\Users\zhizha\_vimrc &quot;c:\Users\zhizha\Dropbox (Personal)\settingsync\dotfiles\vim\_vimrc&quot;</div><div class="line">mklink /J C:\Users\zhizha\vimfiles &quot;C:\Users\zhizha\Dropbox (Personal)\settingsync\dotfiles\vim\vimfiles&quot;</div><div class="line">mklink /J C:\Users\zhizha\AppData\Local\nvim &quot;C:\Users\zhizha\Dropbox (Personal)\settingsync\dotfiles\vim\nvim&quot;</div><div class="line">mklink /J C:\Users\zhizha\vimconfigs &quot;c:\Users\zhizha\localdropbox\Dropbox (Personal)\settingsync\dotfiles\vim\vimconfigs&quot;</div><div class="line">mklink /J C:\Users\zhizha\AppData\Roaming\vnote\snippets &quot;C:\Users\zhizha\Dropbox (Personal)\settingsync\vnote\snippets&quot;</div><div class="line">mklink /J C:\Users\zhizha\AppData\Roaming\vnote\templates &quot;C:\Users\zhizha\Dropbox (Personal)\settingsync\vnote\templates&quot;</div><div class="line">del C:\Users\zhizha\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\profiles.json</div><div class="line">mklink /H C:\Users\zhizha\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\profiles.json &quot;C:\Users\zhizha\localdropbox\Dropbox (Personal)\settingsync\dotfiles\profiles.json&quot;</div></pre></td></tr></table></figure>
+<p>这里我们从简单到复杂一步步来，</p>
+<h2 id="Visual-Studio-Code"><a href="#Visual-Studio-Code" class="headerlink" title="Visual Studio Code"></a>Visual Studio Code</h2><p>对于visual studio code 也可也直接利用scoop进行安装，<code>scoop install vscode</code>。<br>作为目前使用的几乎最多的一个编辑器，自然装了很多插件以及主题、字体等进行了一番设置，这时候我们可以借助一个神奇的插件 <code>Settings Sync</code>， 其利用Github Gist进行设置的配置。只需要输入正确的Token和Gist id，就轻松的完成了同步，并且可以设置自动更新与下载，这样以后某一天电脑上做一个改动，另一台电脑上也会随之改动。</p>
+<h3 id="install-cquery"><a href="#install-cquery" class="headerlink" title="install cquery"></a>install cquery</h3><p>主要参考<a href="https://github.com/cquery-project/cquery/wiki/Visual-Studio-Code" target="_blank" rel="external">安装指南</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">git clone --recursive https://github.com/cquery-project/cquery.git</div><div class="line">cd cquery</div><div class="line">mkdir build &amp;&amp; cd build</div><div class="line">cmake -DCMAKE_GENERATOR_PLATFORM=x64 .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=release -DCMAKE_EXPORT_COMPILE_COMMANDS=YES</div><div class="line">cmake --build . --config release</div><div class="line">cmake --build . --target install --config release</div></pre></td></tr></table></figure>
+<p>安装后需要根据文档，进行相关配置，提供高亮。</p>
+<h2 id="输入法-Rime"><a href="#输入法-Rime" class="headerlink" title="输入法 Rime"></a>输入法 Rime</h2><p>在Mac 上一直用鼠须管，所有到了Windows下输入法也就相应的选择了小狼毫，虽然在词库方面和主流的像搜狗之类的存在一些差距，但是毕竟省心，不会动不动弹什么又有垃圾需要清理了或者浏览器不快了之类的东西。</p>
+<p><img src="https://raw.githubusercontent.com/zhangzhishan/blogpics/dev/1539004595_4563.png" alt=""></p>
+<p>这就是一个输入法，并且是一个几乎没有任何卡顿的输入法。他不会干任何其余的事情，而词库方面你也可以自己添加一些词库，网友也做好了很多扩展词库，这个就可以根据自己的需要添加就好了。</p>
+<p>安利完之后，就是设置，其实这个也比较简单，右键打开输入法菜单，选择用户文件夹，所有的配置和你手动添加的词库都在这个地方，直接复制到另外的电脑上就好了，当然 <code>installation.yaml</code> 中，你可以修改同步的位置，然后点击菜单中的同步个人文件夹，你就可以在指定的位置看到这些设置了。利用这种方式也可以共享多台设备之间的用户词典，也就是那些你自己经常输入的词汇。这个在不同的sync id 的用户词典也会进行合并。</p>
+<h2 id="ConEmu"><a href="#ConEmu" class="headerlink" title="ConEmu"></a>ConEmu</h2><p>由于其设置在文件夹目录下，所以直接在官网下载，然后将其放到dropbox同步文件夹内，这样就可以在多台设备上同步了。</p>
+<h2 id="Powershell-setting"><a href="#Powershell-setting" class="headerlink" title="Powershell setting"></a>Powershell setting</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">scoop innstall oh-my-posh</div><div class="line">Install-Module PSColors -Scope CurrentUser -AllowClobber</div><div class="line">Install-Module TabExpansionPlusPlus -Scope CurrentUser -AllowClobber</div><div class="line">Install-Module Find-String</div><div class="line">Install-Module Jump.Location</div><div class="line">Install-Module ZLocation</div><div class="line">Install-Module Get-ChildItemColor</div><div class="line">Install-Module posh-git</div><div class="line">Install-Module PSReadline</div><div class="line">Import-Module oh-my-posh</div></pre></td></tr></table></figure>
+<h3 id="install-poweline-fonts"><a href="#install-poweline-fonts" class="headerlink" title="install poweline fonts"></a>install poweline fonts</h3><p><a href="https://github.com/powerline/fonts/blob/master/Meslo%20Slashed/Meslo%20LG%20M%20Bold%20for%20Powerline.ttf" target="_blank" rel="external">meslo lg m</a></p>
+<h2 id="Vim"><a href="#Vim" class="headerlink" title="Vim"></a>Vim</h2><p>对于Vim来说，这是一个既有可能简单，也有可能复杂的问题，其实在大部分情况下，直接同步<code>.vimrc</code>或者<code>_vimrc</code>就可以，以及可能根据你的插件依赖选择一个插件管理器放到指定的文件夹下面，然后启动vim，运行相关的plugin install命令既可。<br>但是这个过程对于不同的操作系统会有各种不同的配置，需要特别注意。</p>
+<h2 id="字体设置"><a href="#字体设置" class="headerlink" title="字体设置"></a>字体设置</h2><p>目前在用的编程相关的字体有两份，更纱黑体和pragmatapro，直接利用powershell脚本安装。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">$Path=&quot;C:\Users\zhizha\Dropbox (Personal)\settingsync\font&quot;</div><div class="line">$FONTS = 0x14</div><div class="line">$objShell = New-Object -ComObject Shell.Application</div><div class="line">$objFolder = $objShell.Namespace($FONTS)</div><div class="line">$Fontdir = dir $Path</div><div class="line">foreach($File in $Fontdir) &#123;</div><div class="line">    If (Test-Path &quot;C:\Users\zhizha\AppData\Local\Microsoft\Windows\Fonts\$($File.name)&quot;)</div><div class="line">    &#123; &#125;</div><div class="line">    Else</div><div class="line">    &#123;</div><div class="line">        $objFolder.CopyHere($File.fullname)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="install-nerd-fonts"><a href="#install-nerd-fonts" class="headerlink" title="install nerd-fonts"></a>install nerd-fonts</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">scoop bucket add nerd-fonts</div><div class="line">sudo scoop install 3270-NF</div></pre></td></tr></table></figure>
+<h2 id="blog-setting"><a href="#blog-setting" class="headerlink" title="blog setting"></a>blog setting</h2><p><code>hexo clean &amp;&amp; hexo deploy</code></p>
+<blockquote>
+<p><a href="http://code4fun.me">呼呼呼山</a><br>2018-10-08 21:15:59</p>
+</blockquote>
+
+    
+  </div>
+
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2018/09/12/独处/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2019/01/04/20190104/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: '99bca29ad4d85951d688',
+  clientSecret: 'd956164d57277ed8ece2fab34d91f67506dd50d6',
+  repo: 'blog-comment',
+  owner: 'zhangzhishan',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: md5(location.pathname),
+  admin: ['zhangzhishan'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

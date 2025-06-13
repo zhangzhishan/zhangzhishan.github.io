@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>tmux shortcuts &amp; cheatsheet | Code4Fun</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="tmux," />
+  
+
+  <meta name="description" content="start new: tmux
+start new with session name:tmux new -s myname
+attach12tmux a  #  (or at, or attach)
+attach to namedtmux a -t myname
+Sessions123:new&amp;lt;CR&amp;gt;  new sessions  list sessions$  name sessi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="tmux shortcuts & cheatsheet">
+<meta property="og:url" content="http://code4fun.me/2016/02/23/tmux-shortcuts-cheatsheet/index.html">
+<meta property="og:site_name" content="Code4Fun">
+<meta property="og:description" content="start new: tmux
+start new with session name:tmux new -s myname
+attach12tmux a  #  (or at, or attach)
+attach to namedtmux a -t myname
+Sessions123:new&amp;lt;CR&amp;gt;  new sessions  list sessions$  name sessi">
+<meta property="og:updated_time" content="2025-06-13T10:54:27.291Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="tmux shortcuts & cheatsheet">
+<meta name="twitter:description" content="start new: tmux
+start new with session name:tmux new -s myname
+attach12tmux a  #  (or at, or attach)
+attach to namedtmux a -t myname
+Sessions123:new&amp;lt;CR&amp;gt;  new sessions  list sessions$  name sessi">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+<link rel="alternate" href="/atom.xml" title="Code4Fun" type="application/atom+xml">
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#start-new"><span class="toc-text">start new:</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#start-new-with-session-name"><span class="toc-text">start new with session name:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#attach"><span class="toc-text">attach</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#attach-to-named"><span class="toc-text">attach to named</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sessions"><span class="toc-text">Sessions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#list-sessions"><span class="toc-text">list sessions:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#kill-session"><span class="toc-text">kill session:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kill-all-the-tmux-sessions"><span class="toc-text">Kill all the tmux sessions</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows-tabs"><span class="toc-text">Windows (tabs)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Panes-splits"><span class="toc-text">Panes (splits)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sync-Panes"><span class="toc-text">Sync Panes</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Resizing-Panes"><span class="toc-text">Resizing Panes</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Copy-mode"><span class="toc-text">Copy mode</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-text">Misc</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Configurations-Options"><span class="toc-text">Configurations Options:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Resources"><span class="toc-text">Resources:</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-tmux-shortcuts-cheatsheet" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">tmux shortcuts &amp; cheatsheet</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2016.02.23</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>呼呼呼山</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
+  </span>
+
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h2 id="start-new"><a href="#start-new" class="headerlink" title="start new:"></a>start new:</h2><p> <code>tmux</code></p>
+<h3 id="start-new-with-session-name"><a href="#start-new-with-session-name" class="headerlink" title="start new with session name:"></a>start new with session name:</h3><p><code>tmux new -s myname</code></p>
+<h3 id="attach"><a href="#attach" class="headerlink" title="attach"></a>attach</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">tmux a  </div><div class="line">#  (or at, or attach)</div></pre></td></tr></table></figure>
+<h3 id="attach-to-named"><a href="#attach-to-named" class="headerlink" title="attach to named"></a>attach to named</h3><p><code>tmux a -t myname</code></p>
+<h2 id="Sessions"><a href="#Sessions" class="headerlink" title="Sessions"></a>Sessions</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">:new&lt;CR&gt;  new session</div><div class="line">s  list sessions</div><div class="line">$  name session</div></pre></td></tr></table></figure>
+<h3 id="list-sessions"><a href="#list-sessions" class="headerlink" title="list sessions:"></a>list sessions:</h3><p><code>tmux ls</code></p>
+<h3 id="kill-session"><a href="#kill-session" class="headerlink" title="kill session:"></a>kill session:</h3><p><code>tmux kill-session -t myname</code></p>
+<h3 id="Kill-all-the-tmux-sessions"><a href="#Kill-all-the-tmux-sessions" class="headerlink" title="Kill all the tmux sessions"></a>Kill all the tmux sessions</h3><p><code>tmux ls | grep : | cut -d. -f1 | awk &#39;{print substr($1, 0, length($1)-1)}&#39; | xargs kill</code></p>
+<p>In tmux, hit the prefix <code>ctrl+b</code> (my modified prefix is ctrl+a) and then:</p>
+<h2 id="Windows-tabs"><a href="#Windows-tabs" class="headerlink" title="Windows (tabs)"></a>Windows (tabs)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">c  create window</div><div class="line">w  list windows</div><div class="line">n  next window</div><div class="line">p  previous window</div><div class="line">f  find window</div><div class="line">,  name window</div><div class="line">&amp;  kill window</div></pre></td></tr></table></figure>
+<h2 id="Panes-splits"><a href="#Panes-splits" class="headerlink" title="Panes (splits)"></a>Panes (splits)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">%  vertical split</div><div class="line">&quot;  horizontal split</div><div class="line">o  swap panes</div><div class="line">q  show pane numbers</div><div class="line">x  kill pane</div><div class="line">+  break pane into window (e.g. to select text by mouse to copy)</div><div class="line">-  restore pane from window</div><div class="line">⍽  space - toggle between layouts</div><div class="line">&lt;prefix&gt; q (Show pane numbers, when the numbers show up type the key to goto that pane)</div><div class="line">&lt;prefix&gt; &#123; (Move the current pane left)</div><div class="line">&lt;prefix&gt; &#125; (Move the current pane right)</div><div class="line">&lt;prefix&gt; z toggle pane zoom</div></pre></td></tr></table></figure>
+<h2 id="Sync-Panes"><a href="#Sync-Panes" class="headerlink" title="Sync Panes"></a>Sync Panes</h2><p>You can do this by switching to the appropriate window, typing your Tmux prefix (commonly Ctrl-B or Ctrl-A) and then a colon to bring up a Tmux command line, and typing:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">:setw synchronize-panes</div></pre></td></tr></table></figure>
+<p>You can optionally add on or off to specify which state you want; otherwise the option is simply toggled. This option is specific to one window, so it won’t change the way your other sessions or windows operate. When you are done, toggle it off again by repeating the command. <a href="http://blog.sanctum.geek.nz/sync-tmux-panes/" target="_blank" rel="external">tip source</a></p>
+<h2 id="Resizing-Panes"><a href="#Resizing-Panes" class="headerlink" title="Resizing Panes"></a>Resizing Panes</h2><p>You can also resize panes if you don’t like the layout defaults. I personally rarely need to do this, though it is handy to know how. Here is the basic syntax to resize panes:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">PREFIX : resize-pane -D (Resizes the current pane down)</div><div class="line">PREFIX : resize-pane -U (Resizes the current pane upward)</div><div class="line">PREFIX : resize-pane -L (Resizes the current pane left)</div><div class="line">PREFIX : resize-pane -R (Resizes the current pane right)</div><div class="line">PREFIX : resize-pane -D 20 (Resizes the current pane down by 20 cells)</div><div class="line">PREFIX : resize-pane -U 20 (Resizes the current pane upward by 20 cells)</div><div class="line">PREFIX : resize-pane -L 20 (Resizes the current pane left by 20 cells)</div><div class="line">PREFIX : resize-pane -R 20 (Resizes the current pane right by 20 cells)</div><div class="line">PREFIX : resize-pane -t 2 20 (Resizes the pane with the id of 2 down by 20 cells)</div><div class="line">PREFIX : resize-pane -t -L 20 (Resizes the pane with the id of 2 left by 20 cells)</div></pre></td></tr></table></figure>
+<h2 id="Copy-mode"><a href="#Copy-mode" class="headerlink" title="Copy mode"></a>Copy mode</h2><p>Pressing PREFIX <code>[</code> places us in Copy mode. We can then use our movement keys to move our cursor around the screen. By default, the arrow keys work. we set our configuration file to use Vim keys for moving between windows and resizing panes so we wouldn’t have to take our hands off the home row. tmux has a vi mode for working with the buffer as well. To enable it, add this line to <code>.tmux.conf</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">setw -g mode-keys vi</div></pre></td></tr></table></figure>
+<p>With this option set, we can use <code>h</code>,<code>j</code>, <code>k</code>, and <code>l</code> to move around our buffer.</p>
+<p>To get out of Copy mode, we just press the ENTER key. Moving around one character at a time is not very efficient. Since we enabled vi mode, we can also use some other visible shortcuts to move around the buffer.</p>
+<p>For example, we can use <code>w</code> to jump to the next word and <code>b</code> to jump back one word. And we can use <code>f</code>, followed by any character, to jump to that character on the same line, and <code>F</code> to jump backwards on the line.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">Function                vi             emacs</div><div class="line">Back to indentation     ^              M-m</div><div class="line">Clear selection         Escape         C-g</div><div class="line">Copy selection          Enter          M-w</div><div class="line">Cursor down             j              Down</div><div class="line">Cursor left             h              Left</div><div class="line">Cursor right            l              Right</div><div class="line">Cursor to bottom line   L</div><div class="line">Cursor to middle line   M              M-r</div><div class="line">Cursor to top line      H              M-R</div><div class="line">Cursor up               k              Up</div><div class="line">Delete entire line      d              C-u</div><div class="line">Delete to end of line   D              C-k</div><div class="line">End of line             $              C-e</div><div class="line">Goto line               :              g</div><div class="line">Half page down          C-d            M-Down</div><div class="line">Half page up            C-u            M-Up</div><div class="line">Next page               C-f            Page down</div><div class="line">Next word               w              M-f</div><div class="line">Paste buffer            p              C-y</div><div class="line">Previous page           C-b            Page up</div><div class="line">Previous word           b              M-b</div><div class="line">Quit mode               q              Escape</div><div class="line">Scroll down             C-Down or J    C-Down</div><div class="line">Scroll up               C-Up or K      C-Up</div><div class="line">Search again            n              n</div><div class="line">Search backward         ?              C-r</div><div class="line">Search forward          /              C-s</div><div class="line">Start of line           0              C-a</div><div class="line">Start selection         Space          C-Space</div><div class="line">Transpose chars                        C-t</div></pre></td></tr></table></figure>
+<h2 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">d  detach</div><div class="line">t  big clock</div><div class="line">?  list shortcuts</div><div class="line">:  prompt</div></pre></td></tr></table></figure>
+<h2 id="Configurations-Options"><a href="#Configurations-Options" class="headerlink" title="Configurations Options:"></a>Configurations Options:</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"># Mouse support - set to on if you want to use the mouse</div><div class="line">* setw -g mode-mouse off</div><div class="line">* set -g mouse-select-pane off</div><div class="line">* set -g mouse-resize-pane off</div><div class="line">* set -g mouse-select-window off</div><div class="line"></div><div class="line"># Set the default terminal mode to 256color mode</div><div class="line">set -g default-terminal &quot;screen-256color&quot;</div><div class="line"></div><div class="line"># enable activity alerts</div><div class="line">setw -g monitor-activity on</div><div class="line">set -g visual-activity on</div><div class="line"></div><div class="line"># Center the window list</div><div class="line">set -g status-justify centre</div><div class="line"></div><div class="line"># Maximize and restore a pane</div><div class="line">unbind Up bind Up new-window -d -n tmp \; swap-pane -s tmp.1 \; select-window -t tmp</div><div class="line">unbind Down</div><div class="line">bind Down last-window \; swap-pane -s tmp.1 \; kill-window -t tmp</div></pre></td></tr></table></figure>
+<h2 id="Resources"><a href="#Resources" class="headerlink" title="Resources:"></a>Resources:</h2><ul>
+<li><a href="http://pragprog.com/book/bhtmux/tmux" target="_blank" rel="external">tmux: Productive Mouse-Free Development</a></li>
+<li><a href="http://superuser.com/questions/343572/tmux-how-do-i-reorder-my-windows" target="_blank" rel="external">How to reorder windows</a></li>
+<li><a href="http://tangosource.com/blog/a-tmux-crash-course-tips-and-tweaks/" target="_blank" rel="external">A Tmux crash course: tips and tweaks</a></li>
+</ul>
+
+    
+  </div>
+
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2016/02/13/git-de-gitignore-pei-zhi/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2016/05/29/mac-os-x-1011-php-kai-fa-huan-jing-pei-zhi/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: '99bca29ad4d85951d688',
+  clientSecret: 'd956164d57277ed8ece2fab34d91f67506dd50d6',
+  repo: 'blog-comment',
+  owner: 'zhangzhishan',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: md5(location.pathname),
+  admin: ['zhangzhishan'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

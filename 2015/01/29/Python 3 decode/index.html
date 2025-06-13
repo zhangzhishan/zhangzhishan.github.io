@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>九浅一深 Python 3 编码问题 | Code4Fun</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="Python," />
+  
+
+  <meta name="description" content="Python 3 与 2 有一个很大的不同就是编码问题，这个问题也导致了很多之前的程序没法很好的运行了，尤其是在网络方面，之前的各类示范代码都会报错，会出现一些类似下面的错误。
+12&amp;gt;&amp;gt;&amp;gt; u&amp;apos;hello&amp;apos; + b&amp;apos;world!&amp;apos;TypeError: Can&amp;apos;t convert &amp;apos;bytes&amp;apos; object t">
+<meta property="og:type" content="article">
+<meta property="og:title" content="九浅一深 Python 3 编码问题">
+<meta property="og:url" content="http://code4fun.me/2015/01/29/Python 3 decode/index.html">
+<meta property="og:site_name" content="Code4Fun">
+<meta property="og:description" content="Python 3 与 2 有一个很大的不同就是编码问题，这个问题也导致了很多之前的程序没法很好的运行了，尤其是在网络方面，之前的各类示范代码都会报错，会出现一些类似下面的错误。
+12&amp;gt;&amp;gt;&amp;gt; u&amp;apos;hello&amp;apos; + b&amp;apos;world!&amp;apos;TypeError: Can&amp;apos;t convert &amp;apos;bytes&amp;apos; object t">
+<meta property="og:image" content="http://code4fun.me/images/unicodesan_1538722256_26901.png">
+<meta property="og:updated_time" content="2025-06-13T10:54:27.235Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="九浅一深 Python 3 编码问题">
+<meta name="twitter:description" content="Python 3 与 2 有一个很大的不同就是编码问题，这个问题也导致了很多之前的程序没法很好的运行了，尤其是在网络方面，之前的各类示范代码都会报错，会出现一些类似下面的错误。
+12&amp;gt;&amp;gt;&amp;gt; u&amp;apos;hello&amp;apos; + b&amp;apos;world!&amp;apos;TypeError: Can&amp;apos;t convert &amp;apos;bytes&amp;apos; object t">
+<meta name="twitter:image" content="http://code4fun.me/images/unicodesan_1538722256_26901.png">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+<link rel="alternate" href="/atom.xml" title="Code4Fun" type="application/atom+xml">
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#最后做个总结"><span class="toc-text">最后做个总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-text">Reference</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-Python 3 decode" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">九浅一深 Python 3 编码问题</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2015.01.29</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>呼呼呼山</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/Python/">Python</a>
+  </span>
+
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>Python 3 与 2 有一个很大的不同就是编码问题，这个问题也导致了很多之前的程序没法很好的运行了，尤其是在网络方面，之前的各类示范代码都会报错，会出现一些类似下面的错误。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; u&apos;hello&apos; + b&apos;world!&apos;</div><div class="line">TypeError: Can&apos;t convert &apos;bytes&apos; object to str implicitly</div></pre></td></tr></table></figure>
+<p>这个还不是最坑的，还是可以接受的，下面的错误才是莫名奇妙，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; import urllib.request</div><div class="line">&gt;&gt;&gt; print(urllib.request.urlopen(&apos;http://code4fun.me&apos;).read().decode(&apos;utf-8&apos;))</div><div class="line">nicodeEncodeError: &apos;gbk&apos; codec can&apos;t encode character &apos;\xbb&apos; in position xxxx</div></pre></td></tr></table></figure>
+<p>并且是时好时坏，由于电脑是双系统，所以有的时候会在 Windows 下写一些代码，然后有些本来好好的代码，就会抽风，然后报上面的错误。这个的只要原因是 Windows 会默认编码方式是 ‘gbk’，对此目前还没有找到很好的办法解决，可以参看<a href="http://stackoverflow.com/questions/3218014/unicodeencodeerror-gbk-codec-cant-encode-character-illegal-multibyte-sequen" target="_blank" rel="external">stack overflow</a>。</p>
+<p>这个简直是不能忍了，于是现在是彻底放弃 Windows 写 Python 的想法，有的时候不得不用 Windows 的时候就选择 SSH 到 Linux 然后继续在 Linux 下写一些代码，然后有些本来好好的代码，就会抽风，然后报上面的错误。</p>
+<p>废话说了一堆，下面就说一下 Python 3 中的编码问题，从 Python 3 开始，存在两种形式 text 和 binary data，这个代替了 Python 2 中的 Unicode strings 和 8-bit strings。 所以当我们在 Python 3 中正常的写一个字符串时默认是 Unicode 格式的，也就是 Python 3 中的 str 类型。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; type(&apos;code4fun&apos;)</div><div class="line">&lt;class &apos;str&apos;&gt;</div><div class="line">&gt;&gt;&gt; type(u&apos;code4fun&apos;)</div><div class="line">&lt;class &apos;str&apos;&gt;</div><div class="line">&gt;&gt;&gt; type(b&apos;code4fun&apos;)</div><div class="line">&lt;class &apos;bytes&apos;&gt;</div></pre></td></tr></table></figure>
+<p>而 Python 2 中则是只有前面加了 ‘u’ 之后才是unicode编码的，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; type(&apos;code4fun&apos;)</div><div class="line">&lt;type &apos;str&apos;&gt;</div><div class="line">&gt;&gt;&gt; type(u&apos;code4fun&apos;)</div><div class="line">&lt;type &apos;unicode&apos;&gt;</div><div class="line">&gt;&gt;&gt; type(b&apos;code4fun&apos;)</div><div class="line">&lt;type &apos;str&apos;&gt;</div></pre></td></tr></table></figure>
+<p>相信大家可以从上面这两段运行结果可以清晰的发现区别，也就是在 Python 3 中用 str 类型来存储文本，而用 bytes 类型来存储数据。</p>
+<p>当然，我们难免会接触到很多 bytes 需要转化为 str 或者反之的情况，这时候就需要引入两个函数 decode() 以及 encode() 了。</p>
+<p>decode() 也就是解码的意思，何谓之解码呢， Unicode 就和 ASCII 一样都是一种编码方式，由于 CPU 能识别的只是01010，而人类的语言是由字母和笔画组成的，于是就在不同的字符和二进制数字（十六进制和二进制类似）之间有一个对应关系，最简单的是 ASCII 表，只有127个，当然汉字没在里面，就连法语、德语等需要 ‘ö’ 此类字符的国家也没有包括起来，于是就开始进行扩增，经过各种协调统一之后就有了 Unicode 而 UTF-8 就是其中的一种包含常用字符且不占据很多空间的编码方式。</p>
+<p>上面说那么多，其实就是为了让大家理解 unicode 和 bytes 之间的关系，从而梳理清楚 decode() 和 encode() 的关系。一堆 bytes 就是一堆二进制的形式的字符人类无法理解，所以我们需要对他们进行解码从而可以得到我们可以理解的形式，而字符串编码之后就可以得到计算机可以理解的 bytes 类型。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; print(&apos;呼呼呼山&apos;.encode())</div><div class="line">b&apos;\xe5\x91\xbc\xe5\x91\xbc\xe5\x91\xbc\xe5\xb1\xb1&apos;</div><div class="line">&gt;&gt;&gt; print(b&apos;\xe5\x91\xbc\xe5\x91\xbc\xe5\x91\xbc\xe5\xb1\xb1&apos;.decode(&apos;utf-8&apos;))</div><div class="line">呼呼呼山</div></pre></td></tr></table></figure>
+<h2 id="最后做个总结"><a href="#最后做个总结" class="headerlink" title="最后做个总结"></a>最后做个总结</h2><p>计算机方便理解的是 bytes 类型，而人类方便理解的是 str 类型，那么我们就可以方便的构造一个三明治模型，</p>
+<p><img src="/images/unicodesan_1538722256_26901.png" alt="unicode sandwich"></p>
+<p>外面与计算机接触的部分是 bytes，而我们自己处理的部分是 unicode，一方面 Python 3 的默认为 unicode，更加方便我们处理，另一方面我们也可以直观的理解，不需要多次乱七八糟的转化。</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="http://nedbatchelder.com/text/unipain.html" target="_blank" rel="external">Pragmatic Unicode</a><br><a href="https://docs.python.org/3.0/whatsnew/3.0.html#text-vs-data-instead-of-unicode-vs-8-bit" target="_blank" rel="external">Text Vs. Data Instead Of Unicode Vs. 8-bit</a><br><a href="http://woodpecker.org.cn/diveintopython3/strings.html" target="_blank" rel="external">Dive Into Python 3</a></p>
+
+    
+  </div>
+
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2015/01/25/那些显示对方ip信息的图片是怎么制作的？/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2015/03/03/时间与金钱/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: '99bca29ad4d85951d688',
+  clientSecret: 'd956164d57277ed8ece2fab34d91f67506dd50d6',
+  repo: 'blog-comment',
+  owner: 'zhangzhishan',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: md5(location.pathname),
+  admin: ['zhangzhishan'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

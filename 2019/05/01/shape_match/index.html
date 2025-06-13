@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>轮廓匹配 | Code4Fun</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="image," />
+  
+
+  <meta name="description" content="图像匹配一般分为两类：基于灰度的匹配和基于特征的匹配，由于我们的问题中并不存在颜色特征，故只可以使用基于特征的匹配方法。特征方面，在地图匹配中，由于地图只有轮廓信息，故只考虑基于特征的匹配方法。
+基于特征匹配的方法。首先在原始图像中提取特征，然后再建立两幅图像之间特征的匹配对应关系。常用的特征匹配基元包括点、线、区域等显著特征。图像特征相比像素点数量杀过少很多，特征间的匹配度量随位置变化尖锐，容易">
+<meta property="og:type" content="article">
+<meta property="og:title" content="轮廓匹配">
+<meta property="og:url" content="http://code4fun.me/2019/05/01/shape_match/index.html">
+<meta property="og:site_name" content="Code4Fun">
+<meta property="og:description" content="图像匹配一般分为两类：基于灰度的匹配和基于特征的匹配，由于我们的问题中并不存在颜色特征，故只可以使用基于特征的匹配方法。特征方面，在地图匹配中，由于地图只有轮廓信息，故只考虑基于特征的匹配方法。
+基于特征匹配的方法。首先在原始图像中提取特征，然后再建立两幅图像之间特征的匹配对应关系。常用的特征匹配基元包括点、线、区域等显著特征。图像特征相比像素点数量杀过少很多，特征间的匹配度量随位置变化尖锐，容易">
+<meta property="og:image" content="https://raw.githubusercontent.com/zhangzhishan/blogpics/dev/78846630-4B6F-47D2-9E09-DC01EB5F1D73.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/zhangzhishan/blogpics/dev/FF57F8D7-0F4B-49F0-B058-F51A3F209838.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/zhangzhishan/blogpics/dev/562B2AB2-953A-421B-88A2-563A399F7FD8.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/zhangzhishan/blogpics/dev/FB66E879-EAE7-4737-8DC7-611CFFBD5502.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/zhangzhishan/blogpics/dev/FB66E879-EAE7-4737-8DC7-611CFFBD5502.png">
+<meta property="og:updated_time" content="2025-06-13T10:54:27.290Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="轮廓匹配">
+<meta name="twitter:description" content="图像匹配一般分为两类：基于灰度的匹配和基于特征的匹配，由于我们的问题中并不存在颜色特征，故只可以使用基于特征的匹配方法。特征方面，在地图匹配中，由于地图只有轮廓信息，故只考虑基于特征的匹配方法。
+基于特征匹配的方法。首先在原始图像中提取特征，然后再建立两幅图像之间特征的匹配对应关系。常用的特征匹配基元包括点、线、区域等显著特征。图像特征相比像素点数量杀过少很多，特征间的匹配度量随位置变化尖锐，容易">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zhangzhishan/blogpics/dev/78846630-4B6F-47D2-9E09-DC01EB5F1D73.png">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+<link rel="alternate" href="/atom.xml" title="Code4Fun" type="application/atom+xml">
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基于特征匹配的方法。"><span class="toc-text">基于特征匹配的方法。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#图像匹配算法性能评价指标"><span class="toc-text">图像匹配算法性能评价指标</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-shape_match" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">轮廓匹配</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2019.05.01</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>呼呼呼山</span>
+        </span>
+      
+
+      
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>图像匹配一般分为两类：基于灰度的匹配和基于特征的匹配，由于我们的问题中并不存在颜色特征，故只可以使用基于特征的匹配方法。特征方面，在地图匹配中，由于地图只有轮廓信息，故只考虑基于特征的匹配方法。</p>
+<h2 id="基于特征匹配的方法。"><a href="#基于特征匹配的方法。" class="headerlink" title="基于特征匹配的方法。"></a>基于特征匹配的方法。</h2><p>首先在原始图像中提取特征，然后再建立两幅图像之间特征的匹配对应关系。常用的特征匹配基元包括点、线、区域等显著特征。图像特征相比像素点数量杀过少很多，特征间的匹配度量随位置变化尖锐，容易找出准确的匹配位置，特征提取能大大减少噪声影响，对灰度变化、形变和遮挡有较强的适应力。基于特征的图像匹配方法在实际中的应用越来越广泛，也取得了很大的成果，基于图像特征的匹配方法主要有以下四种：</p>
+<p>图像点匹配技术。图像点匹配技术可以分为两类：一类是建立模板和待匹配图像的特征点集之间的点点对应关系，然后计算对应点之间的相似性度量来确定图像匹配与否；另一类是无须建立显示的点点对应关系，主要有最小均方差匹配、快速点匹配、Haussdorff点距离（该 方 法 的 基本 思 想是 首先 采 用卷 积 积 分的 方 法 ，在多尺度 空间里 通过 对轮 廓进 行 重采样 来计 算轮 廓 上 每 一点 的 曲率并 选 取特征 点 。 特 征 点及其 两侧 的若 干 点 构 成轮 廓 的特 征 段 ，然 后 由特 征段 之 间 的Haussdorff距 离来 比较 二 者 的相似 性 ，即 为 匹配 程 度 。）匹配等。</p>
+<p>边缘线匹配技术。边缘线可以通过区域分割、边缘检测等得到。采用边缘线段的优点是孤立边缘点的偏差对边缘线段的影响很小，还加入了边缘连接性约束。主要的方法有HYPER匹配技术、chafer匹配技术等。</p>
+<p>闭合轮廓匹配技术。轮廓匹配，是模式识别和三维重建的一个最基本问题，常用的有Fourier描述子、HRP描述子等。Fourier描述子反映的是轮廓线的全局特征。HRP描述子相比则反映了闭合边界的局部特征，能够很好的处理轮廓线的局部变化和遮掩性，降低了算法的复杂度。</p>
+<p>使用高级特征的匹配技术。利用图像特征间的几何约束，将特征属性值之间简单比较的结果作为相似性度量，从而进一步提高匹配算法的速度。主要有图像匹配法、松弛法和能量最小化法等。基于特征匹配方法，一般都具有较好抗几何失真和灰度失真的能力，对抗噪声干扰也有一定的抑制能力，其难点在于自动、稳定、一致的特征提取，并且特征提取过程会损失大量的图像信息，因而不易硬件实现。目前，对自然环境下的景物图像进行分割或特征提取任然是一项困难的工作。</p>
+<h2 id="图像匹配算法性能评价指标"><a href="#图像匹配算法性能评价指标" class="headerlink" title="图像匹配算法性能评价指标"></a>图像匹配算法性能评价指标</h2><p>匹配算法的性能评价指标主要有：匹配概率、匹配精度、匹配速度。</p>
+<p>匹配概率，是正确匹配次数与总的匹配次数之比。<br>匹配精度，是正确匹配的匹配误差均方差，描述了匹配的准确性。由于噪声和其他误差因素的影响，图像匹配时最终得出的匹配位置和真正的匹配位置是不同的，估计匹配点和真正匹配点之间存在一定的随机偏差，该偏差称为匹配误差。显然匹配误差的方差越小，则定位精度越高。<br>匹配速度，是指匹配算法的快慢程度，说明了搜索的快速性。<br>一个好的匹配算法要求匹配概率尽可能高，匹配误差小，算法计算快，能满足应用环境对实时性的要求。</p>
+<p>Variational shape matching for shape classiﬁcation and retrieval  基于图形轮廓定义了一个多尺度距离来进行匹配。此为匹配函数，其过程也即优化该函数的过程。</p>
+<p><img src="https://raw.githubusercontent.com/zhangzhishan/blogpics/dev/78846630-4B6F-47D2-9E09-DC01EB5F1D73.png" alt=""></p>
+<p>一种融合特征点与轮廓信息的匹配算法 是针对低纹理图像对SIFT算法的提高。SIFT( scale invariant feature trans- form) 特征匹配算法具有尺度不变的特性，匹配能力强，能够 在稀疏纹理区域检测出较多的特征点。但是这些点很多不是 描述物体轮廓特性的点，既不是边缘点也不是角点，对立体视 觉的匹配贡献不大。为了解决稀疏纹理图像增长停止的问题， 本文提出一种将角点信息和轮廓信息相结合的种子点提取算 法，将轮廓信息有效地加入到种子点提取过程，大幅度增加种 子点的数量，提高种子点匹配精度，使低纹理图像仍然具有大 范围的准稠密匹配，提高了三维重建的效果。</p>
+<p>二维轮廓曲线匹配算法研究利用了轮廓的局部特征点信息和特征点之间轮廓曲线段的几何属性确定候选匹配段 ,提高了匹配的运算速度 ,最后应用特征段之间Hausdorff 距离来验证匹配 , 提高了曲线匹配的精度 。</p>
+<p><img src="https://raw.githubusercontent.com/zhangzhishan/blogpics/dev/FF57F8D7-0F4B-49F0-B058-F51A3F209838.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/zhangzhishan/blogpics/dev/562B2AB2-953A-421B-88A2-563A399F7FD8.png" alt=""></p>
+<p>基于复数矩的形状轮廓描述与匹配方法  基于复数矩理论构造了轮廓顶点与形状 旋转、缩放和平移无关的局部复数矩不变量，推导了局部复数矩与原始轮廓顶点坐标的正反算公式，将轮廓特征顶 点处的局部复数矩和曲率合在一起，从而建立了一种新的轮廓描述函数。</p>
+<p>基于链码的二维碎片轮廓匹配算法  首先利用边界链码的跟踪技术, 提取出二维碎片的轮廓信息, 同时对轮廓线进行细化、去噪和<br>编码处理, 得到二维轮廓线的一维链码信息描述, 并在此基础上提出一种基于链码的二维碎片轮廓匹配方<br>法。</p>
+<p>A survey of shape feature extraction techniques</p>
+<p><img src="https://raw.githubusercontent.com/zhangzhishan/blogpics/dev/FB66E879-EAE7-4737-8DC7-611CFFBD5502.png" alt=""></p>
+<p>Shape matching and classiﬁcation using height functions<br>Height functions + LCDP 得分为96.45</p>
+<p><img src="https://raw.githubusercontent.com/zhangzhishan/blogpics/dev/FB66E879-EAE7-4737-8DC7-611CFFBD5502.png" alt=""></p>
+<p>Shape Matching Using Multiscale Integral Invariants</p>
+<p>地图匹配：<br>图像配准：针对于不同</p>
+<blockquote>
+<p><a href="">呼呼呼山</a>(<a href="http://code4fun.me">http://code4fun.me</a>)<br>2019-05-01 09:36:54</p>
+</blockquote>
+
+    
+  </div>
+
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2019/04/30/sed usage/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2019/05/05/vscode_debug_cmake_projects/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: '99bca29ad4d85951d688',
+  clientSecret: 'd956164d57277ed8ece2fab34d91f67506dd50d6',
+  repo: 'blog-comment',
+  owner: 'zhangzhishan',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: md5(location.pathname),
+  admin: ['zhangzhishan'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

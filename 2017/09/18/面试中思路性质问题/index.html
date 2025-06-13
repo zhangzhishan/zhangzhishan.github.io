@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>面试内容整理—思路 | Code4Fun</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="jobs," />
+  
+
+  <meta name="description" content="千万级的用户，提供一个服务，该服务有很多模块，现在有一个底层模块需要优化，问怎么实现，在不影响其他服务模块以及用户体验的情况下。（面IEG）http://taop.marchtea.com/09.03.html
+未知大小的文件，翻转整个文件如果内存中有个cache存储qq号和最近登录时间问怎么样做hit和淘汰检测短信敏感词爬虫程序的核心代码和正则表达式有没有做过协议开发相关的工作？给你一个场景，有">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面试内容整理—思路">
+<meta property="og:url" content="http://code4fun.me/2017/09/18/面试中思路性质问题/index.html">
+<meta property="og:site_name" content="Code4Fun">
+<meta property="og:description" content="千万级的用户，提供一个服务，该服务有很多模块，现在有一个底层模块需要优化，问怎么实现，在不影响其他服务模块以及用户体验的情况下。（面IEG）http://taop.marchtea.com/09.03.html
+未知大小的文件，翻转整个文件如果内存中有个cache存储qq号和最近登录时间问怎么样做hit和淘汰检测短信敏感词爬虫程序的核心代码和正则表达式有没有做过协议开发相关的工作？给你一个场景，有">
+<meta property="og:updated_time" content="2025-06-13T10:54:27.293Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="面试内容整理—思路">
+<meta name="twitter:description" content="千万级的用户，提供一个服务，该服务有很多模块，现在有一个底层模块需要优化，问怎么实现，在不影响其他服务模块以及用户体验的情况下。（面IEG）http://taop.marchtea.com/09.03.html
+未知大小的文件，翻转整个文件如果内存中有个cache存储qq号和最近登录时间问怎么样做hit和淘汰检测短信敏感词爬虫程序的核心代码和正则表达式有没有做过协议开发相关的工作？给你一个场景，有">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+<link rel="alternate" href="/atom.xml" title="Code4Fun" type="application/atom+xml">
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#千万级的用户，提供一个服务，该服务有很多模块，现在有一个底层模块需要优化，问怎么实现，在不影响其他服务模块以及用户体验的情况下。（面IEG）"><span class="toc-text">千万级的用户，提供一个服务，该服务有很多模块，现在有一个底层模块需要优化，问怎么实现，在不影响其他服务模块以及用户体验的情况下。（面IEG）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#未知大小的文件，翻转整个文件"><span class="toc-text">未知大小的文件，翻转整个文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如果内存中有个cache存储qq号和最近登录时间问怎么样做hit和淘汰"><span class="toc-text">如果内存中有个cache存储qq号和最近登录时间问怎么样做hit和淘汰</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#检测短信敏感词"><span class="toc-text">检测短信敏感词</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#爬虫程序的核心代码和正则表达式"><span class="toc-text">爬虫程序的核心代码和正则表达式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#有没有做过协议开发相关的工作？"><span class="toc-text">有没有做过协议开发相关的工作？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#给你一个场景，有10个特别大的图片，要对他们进行排序，用什么数据结构存储。"><span class="toc-text">给你一个场景，有10个特别大的图片，要对他们进行排序，用什么数据结构存储。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#给两个文件，里面均有超过50亿条域名，各自文件内假设没有重复，互相之间有若干条一样的，找出来。"><span class="toc-text">给两个文件，里面均有超过50亿条域名，各自文件内假设没有重复，互相之间有若干条一样的，找出来。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#群聊的数据结构-数据库怎么设计，要求每个人能够方便的看到自己想要看到的信息。比如需要存储哪些字段？怎么存？"><span class="toc-text">群聊的数据结构/数据库怎么设计，要求每个人能够方便的看到自己想要看到的信息。比如需要存储哪些字段？怎么存？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#有n台机器，原来的master宕掉了，要选举一个新的master出来，怎么选？"><span class="toc-text">有n台机器，原来的master宕掉了，要选举一个新的master出来，怎么选？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设计题：有500W个QQ号，设计一个合适的数据结构进行储存、查找与维护（这里考虑到查找的高效性，我想的是字典树，但和面试官探讨的过程中，感觉他不是很满意这个答案，大家如有更高效的结构欢迎分享）"><span class="toc-text">设计题：有500W个QQ号，设计一个合适的数据结构进行储存、查找与维护（这里考虑到查找的高效性，我想的是字典树，但和面试官探讨的过程中，感觉他不是很满意这个答案，大家如有更高效的结构欢迎分享）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何从10亿个QQ号中快速查找给定的QQ号"><span class="toc-text">如何从10亿个QQ号中快速查找给定的QQ号</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#40G的字符串，里面有2个字符串是重复的，怎么找出来？"><span class="toc-text">40G的字符串，里面有2个字符串是重复的，怎么找出来？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#不使用第三个数（临时变量）交换两个整形数"><span class="toc-text">不使用第三个数（临时变量）交换两个整形数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0000到9999这1万个数中有多少个数字7（请不要理解为多少个数包含7）"><span class="toc-text">0000到9999这1万个数中有多少个数字7（请不要理解为多少个数包含7）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何实现一个随机播放音乐，要求能够方便查看上一首播放的是什么，方便交换即将播放的歌曲顺序"><span class="toc-text">如何实现一个随机播放音乐，要求能够方便查看上一首播放的是什么，方便交换即将播放的歌曲顺序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6根火柴能最多摆出多少等边三角形"><span class="toc-text">6根火柴能最多摆出多少等边三角形</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何实现俄罗斯方块游戏形状的移动和旋转"><span class="toc-text">如何实现俄罗斯方块游戏形状的移动和旋转</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#怎么实现随机插入100个数字到一个长度为100的数组里，且无重复"><span class="toc-text">怎么实现随机插入100个数字到一个长度为100的数组里，且无重复</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设计题：有一个3阶魔方，设计一个数据结构来储存，并设计一个算法来求解魔方（当时设计出了数据结构，但求解算法只能想到DFS-剪枝，显然时间开销太大……事后在网上没找到特别好的求解算法，如有大神知道，还请指教）"><span class="toc-text">设计题：有一个3阶魔方，设计一个数据结构来储存，并设计一个算法来求解魔方（当时设计出了数据结构，但求解算法只能想到DFS+剪枝，显然时间开销太大……事后在网上没找到特别好的求解算法，如有大神知道，还请指教）</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-面试中思路性质问题" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">面试内容整理—思路</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2017.09.18</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>呼呼呼山</span>
+        </span>
+      
+
+      
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h2 id="千万级的用户，提供一个服务，该服务有很多模块，现在有一个底层模块需要优化，问怎么实现，在不影响其他服务模块以及用户体验的情况下。（面IEG）"><a href="#千万级的用户，提供一个服务，该服务有很多模块，现在有一个底层模块需要优化，问怎么实现，在不影响其他服务模块以及用户体验的情况下。（面IEG）" class="headerlink" title="千万级的用户，提供一个服务，该服务有很多模块，现在有一个底层模块需要优化，问怎么实现，在不影响其他服务模块以及用户体验的情况下。（面IEG）"></a>千万级的用户，提供一个服务，该服务有很多模块，现在有一个底层模块需要优化，问怎么实现，在不影响其他服务模块以及用户体验的情况下。（面IEG）</h2><p><a href="http://taop.marchtea.com/09.03.html" target="_blank" rel="external">http://taop.marchtea.com/09.03.html</a></p>
+<h2 id="未知大小的文件，翻转整个文件"><a href="#未知大小的文件，翻转整个文件" class="headerlink" title="未知大小的文件，翻转整个文件"></a>未知大小的文件，翻转整个文件</h2><h2 id="如果内存中有个cache存储qq号和最近登录时间问怎么样做hit和淘汰"><a href="#如果内存中有个cache存储qq号和最近登录时间问怎么样做hit和淘汰" class="headerlink" title="如果内存中有个cache存储qq号和最近登录时间问怎么样做hit和淘汰"></a>如果内存中有个cache存储qq号和最近登录时间问怎么样做hit和淘汰</h2><h2 id="检测短信敏感词"><a href="#检测短信敏感词" class="headerlink" title="检测短信敏感词"></a>检测短信敏感词</h2><h2 id="爬虫程序的核心代码和正则表达式"><a href="#爬虫程序的核心代码和正则表达式" class="headerlink" title="爬虫程序的核心代码和正则表达式"></a>爬虫程序的核心代码和正则表达式</h2><h2 id="有没有做过协议开发相关的工作？"><a href="#有没有做过协议开发相关的工作？" class="headerlink" title="有没有做过协议开发相关的工作？"></a>有没有做过协议开发相关的工作？</h2><h2 id="给你一个场景，有10个特别大的图片，要对他们进行排序，用什么数据结构存储。"><a href="#给你一个场景，有10个特别大的图片，要对他们进行排序，用什么数据结构存储。" class="headerlink" title="给你一个场景，有10个特别大的图片，要对他们进行排序，用什么数据结构存储。"></a>给你一个场景，有10个特别大的图片，要对他们进行排序，用什么数据结构存储。</h2><h2 id="给两个文件，里面均有超过50亿条域名，各自文件内假设没有重复，互相之间有若干条一样的，找出来。"><a href="#给两个文件，里面均有超过50亿条域名，各自文件内假设没有重复，互相之间有若干条一样的，找出来。" class="headerlink" title="给两个文件，里面均有超过50亿条域名，各自文件内假设没有重复，互相之间有若干条一样的，找出来。"></a>给两个文件，里面均有超过50亿条域名，各自文件内假设没有重复，互相之间有若干条一样的，找出来。</h2><h2 id="群聊的数据结构-数据库怎么设计，要求每个人能够方便的看到自己想要看到的信息。比如需要存储哪些字段？怎么存？"><a href="#群聊的数据结构-数据库怎么设计，要求每个人能够方便的看到自己想要看到的信息。比如需要存储哪些字段？怎么存？" class="headerlink" title="群聊的数据结构/数据库怎么设计，要求每个人能够方便的看到自己想要看到的信息。比如需要存储哪些字段？怎么存？"></a>群聊的数据结构/数据库怎么设计，要求每个人能够方便的看到自己想要看到的信息。比如需要存储哪些字段？怎么存？</h2><h2 id="有n台机器，原来的master宕掉了，要选举一个新的master出来，怎么选？"><a href="#有n台机器，原来的master宕掉了，要选举一个新的master出来，怎么选？" class="headerlink" title="有n台机器，原来的master宕掉了，要选举一个新的master出来，怎么选？"></a>有n台机器，原来的master宕掉了，要选举一个新的master出来，怎么选？</h2><p><a href="https://sanwen8.cn/p/2faiv1h.html" target="_blank" rel="external">https://sanwen8.cn/p/2faiv1h.html</a></p>
+<h2 id="设计题：有500W个QQ号，设计一个合适的数据结构进行储存、查找与维护（这里考虑到查找的高效性，我想的是字典树，但和面试官探讨的过程中，感觉他不是很满意这个答案，大家如有更高效的结构欢迎分享）"><a href="#设计题：有500W个QQ号，设计一个合适的数据结构进行储存、查找与维护（这里考虑到查找的高效性，我想的是字典树，但和面试官探讨的过程中，感觉他不是很满意这个答案，大家如有更高效的结构欢迎分享）" class="headerlink" title="设计题：有500W个QQ号，设计一个合适的数据结构进行储存、查找与维护（这里考虑到查找的高效性，我想的是字典树，但和面试官探讨的过程中，感觉他不是很满意这个答案，大家如有更高效的结构欢迎分享）"></a>设计题：有500W个QQ号，设计一个合适的数据结构进行储存、查找与维护（这里考虑到查找的高效性，我想的是字典树，但和面试官探讨的过程中，感觉他不是很满意这个答案，大家如有更高效的结构欢迎分享）</h2><h2 id="如何从10亿个QQ号中快速查找给定的QQ号"><a href="#如何从10亿个QQ号中快速查找给定的QQ号" class="headerlink" title="如何从10亿个QQ号中快速查找给定的QQ号"></a>如何从10亿个QQ号中快速查找给定的QQ号</h2><h2 id="40G的字符串，里面有2个字符串是重复的，怎么找出来？"><a href="#40G的字符串，里面有2个字符串是重复的，怎么找出来？" class="headerlink" title="40G的字符串，里面有2个字符串是重复的，怎么找出来？"></a>40G的字符串，里面有2个字符串是重复的，怎么找出来？</h2><h2 id="不使用第三个数（临时变量）交换两个整形数"><a href="#不使用第三个数（临时变量）交换两个整形数" class="headerlink" title="不使用第三个数（临时变量）交换两个整形数"></a>不使用第三个数（临时变量）交换两个整形数</h2><p>提示：<br>方式1加法，a=a+b;b=a-b;a=a-b;(缺点，可能出现a+b超过范围)；<br>方式2位运算，a^=b;b^=a;a^=b;(对数值类型通用)</p>
+<h2 id="0000到9999这1万个数中有多少个数字7（请不要理解为多少个数包含7）"><a href="#0000到9999这1万个数中有多少个数字7（请不要理解为多少个数包含7）" class="headerlink" title="0000到9999这1万个数中有多少个数字7（请不要理解为多少个数包含7）"></a>0000到9999这1万个数中有多少个数字7（请不要理解为多少个数包含7）</h2><p>提示：<br>方式1，可以通过找规律的方式，比如1到10，1到100，1到1000分别多少个;<br>方式2，对每一位单独考虑，共四位，每一位出现7的概率是1/10；<br>方式3，每次固定一位，变换其他位，比如固定千位为7，那么就有1000个，依次计算，得到最终结果4000</p>
+<h2 id="如何实现一个随机播放音乐，要求能够方便查看上一首播放的是什么，方便交换即将播放的歌曲顺序"><a href="#如何实现一个随机播放音乐，要求能够方便查看上一首播放的是什么，方便交换即将播放的歌曲顺序" class="headerlink" title="如何实现一个随机播放音乐，要求能够方便查看上一首播放的是什么，方便交换即将播放的歌曲顺序"></a>如何实现一个随机播放音乐，要求能够方便查看上一首播放的是什么，方便交换即将播放的歌曲顺序</h2><p>提示：先对歌曲编号为0~999（比如有1000首歌），用洗牌算法（不懂的请自行百度）将序号顺序打乱，之后开始播放，这样播放中用户可以对歌曲再次调整顺序，调整时同步调整序号。</p>
+<h2 id="6根火柴能最多摆出多少等边三角形"><a href="#6根火柴能最多摆出多少等边三角形" class="headerlink" title="6根火柴能最多摆出多少等边三角形"></a>6根火柴能最多摆出多少等边三角形</h2><p>提示：正六角星（8个等边三角形）</p>
+<h2 id="如何实现俄罗斯方块游戏形状的移动和旋转"><a href="#如何实现俄罗斯方块游戏形状的移动和旋转" class="headerlink" title="如何实现俄罗斯方块游戏形状的移动和旋转"></a>如何实现俄罗斯方块游戏形状的移动和旋转</h2><p>提示：先用矩形将下落方块围住标记，再记录方块当前的左下角位置，移动时记录坐标变化（可以百度看更高端的答案）</p>
+<h2 id="怎么实现随机插入100个数字到一个长度为100的数组里，且无重复"><a href="#怎么实现随机插入100个数字到一个长度为100的数组里，且无重复" class="headerlink" title="怎么实现随机插入100个数字到一个长度为100的数组里，且无重复"></a>怎么实现随机插入100个数字到一个长度为100的数组里，且无重复</h2><p>随机洗牌问题<br>“随机确定a<a href="">1</a>的值，然后递归地对后n-1位进行操作”，用数学归纳法即可轻易说明算法的正确性。而事实上，这段程序一共将会产生n<em>(n-1)</em>(n-2)<em>…</em>1种等可能的情况，它们正好与1至n的n!种排列一一对应。</p>
+<pre><code>void ShuffleArray_Fisher_Yates(char* arr, int len)
+{
+    int i = len, j;
+    char temp;
+    if ( i == 0 ) return;
+    while ( --i ) {
+        j = rand() % (i+1);
+        temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+}
+
+for i:=1 to n do swap(a[i], a[random(i,n)]);
+</code></pre><h2 id="设计题：有一个3阶魔方，设计一个数据结构来储存，并设计一个算法来求解魔方（当时设计出了数据结构，但求解算法只能想到DFS-剪枝，显然时间开销太大……事后在网上没找到特别好的求解算法，如有大神知道，还请指教）"><a href="#设计题：有一个3阶魔方，设计一个数据结构来储存，并设计一个算法来求解魔方（当时设计出了数据结构，但求解算法只能想到DFS-剪枝，显然时间开销太大……事后在网上没找到特别好的求解算法，如有大神知道，还请指教）" class="headerlink" title="设计题：有一个3阶魔方，设计一个数据结构来储存，并设计一个算法来求解魔方（当时设计出了数据结构，但求解算法只能想到DFS+剪枝，显然时间开销太大……事后在网上没找到特别好的求解算法，如有大神知道，还请指教）"></a>设计题：有一个3阶魔方，设计一个数据结构来储存，并设计一个算法来求解魔方（当时设计出了数据结构，但求解算法只能想到DFS+剪枝，显然时间开销太大……事后在网上没找到特别好的求解算法，如有大神知道，还请指教）</h2><blockquote>
+<p><a href="">呼呼呼山</a>(<a href="http://code4fun.me">http://code4fun.me</a>)<br>18 Sep 2017 9:08 PM </p>
+</blockquote>
+
+    
+  </div>
+
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2017/09/18/数据结构相关面试问题/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2017/11/11/关于工作二三事/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: '99bca29ad4d85951d688',
+  clientSecret: 'd956164d57277ed8ece2fab34d91f67506dd50d6',
+  repo: 'blog-comment',
+  owner: 'zhangzhishan',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: md5(location.pathname),
+  admin: ['zhangzhishan'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

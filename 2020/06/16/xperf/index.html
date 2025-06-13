@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>xperf 入门[4/15] | Code4Fun</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="performance," />
+  
+
+  <meta name="description" content="在做性能优化的时候， 由于服务器是 Windows, 而看到的好多工具， 像 DTrace 等都是只支持 Linux 的， 虽然 DTrace 微软官方有一个 port, 但是使用体验并不好. 然后, 花了挺多时间去网上搜一些 performance profiling tools的, 后来, 突然意识到自己简直是守着金山要饭. Xperf 就是一个十分好用的工具, 之前由于一次采样的时间过久(2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="xperf 入门[4/15]">
+<meta property="og:url" content="http://code4fun.me/2020/06/16/xperf/index.html">
+<meta property="og:site_name" content="Code4Fun">
+<meta property="og:description" content="在做性能优化的时候， 由于服务器是 Windows, 而看到的好多工具， 像 DTrace 等都是只支持 Linux 的， 虽然 DTrace 微软官方有一个 port, 但是使用体验并不好. 然后, 花了挺多时间去网上搜一些 performance profiling tools的, 后来, 突然意识到自己简直是守着金山要饭. Xperf 就是一个十分好用的工具, 之前由于一次采样的时间过久(2">
+<meta property="og:image" content="http://code4fun.me/images/20200616192136939_14753.png">
+<meta property="og:image" content="http://code4fun.me/images/20200617200954656_15520.png">
+<meta property="og:image" content="http://code4fun.me/images/20200617203633264_30648.png">
+<meta property="og:image" content="http://code4fun.me/images/20200617205359859_17129.png">
+<meta property="og:updated_time" content="2025-06-13T10:54:27.291Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="xperf 入门[4/15]">
+<meta name="twitter:description" content="在做性能优化的时候， 由于服务器是 Windows, 而看到的好多工具， 像 DTrace 等都是只支持 Linux 的， 虽然 DTrace 微软官方有一个 port, 但是使用体验并不好. 然后, 花了挺多时间去网上搜一些 performance profiling tools的, 后来, 突然意识到自己简直是守着金山要饭. Xperf 就是一个十分好用的工具, 之前由于一次采样的时间过久(2">
+<meta name="twitter:image" content="http://code4fun.me/images/20200616192136939_14753.png">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+<link rel="alternate" href="/atom.xml" title="Code4Fun" type="application/atom+xml">
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Start-amp-amp-Stop"><span class="toc-text">Start && Stop</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#View"><span class="toc-text">View</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#GUI"><span class="toc-text">GUI</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CLI"><span class="toc-text">CLI</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Summary"><span class="toc-text">Summary</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-xperf" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">xperf 入门[4/15]</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2020.06.16</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>呼呼呼山</span>
+        </span>
+      
+
+      
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>在做性能优化的时候， 由于服务器是 Windows, 而看到的好多工具， 像 DTrace 等都是只支持 Linux 的， 虽然 DTrace 微软官方有一个 <a href="https://github.com/microsoft/DTrace-on-Windows" target="_blank" rel="external">port</a>, 但是使用体验并不好. 然后, 花了挺多时间去网上搜一些 performance profiling tools的, 后来, 突然意识到自己简直是守着金山要饭. Xperf 就是一个十分好用的工具, 之前由于一次采样的时间过久(20多分钟), 导致文件很大 (10多G), 然后每次打开一个 View 的时间过长, 所以后来就不了了之了.</p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Xperf 的官方文档可以参考<a href="https://docs.microsoft.com/en-us/previous-versions/windows/desktop/xperf/detailed-walkthrough" target="_blank" rel="external">这里</a>, 它是 Windows Performance Analyzer (WPA) 里面的一个重要组件, 另一个比较好用的组件是 F1 Profiler, 利用 F1Profiler 可以很方便地看到每一部分的 CPU usage,  inclusive 和 exclusive 的, 可以很具体到是哪一个函数,甚至是哪一行用了比较多的CPU.</p>
+<p><img src="/images/20200616192136939_14753.png" alt="f1profiler"></p>
+<p>但是 F1Profiler 的一个缺点是由于其是基于统计的信息,所以不能很好的了解一些具体的某些时段发生的事情,另外就是其主要信息是关于 CPU 的采样, 所以对于其余的例如IO方面,内存方面的问题就有些力不从心了.  而基于 event 信息的 xperf,就没有这些问题了.</p>
+<p>首先当然是安装, 其包含在Widnows SDK 里面, 只需要在<a href="https://developer.microsoft.com/en-us/windows/downloads/sdk-archive/" target="_blank" rel="external">官方SDK网站</a>, 这里下载最新的, 然后安装就可以了.</p>
+<h2 id="Start-amp-amp-Stop"><a href="#Start-amp-amp-Stop" class="headerlink" title="Start &amp;&amp; Stop"></a>Start &amp;&amp; Stop</h2><p>用 xperf 来记录信息也十分方便, 只需要<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xperf -on FileIO+FILENAME+PROFILE -maxbuffers 1024</div></pre></td></tr></table></figure></p>
+<p>这里其中<code>-on</code>后面的参数是可以根据自己的情况修改的, 具体包含哪些可以通过 <code>xperf -providers KF KG</code> 命令得到. 其中 <code>KF</code> 是所有的 kernal flags, 而 <code>KG</code> 则是一些组合, 例如 <code>Latency</code> 就等价于 <code>PROC_THREAD+LOADER+DISK_IO+HARD_FAULTS+DPC+INTERRUPT+CSWITCH+PROFILE</code>, 一些典型的 Flag.</p>
+<p><img src="/images/20200617200954656_15520.png" alt="providers flag"></p>
+<p>在 <code>xperf</code> 开始工作之后, 我们就可以启动我们想要 profiling 的应用程序, 由于 xperf 的设计问题, 目前我们不能单独的指定只profile 和某个 process 相关的信息, 所以会得到的相当于那个时间段之内全量的信息. 在采集一段时间后, 我们可以简单的通过 <code>xperf -d D:\xperf_trace_log.etl</code> 来把output 输出到指定路径指定文件.</p>
+<h2 id="View"><a href="#View" class="headerlink" title="View"></a>View</h2><h3 id="GUI"><a href="#GUI" class="headerlink" title="GUI"></a>GUI</h3><p>最简单查看的方式就是直接双击打开， 就会在左侧列出一些小图，你也可以选择一些指定的细节到新建的view里面去。主界面大概是这样子的:</p>
+<p><img src="/images/20200617203633264_30648.png" alt="main window WPA"></p>
+<p>但是这种方式有一些缺点,首先第一个是当数据量很大的时候, 每个图都要等很长一段时间, 尤其是很多图的信息其实并不是你想要的. 另外一个,虽然从他生成的一些图里面可以很明显地看到一些问题, 但是有很多时候, 我们需要自己对这些单条的 event log 做一些分析统计和处理, 显然在 GUI 里面就不是很方便了.</p>
+<h3 id="CLI"><a href="#CLI" class="headerlink" title="CLI"></a>CLI</h3><p>CLI 命令可以很方便的把我们需要的信息输出出来, 其基本命令格式也很简单,<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xperf -i input.etl -o output.txt -a &lt;action_name&gt; [action_parameters]</div></pre></td></tr></table></figure></p>
+<p>这种形式的命令来获得指定的输出, 例如如果我想得到我们 process1 在时间 [368000000, 866000000], 这里的时间为距离开始的微秒数,这也就是运行了368s到866s之间的信息, 内的CPU disk的信息就可以用下面的命令:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xperf -i input.etl  -tle -o cpudisk.txt  -a cpudisk -exes process1 -times 368000000 866000000</div></pre></td></tr></table></figure></p>
+<p>这里我们加了 <code>-tle</code> 的参数, 是因为当长时间的运行的时候, 有的时候会漏掉一些event, 这时候会有下面类似的提示且不实际去执行我们的 action.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">2 Events were lost in this trace.  Data may be unreliable.</div><div class="line">This is usually caused by insufficient disk bandwidth for ETW logging.</div><div class="line">Please try increasing the minimum and maximum number of buffers and/or</div><div class="line">the buffer size.  Doubling these values would be a good first attempt.</div><div class="line">Please note, though, that this action increases the amount of memory</div><div class="line">reserved for ETW buffers, increasing memory pressure on your scenario.</div><div class="line">See &quot;xperf -help start&quot; for the associated command line options.</div></pre></td></tr></table></figure></p>
+<p>而加了参数之后就可以正常执行了.<br>我们也可以通过下面的命令看到很具体的哪些文件被哪些service 访问了, 这个访问的 offset 和 IO的很详细的信息.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xperf -i input.etl  -tle -o diskio_detail.txt  -a diskio -summary -detail -range 368000000 370000000</div></pre></td></tr></table></figure></p>
+<p>这样来自<code>-summary</code>这个参数的统计信息:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Count,     Size,     SrvT,  R-Count,   R-Size,   R-SrvT,  W-Count,   W-Size,   W-SrvT,   IOTime, Filename</div><div class="line">   3,        0,    95410,        0,        0,        0,        0,        0,        0,    95410, &quot;Unknown&quot;</div><div class="line"> 805, 52690944,   175036,        0,        0,        0,      805, 52690944,   175036,   252839, C:\kernel.etl</div><div class="line">   7,    36864,     7565,        2,     8192,     5587,        5,    28672,     1978,     7877, D:\$Mft</div><div class="line">   9,    40960,      735,        0,        0,        0,        9,    40960,      735,     7059, C:\$Mft</div><div class="line">   1,    65536,      439,        0,        0,        0,        1,    65536,      439,     2477, C:\Windows\System32\winevt\Logs\Security.evtx</div><div class="line">   1,     4096,       87,        0,        0,        0,        1,     4096,       87,       87, D:\$LogFile</div><div class="line">   2,     8192,      233,        0,        0,        0,        2,     8192,      233,      233, C:\ProgramData\Microsoft\Windows Defender\Support\MpWppTracing-05282020-040703-00000003-ffffffff.bin</div><div class="line">   2,   208896,      956,        0,        0,        0,        2,   208896,      956,      956, C:\$LogFile</div><div class="line">   3,    12288,      623,        0,        0,        0,        3,    12288,      623,     3712, C:\$BitMap</div></pre></td></tr></table></figure>
+<p>和来自于 <code>-detail</code> 的具体的某一个时间的输出信息:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">QD/I - Number of outstanding IOs at IO start time.</div><div class="line">QD/C - Number of outstanding IOs at IO Completion time.</div><div class="line">IBCB - Number of IOs that initialized before start time and completed before end time.</div><div class="line">IBCA - Number of IOs that initialized before start time and completed after end time.</div><div class="line">IACB - Number of IOs that initialized after start time and completed before end time.</div><div class="line"></div><div class="line">   IO Type, Start Time,   End Time,    IO Time,  Disk SrvT,    IO Size,  Byte Offset,  Pri, QD/I, QD/C, IBCB, IBCA, IACB,     Process Name ( PID), Disk, Filename</div><div class="line"> DiskWrite,  368013044,  368013253,        209,        209, 0x00010000, 0x00b9523000,    3,    0,    0,    0,    0,    0,           System (   4),    0, C:\kernel.etl</div><div class="line"> DiskWrite,  368013304,  368013686,        382,        382, 0x00010000, 0x00b9533000,    3,    0,    0,    0,    0,    0,           System (   4),    0, C:\kernel.etl</div><div class="line"> DiskWrite,  368013728,  368013905,        177,        177, 0x00010000, 0x00b9543000,    3,    0,    0,    0,    0,    0,           System (   4),    0, C:\kernel.etl</div><div class="line"> DiskWrite,  368013947,  368014301,        354,        354, 0x00010000, 0x00b9553000,    3,    0,    0,    0,    0,    0,           System (   4),    0, C:\kernel.etl</div><div class="line"> DiskWrite,  368014344,  368014517,        173,        173, 0x00010000, 0x00b9563000,    3,    0,    0,    0,    0,    0,           System (   4),    0, C:\kernel.etl</div><div class="line"> DiskWrite,  368014563,  368014738,        175,        175, 0x00010000, 0x00b9573000,    3,    0,    0,    0,    0,    0,           System (   4),    0, C:\kernel.etl</div><div class="line"> DiskWrite,  368014782,  368014958,        176,        176, 0x00010000, 0x00b9583000,    3,    0,    0,    0,    0,    0,           System (   4),    0, C:\kernel.etl</div></pre></td></tr></table></figure></p>
+<p>也可以用 <code>-overlap</code> 命令获得IO们的 overlap 信息.</p>
+<p><img src="/images/20200617205359859_17129.png" alt="io overlap"></p>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>这里介绍了一些很基本的使用, 使用是一个很简单的事情, 重要的是如何一点点的找到思路,做哪些检测,然后来找到问题, 后面应该会结合一些实际案例来讲解一下 performance tuning 的思路.</p>
+<blockquote>
+<p><a href="http://code4fun.me">呼呼呼山</a><br>2020-06-16 19:06:00</p>
+</blockquote>
+
+    
+  </div>
+
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2020/06/15/2020summary/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2020/06/23/disk_allocation_size/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: '99bca29ad4d85951d688',
+  clientSecret: 'd956164d57277ed8ece2fab34d91f67506dd50d6',
+  repo: 'blog-comment',
+  owner: 'zhangzhishan',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: md5(location.pathname),
+  admin: ['zhangzhishan'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
